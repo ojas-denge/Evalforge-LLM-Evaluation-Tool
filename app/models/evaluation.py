@@ -1,6 +1,19 @@
-﻿from datetime import datetime
+from __future__ import annotations
+from datetime import datetime
+
+from typing import TYPE_CHECKING, Any
 
 from pydantic import BaseModel, Field, StrictBool
+
+if TYPE_CHECKING:
+    from app.evaluation.judge_result import JudgeVerdict
+
+
+class JudgeConfig(BaseModel):
+    model: str = Field(min_length=1)
+    provider: str = Field(min_length=1)
+    temperature: float = Field(ge=0.0, le=2.0, default=0.0)
+    batch_size: int | None = Field(default=None, ge=1)
 
 
 class RetrievalConfig(BaseModel):
@@ -51,6 +64,7 @@ class EvaluationResult(BaseModel):
         le=1.0,
     )
     answer_judge: AnswerJudgeResult | None = Field(default=None)
+    judge_verdict: JudgeVerdict | None = Field(default=None)
 
     retrieved_evidence: list[RetrievedEvidence] = Field(
         default_factory=list
@@ -77,6 +91,7 @@ class EvaluationRun(BaseModel):
     created_at: datetime
     dataset_size: int = Field(ge=0)
     retrieval_config: RetrievalConfig
+    judge_config: JudgeConfig | None = Field(default=None)
     results: list[EvaluationResult] = Field(default_factory=list)
 
     mean_hit_at_1: float = Field(ge=0.0, le=1.0)
@@ -92,3 +107,6 @@ class EvaluationRun(BaseModel):
         le=1.0,
     )
     mean_retrieval_latency_ms: float = Field(ge=0.0)
+
+from app.evaluation.judge_result import JudgeVerdict
+EvaluationResult.model_rebuild()

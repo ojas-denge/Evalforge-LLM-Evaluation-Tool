@@ -1,4 +1,4 @@
-﻿from datetime import datetime, timezone
+from datetime import datetime, timezone
 from uuid import uuid4
 
 from app.core.config import get_settings
@@ -19,6 +19,7 @@ from app.models.evaluation import (
     EvaluationRun,
     RetrievedEvidence,
     RetrievalConfig,
+    JudgeConfig,
 )
 from app.observability.tracing import Tracer
 from app.retrieval.retriever import Retriever
@@ -97,15 +98,18 @@ class Evaluator:
             )
 
         judged_answer = None
+        judge_verdict = None
 
         if self.answer_judge is not None:
-            judged_answer = self.answer_judge.judge(
+            verdict = self.answer_judge.judge(
                 question=case.question,
                 expected_answer=case.expected_answer,
                 expected_topics=case.expected_topics,
                 generated_answer=generation.answer,
                 retrieved_evidence=retrieved_evidence,
             )
+            judge_verdict = verdict
+            judged_answer = verdict.result
 
         return EvaluationResult(
             case_id=case.case_id,
@@ -114,6 +118,7 @@ class Evaluator:
             generated_answer=generation.answer,
             topic_coverage=case_topic_coverage,
             answer_judge=judged_answer,
+            judge_verdict=judge_verdict,
             retrieved_evidence=retrieved_evidence,
             failure_type=diagnostic.failure_type,
             relevant_documents_found=diagnostic.relevant_documents_found,
@@ -253,11 +258,23 @@ class Evaluator:
             mean_topic_coverage = None
             mean_retrieval_latency_ms = 0.0
 
+        judge_config = None
+        if self.answer_judge is not None:
+            gen = getattr(self.answer_judge, 'generator', None)
+            if gen and getattr(gen, 'model', None) and getattr(gen, 'provider', None):
+                judge_config = JudgeConfig(
+                    model=gen.model,
+                    provider=gen.provider,
+                    temperature=getattr(gen, 'temperature', 0.0),
+                    batch_size=None
+                )
+
         return EvaluationRun(
             run_id=str(uuid4()),
             created_at=datetime.now(timezone.utc),
             dataset_size=len(dataset),
             retrieval_config=self._build_retrieval_config(),
+            judge_config=judge_config,
             results=results,
             mean_hit_at_1=mean_hit_at_1,
             mean_hit_at_3=mean_hit_at_3,

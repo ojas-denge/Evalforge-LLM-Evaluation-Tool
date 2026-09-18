@@ -68,3 +68,32 @@ def test_ci_gate_fails_on_latency_regression():
 
     assert result.passed is False
     assert "mean_retrieval_latency_ms" in result.reasons
+
+
+def test_ci_gate_fails_on_correctness_regression():
+    comparison = EvaluationComparison(
+        baseline_run_id="baseline",
+        candidate_run_id="candidate",
+        metric_deltas={
+            "mean_hit_at_1": 0.0,
+            "mean_hit_at_3": 0.0,
+            "mean_hit_at_5": 0.0,
+            "mean_recall_at_1": 0.0,
+            "mean_recall_at_3": 0.0,
+            "mean_recall_at_5": 0.0,
+            "mean_mrr": 0.0,
+            "mean_retrieval_latency_ms": 0.0,
+        },
+        case_changes=[],
+        mean_correctness_delta=-0.15,
+    )
+    gate = EvaluationCIGate(
+        RegressionPolicy(
+            max_mrr_drop=0.02,
+            max_latency_increase_ms=100.0,
+            max_correctness_drop=0.1,
+        )
+    )
+    result = gate.evaluate(comparison)
+    assert result.passed is False
+    assert "mean_correctness" in result.reasons

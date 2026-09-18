@@ -23,6 +23,34 @@ class EvaluationComparison:
     candidate_run_id: str
     metric_deltas: dict[str, float]
     case_changes: list[CaseChange]
+    mean_correctness_delta: float | None = None
+    mean_groundedness_delta: float | None = None
+    conflict_rate_delta: float | None = None
+    cost_delta_usd: float | None = None
+
+
+def _mean_correctness(run: EvaluationRun) -> float | None:
+    judged = [
+        result for result in run.results
+        if result.answer_judge is not None
+    ]
+    if not judged:
+        return None
+    return sum(
+        1.0 for r in judged if r.answer_judge.answer_correct
+    ) / len(judged)
+
+
+def _mean_groundedness(run: EvaluationRun) -> float | None:
+    judged = [
+        result for result in run.results
+        if result.answer_judge is not None
+    ]
+    if not judged:
+        return None
+    return sum(
+        1.0 for r in judged if r.answer_judge.answer_grounded
+    ) / len(judged)
 
 
 def compare_runs(
@@ -116,9 +144,23 @@ def compare_runs(
         for case_id in sorted(baseline_cases)
     ]
 
+    baseline_correctness = _mean_correctness(baseline)
+    candidate_correctness = _mean_correctness(candidate)
+    mean_correctness_delta = None
+    if baseline_correctness is not None and candidate_correctness is not None:
+        mean_correctness_delta = candidate_correctness - baseline_correctness
+
+    baseline_groundedness = _mean_groundedness(baseline)
+    candidate_groundedness = _mean_groundedness(candidate)
+    mean_groundedness_delta = None
+    if baseline_groundedness is not None and candidate_groundedness is not None:
+        mean_groundedness_delta = candidate_groundedness - baseline_groundedness
+
     return EvaluationComparison(
         baseline_run_id=baseline.run_id,
         candidate_run_id=candidate.run_id,
         metric_deltas=metric_deltas,
         case_changes=case_changes,
+        mean_correctness_delta=mean_correctness_delta,
+        mean_groundedness_delta=mean_groundedness_delta,
     )

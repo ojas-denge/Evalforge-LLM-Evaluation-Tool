@@ -9,3 +9,5 @@ __pycache__/
 data/chroma/
 
 candidate_diagnosis.json
+
+logs/

@@ -1,4 +1,4 @@
-import json
+﻿from json import JSONDecodeError, loads
 from time import perf_counter
 from typing import Any
 
@@ -8,8 +8,10 @@ from app.generation.base import (
     GenerationRequest,
     GenerationResult,
     Generator,
+    StructuredOutputStatus,
 )
 from app.generation.cost import CostCalculator
+from app.generation.observation import GenerationObservation
 from app.generation.pricing_registry import PricingRegistry
 from app.generation.usage import GenerationUsage
 from app.observability.tracing import Tracer
@@ -26,6 +28,7 @@ class OpenAICompatibleGenerator(Generator):
         tracer: Tracer | None = None,
         cost_calculator: CostCalculator | None = None,
         pricing_registry: PricingRegistry | None = None,
+        structured_output_mode: str = "json_schema",
         timeout: float = 60.0,
     ) -> None:
         self.api_key = api_key
@@ -34,7 +37,17 @@ class OpenAICompatibleGenerator(Generator):
         self.tracer = tracer or Tracer()
         self.cost_calculator = cost_calculator or CostCalculator()
         self.pricing_registry = pricing_registry or PricingRegistry()
+        self.structured_output_mode = structured_output_mode.lower().strip()
         self.timeout = timeout
+
+        if self.structured_output_mode not in {
+            "json_schema",
+            "json_object",
+        }:
+            raise ValueError(
+                "Unsupported structured output mode: "
+                f"{structured_output_mode}"
+            )
 
     def generate(
         self,
@@ -62,15 +75,13 @@ class OpenAICompatibleGenerator(Generator):
             for document in request.context
         )
 
-        user_content = (
-            f"Question:\n{request.question}\n\n"
-            f"Retrieved context:\n{context}"
-        )
-
         messages.append(
             {
                 "role": "user",
-                "content": user_content,
+                "content": (
+                    f"Question:\n{request.question}\n\n"
+                    f"Retrieved context:\n{context}"
+                ),
             }
         )
 
@@ -83,14 +94,13 @@ class OpenAICompatibleGenerator(Generator):
         if request.max_tokens is not None:
             payload["max_tokens"] = request.max_tokens
 
+        response_format = None
+
         if request.response_schema is not None:
-            payload["response_format"] = {
-                "type": "json_schema",
-                "json_schema": {
-                    "name": "evalforge_response",
-                    "schema": request.response_schema,
-                },
-            }
+            response_format = self._build_response_format(
+                request.response_schema
+            )
+            payload["response_format"] = response_format
 
         headers = {
             "Content-Type": "application/json",
@@ -110,14 +120,15 @@ class OpenAICompatibleGenerator(Generator):
                 "structured_output": (
                     request.response_schema is not None
                 ),
+                "structured_output_mode": self.structured_output_mode,
             },
             metadata={
                 "provider": "openai-compatible",
                 "model": model,
                 "base_url": self.base_url,
+                "structured_output_mode": self.structured_output_mode,
             },
-        ) as observation:
-
+        ) as trace_observation:
             response = httpx.post(
                 f"{self.base_url}/chat/completions",
                 json=payload,
@@ -126,27 +137,67 @@ class OpenAICompatibleGenerator(Generator):
             )
 
             response.raise_for_status()
-
             data = response.json()
 
-            try:
-                answer = data["choices"][0]["message"]["content"]
-            except (
-                KeyError,
-                IndexError,
-                TypeError,
-            ) as exc:
-                raise ValueError(
-                    "Provider returned an invalid chat completion response"
-                ) from exc
+            latency_ms = (perf_counter() - start_time) * 1000.0
+
+            actual_model = data.get("model") or model
+            actual_provider = data.get("provider")
+
+            choices = data.get("choices") or []
+
+            if choices:
+                choice = choices[0] or {}
+                finish_reason = choice.get("finish_reason")
+                message = choice.get("message") or {}
+            else:
+                finish_reason = None
+                message = {}
+
+            raw_content = message.get("content")
+            refusal = message.get("refusal")
+
+            reasoning = message.get("reasoning")
+
+            reasoning_details = message.get("reasoning_details")
+
+            if not isinstance(reasoning_details, list):
+                reasoning_details = []
+
+            if raw_content is not None and not isinstance(
+                raw_content,
+                str,
+            ):
+                original_content_type = type(raw_content).__name__
+                answer = str(raw_content)
+            else:
+                original_content_type = None
+                answer = raw_content
 
             structured_output = None
+            structured_output_status = (
+                StructuredOutputStatus.NOT_REQUESTED
+            )
+            structured_output_error = None
 
             if request.response_schema is not None:
-                structured_output = self._parse_structured_output(
-                    answer,
-                    request.response_schema,
-                )
+                if answer is None:
+                    structured_output_status = (
+                        StructuredOutputStatus.MISSING_CONTENT
+                    )
+                else:
+                    try:
+                        structured_output = (
+                            self._parse_structured_output(answer)
+                        )
+                        structured_output_status = (
+                            StructuredOutputStatus.PARSED
+                        )
+                    except ValueError as exc:
+                        structured_output_status = (
+                            StructuredOutputStatus.PARSE_FAILED
+                        )
+                        structured_output_error = str(exc)
 
             raw_usage = data.get("usage") or {}
 
@@ -169,9 +220,55 @@ class OpenAICompatibleGenerator(Generator):
                 pricing=pricing,
             )
 
-            latency_ms = (
-                perf_counter() - start_time
-            ) * 1000
+            observation = GenerationObservation(
+                requested_model=model,
+                actual_model=actual_model,
+                actual_provider=actual_provider,
+                http_status=response.status_code,
+                finish_reason=finish_reason,
+                content=answer,
+                refusal=refusal,
+                reasoning=reasoning,
+                reasoning_details=reasoning_details,
+                usage=usage,
+                latency_ms=latency_ms,
+                response_format_requested=response_format,
+                raw_response=data,
+                metadata={
+                    "structured_output_requested": (
+                        request.response_schema is not None
+                    ),
+                    "structured_output_mode": (
+                        self.structured_output_mode
+                    ),
+                    "structured_output_status": (
+                        structured_output_status.value
+                    ),
+                    "structured_output_error": (
+                        structured_output_error
+                    ),
+                    "content_present": answer is not None,
+                    "message_keys": list(message.keys()),
+                    "original_content_type": (
+                        original_content_type
+                    ),
+                },
+            )
+
+            result_metadata = {
+                "usage": raw_usage,
+                "structured_output_mode": self.structured_output_mode,
+                "requested_model": model,
+                "actual_model": actual_model,
+                "actual_provider": actual_provider,
+                "provider_response": data,
+                "structured_output_error": structured_output_error,
+                "finish_reason": finish_reason,
+                "content_present": answer is not None,
+                "message_keys": list(message.keys()),
+                "original_content_type": original_content_type,
+                "generation_observation": observation,
+            }
 
             result = GenerationResult(
                 answer=answer,
@@ -180,18 +277,15 @@ class OpenAICompatibleGenerator(Generator):
                 usage=usage,
                 estimated_cost_usd=estimated_cost_usd,
                 latency_ms=latency_ms,
-                finish_reason=data.get(
-                    "choices",
-                    [{}],
-                )[0].get("finish_reason"),
+                finish_reason=finish_reason,
                 structured_output=structured_output,
-                metadata={
-                    "usage": raw_usage,
-                },
+                structured_output_status=structured_output_status,
+                observation=observation,
+                metadata=result_metadata,
             )
 
-            if observation is not None:
-                observation.update(
+            if trace_observation is not None:
+                trace_observation.update(
                     output={
                         "answer": answer,
                         "structured_output": structured_output,
@@ -199,6 +293,9 @@ class OpenAICompatibleGenerator(Generator):
                     metadata={
                         "provider": result.provider,
                         "model": result.model,
+                        "requested_model": model,
+                        "actual_model": actual_model,
+                        "actual_provider": actual_provider,
                         "input_tokens": usage.input_tokens,
                         "output_tokens": usage.output_tokens,
                         "total_tokens": usage.total_tokens,
@@ -209,19 +306,59 @@ class OpenAICompatibleGenerator(Generator):
                         "structured_output": (
                             request.response_schema is not None
                         ),
+                        "structured_output_mode": (
+                            self.structured_output_mode
+                        ),
+                        "structured_output_status": (
+                            structured_output_status.value
+                        ),
+                        "finish_reason": finish_reason,
                     },
                 )
 
             return result
 
+    def _build_response_format(
+        self,
+        schema: dict[str, Any],
+    ) -> dict[str, Any]:
+        if self.structured_output_mode == "json_object":
+            return {
+                "type": "json_object",
+            }
+
+        return {
+            "type": "json_schema",
+            "json_schema": {
+                "name": "evalforge_response",
+                "schema": schema,
+            },
+        }
+
     @staticmethod
     def _parse_structured_output(
         content: str,
-        schema: dict[str, Any],
     ) -> dict[str, Any]:
+        normalized = content.strip()
+
+        if normalized.startswith("```") and normalized.endswith("```"):
+            lines = normalized.splitlines()
+
+            if lines and lines[0].strip().lower() in {
+                "```json",
+                "```json5",
+                "```",
+            }:
+                lines = lines[1:]
+
+            if lines and lines[-1].strip() == "```":
+                lines = lines[:-1]
+
+            normalized = "\n".join(lines).strip()
+
         try:
-            parsed = json.loads(content)
-        except json.JSONDecodeError as exc:
+            parsed = loads(normalized)
+        except JSONDecodeError as exc:
             raise ValueError(
                 "Structured output is not valid JSON"
             ) from exc
@@ -231,113 +368,6 @@ class OpenAICompatibleGenerator(Generator):
                 "Structured output must be a JSON object"
             )
 
-        OpenAICompatibleGenerator._validate_json_schema(
-            parsed,
-            schema,
-            path="$",
-        )
-
         return parsed
 
-    @staticmethod
-    def _validate_json_schema(
-        value: Any,
-        schema: dict[str, Any],
-        path: str,
-    ) -> None:
-        expected_type = schema.get("type")
 
-        if expected_type == "object":
-            if not isinstance(value, dict):
-                raise ValueError(
-                    f"Structured output at {path} must be an object"
-                )
-
-            properties = schema.get("properties", {})
-            required = schema.get("required", [])
-
-            for field in required:
-                if field not in value:
-                    raise ValueError(
-                        f"Structured output missing required field: "
-                        f"{path}.{field}"
-                    )
-
-            if schema.get("additionalProperties") is False:
-                unexpected = set(value) - set(properties)
-
-                if unexpected:
-                    raise ValueError(
-                        "Structured output contains unexpected fields: "
-                        f"{sorted(unexpected)}"
-                    )
-
-            for field, field_schema in properties.items():
-                if field in value:
-                    OpenAICompatibleGenerator._validate_json_schema(
-                        value[field],
-                        field_schema,
-                        f"{path}.{field}",
-                    )
-
-            return
-
-        if expected_type == "string":
-            if not isinstance(value, str):
-                raise ValueError(
-                    f"Structured output at {path} must be a string"
-                )
-            return
-
-        if expected_type == "number":
-            if (
-                not isinstance(value, (int, float))
-                or isinstance(value, bool)
-            ):
-                raise ValueError(
-                    f"Structured output at {path} must be a number"
-                )
-            return
-
-        if expected_type == "integer":
-            if (
-                not isinstance(value, int)
-                or isinstance(value, bool)
-            ):
-                raise ValueError(
-                    f"Structured output at {path} must be an integer"
-                )
-            return
-
-        if expected_type == "boolean":
-            if not isinstance(value, bool):
-                raise ValueError(
-                    f"Structured output at {path} must be a boolean"
-                )
-            return
-
-        if expected_type == "array":
-            if not isinstance(value, list):
-                raise ValueError(
-                    f"Structured output at {path} must be an array"
-                )
-
-            item_schema = schema.get("items")
-
-            if item_schema is not None:
-                for index, item in enumerate(value):
-                    OpenAICompatibleGenerator._validate_json_schema(
-                        item,
-                        item_schema,
-                        f"{path}[{index}]",
-                    )
-
-            return
-
-        if expected_type is None:
-            return
-
-        raise ValueError(
-            f"Unsupported JSON Schema type at {path}: "
-            f"{expected_type}"
-        )

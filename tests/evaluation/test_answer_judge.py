@@ -1,42 +1,21 @@
-import pytest
-
-from app.evaluation.answer_judge import (
+﻿from app.evaluation.answer_judge import (
     ANSWER_JUDGE_SCHEMA,
     ANSWER_JUDGE_SYSTEM_PROMPT,
+    BATCH_JUDGE_SCHEMA,
+    BATCH_JUDGE_SYSTEM_PROMPT,
     AnswerJudge,
 )
+from app.evaluation.judge_result import JudgeStatus
 from app.generation.base import (
     GenerationRequest,
     GenerationResult,
-    Generator,
+    StructuredOutputStatus,
 )
 from app.generation.usage import GenerationUsage
 from app.models.evaluation import RetrievedEvidence
 
 
-class FakeJudgeGenerator(Generator):
-    def __init__(self, structured_output):
-        self.structured_output = structured_output
-        self.last_request = None
-
-    def generate(
-        self,
-        request: GenerationRequest,
-    ) -> GenerationResult:
-        self.last_request = request
-
-        return GenerationResult(
-            answer="judge response",
-            model="fake-judge",
-            provider="fake",
-            usage=GenerationUsage(),
-            estimated_cost_usd=0.0,
-            latency_ms=1.0,
-            structured_output=self.structured_output,
-        )
-
-
-def _evidence() -> list[RetrievedEvidence]:
+def _evidence():
     return [
         RetrievedEvidence(
             rank=1,
@@ -48,22 +27,74 @@ def _evidence() -> list[RetrievedEvidence]:
     ]
 
 
-def _judge_output() -> dict:
+def _judge_output():
     return {
         "answer_correct": True,
         "answer_grounded": True,
         "topics_covered": ["latency"],
         "topics_missing": [],
         "unsupported_claims": [],
-        "reasoning": "The answer is supported by the supplied evidence.",
+        "reasoning": "The answer is correct and grounded.",
     }
 
 
-def test_answer_judge_builds_structured_request():
+def _batch_cases(count):
+    return [
+        {
+            "question": f"What is the latency target? {index}",
+            "expected_answer": "The target is below 2500 milliseconds.",
+            "expected_topics": ["latency"],
+            "generated_answer": "The target is below 2500 milliseconds.",
+            "retrieved_evidence": _evidence(),
+        }
+        for index in range(count)
+    ]
+
+
+class FakeJudgeGenerator:
+    def __init__(
+        self,
+        structured_output,
+        *,
+        raise_error=False,
+        structured_output_status=StructuredOutputStatus.PARSED,
+        answer="raw judge output",
+        metadata=None,
+    ):
+        self.structured_output = structured_output
+        self.raise_error = raise_error
+        self.structured_output_status = structured_output_status
+        self.answer = answer
+        self.metadata = metadata or {}
+        self.last_request = None
+
+    def generate(self, request: GenerationRequest) -> GenerationResult:
+        self.last_request = request
+
+        if self.raise_error:
+            raise RuntimeError("API failure")
+
+        return GenerationResult(
+            answer=self.answer,
+            model="fake-judge",
+            provider="fake",
+            usage=GenerationUsage(
+                input_tokens=10,
+                output_tokens=20,
+            ),
+            estimated_cost_usd=0.05,
+            latency_ms=25.0,
+            structured_output=self.structured_output,
+            structured_output_status=self.structured_output_status,
+            metadata=self.metadata,
+        )
+
+
+def test_answer_judge_returns_valid_semantic_verdict():
     generator = FakeJudgeGenerator(_judge_output())
     judge = AnswerJudge(generator)
 
-    result = judge.judge(
+    verdict = judge.judge(
         question="What is the latency target?",
         expected_answer="The target is below 2500 milliseconds.",
         expected_topics=["latency"],
@@ -71,8 +102,10 @@ def test_answer_judge_builds_structured_request():
         retrieved_evidence=_evidence(),
     )
 
-    assert result.answer_correct is True
-    assert result.answer_grounded is True
+    assert verdict.status == JudgeStatus.VALID
+    assert verdict.result is not None
+    assert verdict.result.answer_correct is True
+    assert verdict.result.answer_grounded is True
 
     request = generator.last_request
 
@@ -80,49 +113,193 @@ def test_answer_judge_builds_structured_request():
     assert request.response_schema == ANSWER_JUDGE_SCHEMA
     assert request.temperature == 0.0
 
-    assert "What is the latency target?" in request.question
-    assert "below 2500 milliseconds" in request.question
-    assert "latency" in request.question
-    assert "chunk-1" in request.question
-    assert "2500 milliseconds" in request.question
 
-
-def test_answer_judge_rejects_missing_structured_output():
-    generator = FakeJudgeGenerator(None)
+def test_answer_judge_handles_missing_structured_output():
+    generator = FakeJudgeGenerator(
+        None,
+        structured_output_status=StructuredOutputStatus.MISSING_CONTENT,
+    )
     judge = AnswerJudge(generator)
 
-    with pytest.raises(
-        ValueError,
-        match="requires structured output",
-    ):
-        judge.judge(
-            question="What is the latency target?",
-            expected_answer="The target is below 2500 milliseconds.",
-            expected_topics=["latency"],
-            generated_answer="The target is below 2500 milliseconds.",
-            retrieved_evidence=_evidence(),
-        )
+    verdict = judge.judge(
+        question="Q",
+        expected_answer="A",
+        expected_topics=[],
+        generated_answer="A",
+        retrieved_evidence=[],
+    )
+
+    assert verdict.status == JudgeStatus.SYSTEM_ERROR
+    assert verdict.result is None
+    assert verdict.structured_output_valid is False
+    assert verdict.judge_failure is not None
+    assert "missing content" in verdict.judge_failure.lower()
+    assert verdict.judge_model == "fake-judge"
+    assert verdict.judge_provider == "fake"
 
 
-def test_answer_judge_rejects_invalid_structured_output():
+def test_answer_judge_handles_unparseable_structured_output():
+    generator = FakeJudgeGenerator(
+        None,
+        structured_output_status=StructuredOutputStatus.PARSE_FAILED,
+        answer='{"answer_correct": true',
+        metadata={
+            "structured_output_error": "Structured output is not valid JSON",
+        },
+    )
+    judge = AnswerJudge(generator)
+
+    verdict = judge.judge(
+        question="Q",
+        expected_answer="A",
+        expected_topics=[],
+        generated_answer="A",
+        retrieved_evidence=[],
+    )
+
+    assert verdict.status == JudgeStatus.SYSTEM_ERROR
+    assert verdict.result is None
+    assert verdict.structured_output_valid is False
+    assert verdict.judge_failure is not None
+    assert "parsing" in verdict.judge_failure.lower()
+
+    assert (
+        verdict.judge_metadata["structured_output_error"]
+        == "Structured output is not valid JSON"
+    )
+
+
+def test_answer_judge_handles_schema_violation():
     generator = FakeJudgeGenerator(
         {
             "answer_correct": "yes",
             "answer_grounded": True,
-            "topics_covered": ["latency"],
+            "topics_covered": [],
             "topics_missing": [],
             "unsupported_claims": [],
-            "reasoning": "Invalid boolean value.",
+            "reasoning": "bad",
         }
     )
-
     judge = AnswerJudge(generator)
 
-    with pytest.raises(ValueError):
-        judge.judge(
-            question="What is the latency target?",
-            expected_answer="The target is below 2500 milliseconds.",
-            expected_topics=["latency"],
-            generated_answer="The target is below 2500 milliseconds.",
-            retrieved_evidence=_evidence(),
-        )
+    verdict = judge.judge(
+        question="Q",
+        expected_answer="A",
+        expected_topics=[],
+        generated_answer="A",
+        retrieved_evidence=[],
+    )
+
+    assert verdict.status == JudgeStatus.SYSTEM_ERROR
+    assert verdict.result is None
+    assert verdict.structured_output_valid is False
+    assert verdict.judge_failure is not None
+    assert "boolean" in verdict.judge_failure.lower()
+
+
+def test_answer_judge_handles_generation_failure():
+    generator = FakeJudgeGenerator(None, raise_error=True)
+    judge = AnswerJudge(generator)
+
+    verdict = judge.judge(
+        question="Q",
+        expected_answer="A",
+        expected_topics=[],
+        generated_answer="A",
+        retrieved_evidence=[],
+    )
+
+    assert verdict.status == JudgeStatus.SYSTEM_ERROR
+    assert verdict.result is None
+    assert verdict.structured_output_valid is False
+    assert "API failure" in verdict.judge_failure
+
+
+def test_answer_judge_captures_metadata():
+    generator = FakeJudgeGenerator(
+        _judge_output(),
+        metadata={
+            "actual_model": "real-model",
+            "actual_provider": "real-provider",
+        },
+    )
+    judge = AnswerJudge(generator)
+
+    verdict = judge.judge(
+        question="Q",
+        expected_answer="A",
+        expected_topics=[],
+        generated_answer="A",
+        retrieved_evidence=[],
+    )
+
+    assert verdict.judge_model == "fake-judge"
+    assert verdict.judge_provider == "fake"
+    assert verdict.judge_latency_ms >= 0.0
+    assert verdict.judge_tokens.input_tokens == 10
+    assert verdict.judge_tokens.output_tokens == 20
+    assert verdict.judge_cost_usd == 0.05
+    assert verdict.judge_metadata["actual_model"] == "real-model"
+    assert verdict.judge_metadata["actual_provider"] == "real-provider"
+
+
+def test_batch_judge_builds_structured_request_and_returns_one_verdict_per_case():
+    generator = FakeJudgeGenerator(
+        {
+            "verdicts": [
+                _judge_output(),
+                _judge_output(),
+            ]
+        }
+    )
+    judge = AnswerJudge(generator)
+
+    verdicts = judge.batch_judge(_batch_cases(2))
+
+    assert len(verdicts) == 2
+    assert all(verdict.status == JudgeStatus.VALID for verdict in verdicts)
+    assert all(verdict.result is not None for verdict in verdicts)
+    assert all(verdict.result.answer_correct is True for verdict in verdicts)
+    assert all(verdict.result.answer_grounded is True for verdict in verdicts)
+
+    request = generator.last_request
+
+    assert request.system_prompt == BATCH_JUDGE_SYSTEM_PROMPT
+    assert request.response_schema == BATCH_JUDGE_SCHEMA
+    assert request.temperature == 0.0
+    assert "Case 1" in request.question
+    assert "Case 2" in request.question
+
+
+def test_batch_judge_preserves_shared_batch_metadata_per_case():
+    generator = FakeJudgeGenerator(
+        {
+            "verdicts": [
+                _judge_output(),
+                _judge_output(),
+            ]
+        }
+    )
+    judge = AnswerJudge(generator)
+
+    verdicts = judge.batch_judge(_batch_cases(2))
+
+    assert all(verdict.judge_model == "fake-judge" for verdict in verdicts)
+    assert all(verdict.judge_provider == "fake" for verdict in verdicts)
+    assert all(verdict.judge_cost_usd == 0.025 for verdict in verdicts)
+    assert all(verdict.judge_tokens.input_tokens == 5 for verdict in verdicts)
+    assert all(verdict.judge_tokens.output_tokens == 10 for verdict in verdicts)
+
+
+def test_batch_judge_falls_back_to_sequential_on_batch_failure():
+    generator = FakeJudgeGenerator(
+        None,
+        raise_error=True,
+    )
+    judge = AnswerJudge(generator)
+
+    verdicts = judge.batch_judge(_batch_cases(2))
+
+    assert len(verdicts) == 2
+    assert all(verdict.status == JudgeStatus.SYSTEM_ERROR for verdict in verdicts)
+    assert all(verdict.result is None for verdict in verdicts)

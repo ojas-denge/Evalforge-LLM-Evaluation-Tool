@@ -1,15 +1,14 @@
-from app.core.config import Settings
-from app.generation.cost import CostCalculator
+﻿from app.core.config import Settings
 from app.generation.deterministic import DeterministicGenerator
 from app.generation.factory import create_generator
 from app.generation.openai_compatible import OpenAICompatibleGenerator
-from app.generation.pricing_registry import PricingRegistry
 
 
 def test_factory_creates_deterministic_generator():
     settings = Settings(
+        _env_file=None,
         llm_provider="deterministic",
-        llm_model="deterministic-test",
+        llm_model="test-model",
     )
 
     generator = create_generator(settings)
@@ -19,42 +18,38 @@ def test_factory_creates_deterministic_generator():
 
 def test_factory_creates_openai_compatible_generator():
     settings = Settings(
+        _env_file=None,
         llm_provider="openai-compatible",
         llm_model="test-model",
         llm_api_key="test-key",
-        llm_base_url="http://localhost:9000/v1",
+        llm_base_url="https://example.com/v1",
     )
 
     generator = create_generator(settings)
 
     assert isinstance(generator, OpenAICompatibleGenerator)
-    assert generator.default_model == "test-model"
-    assert generator.base_url == "http://localhost:9000/v1"
+    assert generator.structured_output_mode == "json_schema"
 
 
-def test_factory_injects_cost_dependencies():
+def test_factory_passes_structured_output_mode():
     settings = Settings(
+        _env_file=None,
         llm_provider="openai-compatible",
         llm_model="test-model",
         llm_api_key="test-key",
-        llm_base_url="http://localhost:9000/v1",
+        llm_base_url="https://example.com/v1",
+        llm_structured_output_mode="json_object",
     )
 
-    cost_calculator = CostCalculator()
-    pricing_registry = PricingRegistry()
+    generator = create_generator(settings)
 
-    generator = create_generator(
-        settings,
-        cost_calculator=cost_calculator,
-        pricing_registry=pricing_registry,
-    )
-
-    assert generator.cost_calculator is cost_calculator
-    assert generator.pricing_registry is pricing_registry
+    assert isinstance(generator, OpenAICompatibleGenerator)
+    assert generator.structured_output_mode == "json_object"
 
 
 def test_factory_requires_base_url_for_openai_compatible():
     settings = Settings(
+        _env_file=None,
         llm_provider="openai-compatible",
         llm_model="test-model",
         llm_api_key="test-key",
@@ -64,5 +59,20 @@ def test_factory_requires_base_url_for_openai_compatible():
         create_generator(settings)
     except ValueError as exc:
         assert "LLM_BASE_URL" in str(exc)
+    else:
+        raise AssertionError("Expected ValueError")
+
+
+def test_factory_rejects_unsupported_provider():
+    settings = Settings(
+        _env_file=None,
+        llm_provider="unsupported",
+        llm_model="test-model",
+    )
+
+    try:
+        create_generator(settings)
+    except ValueError as exc:
+        assert "Unsupported LLM provider" in str(exc)
     else:
         raise AssertionError("Expected ValueError")

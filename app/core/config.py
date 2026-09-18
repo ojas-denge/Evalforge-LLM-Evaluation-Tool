@@ -1,4 +1,4 @@
-from functools import lru_cache
+﻿from functools import lru_cache
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -13,6 +13,7 @@ class Settings(BaseSettings):
     llm_model: str = "deterministic-test"
     llm_api_key: str | None = None
     llm_base_url: str | None = None
+    llm_structured_output_mode: str = "json_schema"
 
     embedding_model: str = "BAAI/bge-small-en-v1.5"
 

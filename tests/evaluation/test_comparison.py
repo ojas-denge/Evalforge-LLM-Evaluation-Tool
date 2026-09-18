@@ -1,7 +1,8 @@
-from datetime import datetime, timezone
+﻿from datetime import datetime, timezone
 
 from app.evaluation.comparison import compare_runs
 from app.models.evaluation import (
+    AnswerJudgeResult,
     EvaluationResult,
     EvaluationRun,
     RetrievalConfig,
@@ -197,3 +198,67 @@ def test_compare_runs_captures_failure_type_transition():
     assert change.hit_at_1_delta == 1.0
     assert change.mrr_delta == 1.0
     assert change.latency_delta_ms == 5.0
+
+
+def test_compare_runs_computes_correctness_delta():
+    baseline_result1 = make_result("case-1", hit_at_1=1.0, mrr=1.0, latency=10.0).model_copy(
+        update={"answer_judge": AnswerJudgeResult(answer_correct=True, answer_grounded=True, topics_covered=[], topics_missing=[], unsupported_claims=[], reasoning="test reasoning")}
+    )
+    baseline_result2 = make_result("case-2", hit_at_1=1.0, mrr=1.0, latency=10.0).model_copy(
+        update={"answer_judge": AnswerJudgeResult(answer_correct=False, answer_grounded=True, topics_covered=[], topics_missing=[], unsupported_claims=[], reasoning="test reasoning")}
+    )
+    candidate_result1 = baseline_result1.model_copy()
+    candidate_result2 = make_result("case-2", hit_at_1=1.0, mrr=1.0, latency=10.0).model_copy(
+        update={"answer_judge": AnswerJudgeResult(answer_correct=True, answer_grounded=True, topics_covered=[], topics_missing=[], unsupported_claims=[], reasoning="test reasoning")}
+    )
+
+    baseline = make_run("baseline", [baseline_result1, baseline_result2])
+    candidate = make_run("candidate", [candidate_result1, candidate_result2])
+
+    comparison = compare_runs(baseline, candidate)
+
+    assert comparison.mean_correctness_delta == 0.5
+
+
+def test_compare_runs_computes_groundedness_delta():
+    baseline_result1 = make_result("case-1", hit_at_1=1.0, mrr=1.0, latency=10.0).model_copy(
+        update={"answer_judge": AnswerJudgeResult(answer_correct=True, answer_grounded=True, topics_covered=[], topics_missing=[], unsupported_claims=[], reasoning="test reasoning")}
+    )
+    baseline_result2 = make_result("case-2", hit_at_1=1.0, mrr=1.0, latency=10.0).model_copy(
+        update={"answer_judge": AnswerJudgeResult(answer_correct=True, answer_grounded=False, topics_covered=[], topics_missing=[], unsupported_claims=[], reasoning="test reasoning")}
+    )
+    candidate_result1 = baseline_result1.model_copy()
+    candidate_result2 = make_result("case-2", hit_at_1=1.0, mrr=1.0, latency=10.0).model_copy(
+        update={"answer_judge": AnswerJudgeResult(answer_correct=True, answer_grounded=True, topics_covered=[], topics_missing=[], unsupported_claims=[], reasoning="test reasoning")}
+    )
+
+    baseline = make_run("baseline", [baseline_result1, baseline_result2])
+    candidate = make_run("candidate", [candidate_result1, candidate_result2])
+
+    comparison = compare_runs(baseline, candidate)
+
+    assert comparison.mean_groundedness_delta == 0.5
+
+
+def test_compare_runs_correctness_is_none_without_judge():
+    baseline = make_run("baseline", [make_result("case-1", hit_at_1=1.0, mrr=1.0, latency=10.0)])
+    candidate = make_run("candidate", [make_result("case-1", hit_at_1=1.0, mrr=1.0, latency=10.0)])
+
+    comparison = compare_runs(baseline, candidate)
+
+    assert comparison.mean_correctness_delta is None
+    assert comparison.mean_groundedness_delta is None
+
+
+def test_compare_runs_correctness_is_none_when_only_baseline_has_judge():
+    baseline_result = make_result("case-1", hit_at_1=1.0, mrr=1.0, latency=10.0).model_copy(
+        update={"answer_judge": AnswerJudgeResult(answer_correct=True, answer_grounded=True, topics_covered=[], topics_missing=[], unsupported_claims=[], reasoning="test reasoning")}
+    )
+    baseline = make_run("baseline", [baseline_result])
+    candidate = make_run("candidate", [make_result("case-1", hit_at_1=1.0, mrr=1.0, latency=10.0)])
+
+    comparison = compare_runs(baseline, candidate)
+
+    assert comparison.mean_correctness_delta is None
+    assert comparison.mean_groundedness_delta is None
+

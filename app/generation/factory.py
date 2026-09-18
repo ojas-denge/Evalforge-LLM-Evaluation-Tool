@@ -1,4 +1,4 @@
-from app.core.config import Settings
+﻿from app.core.config import Settings
 from app.generation.base import Generator
 from app.generation.cost import CostCalculator
 from app.generation.deterministic import DeterministicGenerator
@@ -39,6 +39,7 @@ def create_generator(
             tracer=tracer,
             cost_calculator=cost_calculator,
             pricing_registry=pricing_registry,
+            structured_output_mode=settings.llm_structured_output_mode,
         )
 
     raise ValueError(

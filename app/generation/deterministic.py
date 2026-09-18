@@ -1,6 +1,7 @@
-from time import perf_counter
+﻿from time import perf_counter
 
 from app.generation.base import GenerationRequest, GenerationResult, Generator
+from app.generation.observation import GenerationObservation
 from app.generation.usage import GenerationUsage
 from app.observability.tracing import Tracer
 
@@ -16,6 +17,8 @@ class DeterministicGenerator(Generator):
         request: GenerationRequest,
     ) -> GenerationResult:
         start_time = perf_counter()
+
+        model = request.model or "deterministic-test"
 
         with self.tracer.generation(
             name="generation",
@@ -33,9 +36,9 @@ class DeterministicGenerator(Generator):
             },
             metadata={
                 "provider": "deterministic",
-                "model": request.model or "deterministic-test",
+                "model": model,
             },
-        ) as observation:
+        ) as trace_observation:
 
             if request.context:
                 answer = "\n\n".join(
@@ -47,21 +50,46 @@ class DeterministicGenerator(Generator):
 
             latency_ms = (perf_counter() - start_time) * 1000
 
+            usage = GenerationUsage(
+                input_tokens=0,
+                output_tokens=0,
+            )
+
+            generation_observation = GenerationObservation(
+                requested_model=model,
+                actual_model=model,
+                actual_provider="deterministic",
+                http_status=None,
+                finish_reason="stop",
+                content=answer,
+                refusal=None,
+                reasoning=None,
+                reasoning_details=[],
+                usage=usage,
+                latency_ms=latency_ms,
+                response_format_requested=None,
+                raw_response=None,
+                metadata={
+                    "execution_type": "deterministic",
+                    "structured_output_requested": (
+                        request.response_schema is not None
+                    ),
+                },
+            )
+
             result = GenerationResult(
                 answer=answer,
-                model=request.model or "deterministic-test",
+                model=model,
                 provider="deterministic",
-                usage=GenerationUsage(
-                    input_tokens=0,
-                    output_tokens=0,
-                ),
+                usage=usage,
                 estimated_cost_usd=0.0,
                 latency_ms=latency_ms,
                 finish_reason="stop",
+                observation=generation_observation,
             )
 
-            if observation is not None:
-                observation.update(
+            if trace_observation is not None:
+                trace_observation.update(
                     output={"answer": result.answer},
                     metadata={
                         "provider": result.provider,

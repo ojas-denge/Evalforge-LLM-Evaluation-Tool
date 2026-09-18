@@ -43,6 +43,23 @@ class FakeTracer:
         return TraceContext()
 
 
+class FakeRepository:
+    def __init__(self):
+        self.saved_runs = []
+
+    def save_run(self, run):
+        self.saved_runs.append(run)
+
+    def get_run(self, run_id):
+        return next(
+            (run for run in self.saved_runs if run.run_id == run_id),
+            None,
+        )
+
+    def list_runs(self):
+        return list(self.saved_runs)
+
+
 class FakeRetriever:
     mode = "dense"
     candidate_k = None
@@ -119,13 +136,28 @@ class FakeAnswerJudge:
             }
         )
 
-        return AnswerJudgeResult(
-            answer_correct=True,
-            answer_grounded=True,
-            topics_covered=expected_topics,
-            topics_missing=[],
-            unsupported_claims=[],
-            reasoning="The generated answer matches the reference and evidence.",
+        from app.evaluation.judge_result import JudgeStatus, JudgeVerdict
+
+        return JudgeVerdict(
+            status=JudgeStatus.VALID,
+            result=AnswerJudgeResult(
+                answer_correct=True,
+                answer_grounded=True,
+                topics_covered=expected_topics,
+                topics_missing=[],
+                unsupported_claims=[],
+                reasoning=(
+                    "The generated answer matches the reference "
+                    "and evidence."
+                ),
+            ),
+            judge_model="test-model",
+            judge_provider="test-provider",
+            judge_latency_ms=5.0,
+            judge_tokens=GenerationUsage(),
+            judge_cost_usd=0.0,
+            structured_output_valid=True,
+            judge_failure=None,
         )
 
 
@@ -159,11 +191,13 @@ def test_evaluate_dataset_emits_evaluation_run_observation():
     tracer = FakeTracer()
     retriever = FakeRetriever()
     generator = FakeGenerator()
+    repository = FakeRepository()
 
     evaluator = Evaluator(
         retriever=retriever,
         generator=generator,
         tracer=tracer,
+        repository=repository,
     )
 
     run = evaluator.evaluate_dataset(
@@ -172,6 +206,8 @@ def test_evaluate_dataset_emits_evaluation_run_observation():
 
     assert run.dataset_size == 1
     assert run.results[0].case_id == "test-001"
+    assert len(repository.saved_runs) == 1
+    assert repository.saved_runs[0].run_id == run.run_id
 
     evaluation_calls = [
         call
@@ -295,3 +331,10 @@ def test_evaluate_case_records_answer_judge_result():
     ]
     assert result.answer_judge.topics_missing == []
     assert result.answer_judge.unsupported_claims == []
+
+    assert result.judge_verdict is not None
+    assert result.judge_verdict.structured_output_valid is True
+    assert result.judge_verdict.judge_model == "test-model"
+
+
+
