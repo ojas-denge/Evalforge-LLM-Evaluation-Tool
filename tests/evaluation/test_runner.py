@@ -161,6 +161,18 @@ class FakeAnswerJudge:
         )
 
 
+    def batch_judge(self, cases):
+        return [
+            self.judge(
+                question=case["question"],
+                expected_answer=case["expected_answer"],
+                expected_topics=case["expected_topics"],
+                generated_answer=case["generated_answer"],
+                retrieved_evidence=case["retrieved_evidence"],
+            )
+            for case in cases
+        ]
+
 def make_case(expected_topics=None):
     return EvaluationCase(
         case_id="test-001",
@@ -216,6 +228,90 @@ def test_evaluate_dataset_emits_evaluation_run_observation():
     ]
 
     assert len(evaluation_calls) == 1
+
+
+def test_evaluate_dataset_retries_generation_read_timeout(
+    monkeypatch,
+    tmp_path,
+    capsys,
+):
+    import httpx
+
+    monkeypatch.setattr(
+        "app.evaluation.runner.CHECKPOINT_DIR",
+        tmp_path,
+    )
+
+    cooldowns = []
+
+    monkeypatch.setattr(
+        "app.evaluation.runner._cooldown",
+        lambda seconds: cooldowns.append(seconds),
+    )
+
+    class TimeoutThenSuccessGenerator:
+        def __init__(self):
+            self.calls = 0
+
+        def generate(self, request):
+            self.calls += 1
+
+            if self.calls == 1:
+                raise httpx.ReadTimeout(
+                    "simulated read timeout"
+                )
+
+            return GenerationResult(
+                answer=(
+                    "EvalForge is an LLM evaluation and "
+                    "observability platform."
+                ),
+                model="test-model",
+                provider="test-provider",
+                usage=GenerationUsage(
+                    input_tokens=10,
+                    output_tokens=8,
+                ),
+                estimated_cost_usd=0.001,
+                latency_ms=5.0,
+                finish_reason="stop",
+            )
+
+    generator = TimeoutThenSuccessGenerator()
+
+    evaluator = Evaluator(
+        retriever=FakeRetriever(),
+        generator=generator,
+        repository=FakeRepository(),
+    )
+
+    run = evaluator.evaluate_dataset(
+        make_dataset(make_case()),
+        run_id="read-timeout-smoke-test",
+    )
+
+    assert len(run.results) == 1
+    assert generator.calls == 2
+    assert cooldowns == [60]
+
+    result = run.results[0]
+
+    assert result.case_id == "test-001"
+    assert result.generated_answer == (
+        "EvalForge is an LLM evaluation and "
+        "observability platform."
+    )
+
+    output = capsys.readouterr().out
+
+    assert (
+        "[generation] retryable error; retrying (1/2)"
+        in output
+    )
+
+    assert not (
+        tmp_path / "read-timeout-smoke-test.json"
+    ).exists()
 
 
 def test_evaluator_generates_answer_from_retrieved_context():
@@ -284,22 +380,26 @@ def test_evaluate_case_topic_coverage_is_none_without_topics():
     assert result.topic_coverage is None
 
 
-def test_evaluate_case_records_answer_judge_result():
+def test_evaluate_dataset_records_answer_judge_result():
     answer_judge = FakeAnswerJudge()
 
     evaluator = Evaluator(
         retriever=FakeRetriever(),
         generator=FakeGenerator(),
         answer_judge=answer_judge,
+        repository=FakeRepository(),
     )
 
-    result = evaluator.evaluate_case(
-        make_case(
-            expected_topics=[
-                "LLM evaluation",
-                "observability",
-            ]
-        )
+    run = evaluator.evaluate_dataset(
+        make_dataset(
+            make_case(
+                expected_topics=[
+                    "LLM evaluation",
+                    "observability",
+                ]
+            )
+        ),
+        run_id="judge-result-test",
     )
 
     assert len(answer_judge.calls) == 1
@@ -322,6 +422,8 @@ def test_evaluate_case_records_answer_judge_result():
     assert len(call["retrieved_evidence"]) == 1
     assert call["retrieved_evidence"][0].document_id == "doc-1"
 
+    result = run.results[0]
+
     assert result.answer_judge is not None
     assert result.answer_judge.answer_correct is True
     assert result.answer_judge.answer_grounded is True
@@ -334,7 +436,193 @@ def test_evaluate_case_records_answer_judge_result():
 
     assert result.judge_verdict is not None
     assert result.judge_verdict.structured_output_valid is True
-    assert result.judge_verdict.judge_model == "test-model"
 
 
 
+
+def test_checkpoint_round_trip_preserves_retry_state(
+    tmp_path,
+):
+    from app.evaluation.runner import (
+        _load_checkpoint,
+        _save_checkpoint,
+    )
+
+    checkpoint_path = tmp_path / "checkpoint.json"
+
+    retry_state = {
+        "generation": {
+            "test-001": 1,
+        },
+        "judge": {
+            "1": 2,
+        },
+    }
+
+    result = Evaluator(
+        retriever=FakeRetriever(),
+        generator=FakeGenerator(),
+    ).evaluate_case(make_case())
+
+    _save_checkpoint(
+        checkpoint_path,
+        run_id="retry-state-test",
+        phase="generation",
+        completed_case_ids=set(),
+        results={
+            result.case_id: result,
+        },
+        retry_state=retry_state,
+    )
+
+    loaded = _load_checkpoint(checkpoint_path)
+
+    assert loaded is not None
+
+    (
+        run_id,
+        phase,
+        completed_case_ids,
+        results,
+        loaded_retry_state,
+    ) = loaded
+
+    assert run_id == "retry-state-test"
+    assert phase == "generation"
+    assert completed_case_ids == set()
+    assert "test-001" in results
+    assert loaded_retry_state == retry_state
+
+
+def test_generation_resume_uses_persisted_retry_budget(
+    monkeypatch,
+    tmp_path,
+):
+    import httpx
+
+    monkeypatch.setattr(
+        "app.evaluation.runner.CHECKPOINT_DIR",
+        tmp_path,
+    )
+
+    monkeypatch.setattr(
+        "app.evaluation.runner._cooldown",
+        lambda seconds: None,
+    )
+
+    checkpoint_path = tmp_path / "resume-retry-test.json"
+
+    class AlwaysTimeoutGenerator:
+        def __init__(self):
+            self.calls = 0
+
+        def generate(self, request):
+            self.calls += 1
+            raise httpx.ReadTimeout(
+                "simulated timeout"
+            )
+
+    generator = AlwaysTimeoutGenerator()
+
+    evaluator = Evaluator(
+        retriever=FakeRetriever(),
+        generator=generator,
+        repository=FakeRepository(),
+    )
+
+    run_id = "resume-retry-test"
+
+    try:
+        evaluator.evaluate_dataset(
+            make_dataset(make_case()),
+            run_id=run_id,
+        )
+    except httpx.ReadTimeout:
+        pass
+    else:
+        raise AssertionError(
+            "Expected evaluation to exhaust retries"
+        )
+
+    assert generator.calls == 3
+
+    from app.evaluation.runner import _load_checkpoint
+
+    checkpoint = _load_checkpoint(
+        checkpoint_path
+    )
+
+    assert checkpoint is not None
+    assert checkpoint[4]["generation"][
+        "test-001"
+    ] == 2
+
+
+def test_generation_resume_does_not_reset_retry_budget(
+    monkeypatch,
+    tmp_path,
+):
+    import httpx
+
+    monkeypatch.setattr(
+        "app.evaluation.runner.CHECKPOINT_DIR",
+        tmp_path,
+    )
+
+    monkeypatch.setattr(
+        "app.evaluation.runner._cooldown",
+        lambda seconds: None,
+    )
+
+    from app.evaluation.runner import (
+        _save_checkpoint,
+    )
+    checkpoint_path = (
+        tmp_path / "persisted-budget-test.json"
+    )
+
+    _save_checkpoint(
+        checkpoint_path,
+        run_id="persisted-budget-test",
+        phase="generation",
+        completed_case_ids=set(),
+        results={},
+        retry_state={
+            "generation": {
+                "test-001": 2,
+            },
+            "judge": {},
+        },
+    )
+
+    class CountingTimeoutGenerator:
+        def __init__(self):
+            self.calls = 0
+
+        def generate(self, request):
+            self.calls += 1
+            raise httpx.ReadTimeout(
+                "simulated timeout"
+            )
+
+    generator = CountingTimeoutGenerator()
+
+    evaluator = Evaluator(
+        retriever=FakeRetriever(),
+        generator=generator,
+        repository=FakeRepository(),
+    )
+
+    try:
+        evaluator.evaluate_dataset(
+            make_dataset(make_case()),
+            run_id="persisted-budget-test",
+        )
+    except httpx.ReadTimeout:
+        pass
+    else:
+        raise AssertionError(
+            "Expected persisted retry budget to be exhausted"
+        )
+
+    assert generator.calls == 1

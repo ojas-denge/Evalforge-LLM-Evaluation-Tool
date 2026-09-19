@@ -1,15 +1,135 @@
+﻿from typing import Any
+
 from pydantic import BaseModel, Field
 
 
 class JudgeReliabilityReport(BaseModel):
     """Aggregated reliability metrics for a judge across a dataset."""
-    structured_output_validity_rate: float = Field(ge=0.0, le=1.0)
-    repeatability_score: float | None = Field(default=None, ge=0.0, le=1.0)
-    perturbation_stability: float | None = Field(default=None, ge=0.0, le=1.0)
-    inter_judge_agreement: float | None = Field(default=None, ge=0.0, le=1.0)
-    gold_set_agreement: float | None = Field(default=None, ge=0.0, le=1.0)
+
+    structured_output_validity_rate: float = Field(
+        ge=0.0,
+        le=1.0,
+    )
+    recovery_rate: float = Field(
+        ge=0.0,
+        le=1.0,
+    )
+    failure_rate: float = Field(
+        ge=0.0,
+        le=1.0,
+    )
+    repeatability_score: float | None = Field(
+        default=None,
+        ge=0.0,
+        le=1.0,
+    )
+    perturbation_stability: float | None = Field(
+        default=None,
+        ge=0.0,
+        le=1.0,
+    )
+    inter_judge_agreement: float | None = Field(
+        default=None,
+        ge=0.0,
+        le=1.0,
+    )
+    gold_set_agreement: float | None = Field(
+        default=None,
+        ge=0.0,
+        le=1.0,
+    )
     total_cases: int = Field(ge=0)
     failure_count: int = Field(ge=0)
+
+
+def compute_judge_reliability(
+    results: list[dict[str, Any]],
+) -> JudgeReliabilityReport:
+    """Aggregate final structured-output reliability from judge results.
+
+    Each result must contain:
+    - case_id: str
+    - judge_verdict: dict | None
+
+    A missing judge_verdict is excluded because it means the judge
+    was not run for that case rather than that the judge failed.
+
+    structured_output_validity_rate:
+        Final valid verdicts / evaluated judge cases.
+
+    recovery_rate:
+        Valid cases recovered after an initial failure / cases that
+        initially failed.
+
+    failure_rate:
+        Cases that remained invalid / evaluated judge cases.
+    """
+
+    evaluated = [
+        result
+        for result in results
+        if result.get("judge_verdict") is not None
+    ]
+
+    total_cases = len(evaluated)
+
+    if total_cases == 0:
+        return JudgeReliabilityReport(
+            structured_output_validity_rate=0.0,
+            recovery_rate=0.0,
+            failure_rate=0.0,
+            total_cases=0,
+            failure_count=0,
+        )
+
+    valid_count = 0
+    initially_failed_count = 0
+    recovered_count = 0
+    failure_count = 0
+
+    for result in evaluated:
+        verdict = result["judge_verdict"]
+
+        structured_valid = bool(
+            verdict.get("structured_output_valid", False)
+        )
+
+        metadata = verdict.get("judge_metadata") or {}
+
+        recovered = bool(
+            metadata.get("judge_recovered", False)
+        )
+
+        if structured_valid:
+            valid_count += 1
+
+            if recovered:
+                recovered_count += 1
+                initially_failed_count += 1
+
+        else:
+            failure_count += 1
+
+            # An invalid final verdict is an initially failed case,
+            # regardless of contradictory recovery metadata.
+            initially_failed_count += 1
+
+    validity_rate = valid_count / total_cases
+    failure_rate = failure_count / total_cases
+
+    recovery_rate = (
+        recovered_count / initially_failed_count
+        if initially_failed_count
+        else 0.0
+    )
+
+    return JudgeReliabilityReport(
+        structured_output_validity_rate=validity_rate,
+        recovery_rate=recovery_rate,
+        failure_rate=failure_rate,
+        total_cases=total_cases,
+        failure_count=failure_count,
+    )
 
 
 def compute_repeatability(
@@ -28,13 +148,18 @@ def compute_repeatability(
     if not runs or len(runs) < 2:
         raise ValueError("Need at least 2 runs to compute repeatability")
 
-    # Index runs by case_id
     indexed_runs = []
-    for run in runs:
-        indexed_runs.append({item["case_id"]: item for item in run})
 
-    # Get common case_ids
+    for run in runs:
+        indexed_runs.append(
+            {
+                item["case_id"]: item
+                for item in run
+            }
+        )
+
     case_ids = set(indexed_runs[0].keys())
+
     for indexed in indexed_runs[1:]:
         case_ids &= set(indexed.keys())
 
@@ -42,11 +167,16 @@ def compute_repeatability(
         raise ValueError("No common case IDs across runs")
 
     agreed = 0
+
     for case_id in case_ids:
         verdicts = [
-            (indexed[case_id]["answer_correct"], indexed[case_id]["answer_grounded"])
+            (
+                indexed[case_id]["answer_correct"],
+                indexed[case_id]["answer_grounded"],
+            )
             for indexed in indexed_runs
         ]
+
         if len(set(verdicts)) == 1:
             agreed += 1
 
@@ -61,8 +191,6 @@ def compute_inter_judge_agreement(
     Same interface as compute_repeatability — each list is results
     from a different judge (not repeated runs of the same judge).
     """
-    # The math is identical — we're just checking if different judges
-    # agree on each case.
     return compute_repeatability(judge_results)
 
 
@@ -77,18 +205,32 @@ def compute_gold_set_agreement(
     - answer_correct: bool
     - answer_grounded: bool
     """
-    judge_index = {item["case_id"]: item for item in judge_results}
-    gold_index = {item["case_id"]: item for item in gold_labels}
+    judge_index = {
+        item["case_id"]: item
+        for item in judge_results
+    }
 
-    common_ids = set(judge_index.keys()) & set(gold_index.keys())
+    gold_index = {
+        item["case_id"]: item
+        for item in gold_labels
+    }
+
+    common_ids = (
+        set(judge_index.keys())
+        & set(gold_index.keys())
+    )
 
     if not common_ids:
-        raise ValueError("No common case IDs between judge and gold")
+        raise ValueError(
+            "No common case IDs between judge and gold"
+        )
 
     agreed = 0
+
     for case_id in common_ids:
         j = judge_index[case_id]
         g = gold_index[case_id]
+
         if (
             j["answer_correct"] == g["answer_correct"]
             and j["answer_grounded"] == g["answer_grounded"]

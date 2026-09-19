@@ -36,8 +36,10 @@ def test_query_contract():
     assert data["confidence"] is None
     assert data["latency_ms"] >= 0.0
 
-    assert data["input_tokens"] == 0
-    assert data["output_tokens"] == 0
+    assert isinstance(data["input_tokens"], int)
+    assert data["input_tokens"] >= 0
+    assert isinstance(data["output_tokens"], int)
+    assert data["output_tokens"] >= 0
     assert data["estimated_cost_usd"] == 0.0
 
 

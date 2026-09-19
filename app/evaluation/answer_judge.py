@@ -2,6 +2,7 @@
 from typing import Any
 
 from app.evaluation.judge_result import JudgeStatus, JudgeVerdict
+from app.evaluation.structured_output import StructuredOutputValidator
 from app.generation.base import (
     GenerationRequest,
     GenerationResult,
@@ -88,6 +89,8 @@ Return only valid structured output matching the provided schema.
 Do not invent evidence.
 """
 
+MAX_JUDGE_ATTEMPTS = 2
+
 
 class AnswerJudge:
     def __init__(self, generator: Generator):
@@ -102,101 +105,191 @@ class AnswerJudge:
         generated_answer: str,
         retrieved_evidence: list[RetrievedEvidence],
     ) -> JudgeVerdict:
-        request = GenerationRequest(
-            question=self._build_judge_input(
-                question=question,
-                expected_answer=expected_answer,
-                expected_topics=expected_topics,
-                generated_answer=generated_answer,
-                retrieved_evidence=retrieved_evidence,
-            ),
-            context=[],
-            temperature=0.0,
-            system_prompt=ANSWER_JUDGE_SYSTEM_PROMPT,
-            response_schema=ANSWER_JUDGE_SCHEMA,
+        base_question = self._build_judge_input(
+            question=question,
+            expected_answer=expected_answer,
+            expected_topics=expected_topics,
+            generated_answer=generated_answer,
+            retrieved_evidence=retrieved_evidence,
         )
 
         started = time.perf_counter()
+        last_result: GenerationResult | None = None
+        last_failure: str | None = None
+        initial_failure: str | None = None
+        initial_failure_type: str | None = None
 
-        try:
-            result = self.generator.generate(request)
-        except Exception as exc:
-            elapsed_ms = (time.perf_counter() - started) * 1000.0
+        for attempt in range(1, MAX_JUDGE_ATTEMPTS + 1):
+            judge_input = base_question
+
+            if last_failure is not None:
+                judge_input = self._build_retry_input(
+                    base_question=base_question,
+                    failure=last_failure,
+                )
+
+            request = GenerationRequest(
+                question=judge_input,
+                context=[],
+                temperature=0.0,
+                system_prompt=ANSWER_JUDGE_SYSTEM_PROMPT,
+                response_schema=ANSWER_JUDGE_SCHEMA,
+                metadata={
+                    "judge_attempt": attempt,
+                    "judge_max_attempts": MAX_JUDGE_ATTEMPTS,
+                },
+            )
+
+            try:
+                result = self.generator.generate(request)
+            except Exception as exc:
+                elapsed_ms = (
+                    time.perf_counter() - started
+                ) * 1000.0
+
+                return JudgeVerdict(
+                    result=None,
+                    status=JudgeStatus.SYSTEM_ERROR,
+                    judge_model="unknown",
+                    judge_provider="unknown",
+                    judge_latency_ms=elapsed_ms,
+                    judge_tokens=GenerationUsage(),
+                    judge_cost_usd=0.0,
+                    structured_output_valid=False,
+                    judge_failure=f"Judge generation failed: {exc}",
+                    judge_metadata={
+                        "judge_attempt": attempt,
+                        "judge_max_attempts": MAX_JUDGE_ATTEMPTS,
+                        "judge_recovered": False,
+                        "initial_failure": initial_failure,
+                        "initial_failure_type": initial_failure_type,
+                    },
+                )
+
+            last_result = result
+            elapsed_ms = (
+                time.perf_counter() - started
+            ) * 1000.0
+
+            current_failure: str | None = None
+            current_failure_type: str | None = None
+
+            if result.structured_output_status == (
+                StructuredOutputStatus.MISSING_CONTENT
+            ):
+                current_failure = "Judge generation missing content"
+                current_failure_type = "missing_content"
+
+            elif result.structured_output_status == (
+                StructuredOutputStatus.PARSE_FAILED
+            ):
+                parse_error = result.metadata.get(
+                    "structured_output_error"
+                )
+
+                current_failure = "Judge generation parsing failed"
+                current_failure_type = "parse_failed"
+
+                if parse_error:
+                    current_failure = (
+                        f"{current_failure}: {parse_error}"
+                    )
+
+            elif result.structured_output is None:
+                current_failure = (
+                    "Judge generation produced no structured output"
+                )
+                current_failure_type = "missing_content"
+
+            else:
+                validation = StructuredOutputValidator.validate(
+                    result.structured_output,
+                    AnswerJudgeResult,
+                )
+
+                if validation.valid:
+                    validated = validation.value
+
+                    if isinstance(
+                        validated,
+                        AnswerJudgeResult,
+                    ):
+                        judge_model, judge_provider = (
+                            self._observed_provenance(result)
+                        )
+
+                        return JudgeVerdict(
+                            result=validated,
+                            status=JudgeStatus.VALID,
+                            judge_model=judge_model,
+                            judge_provider=judge_provider,
+                            judge_latency_ms=elapsed_ms,
+                            judge_tokens=result.usage,
+                            judge_cost_usd=result.estimated_cost_usd,
+                            structured_output_valid=True,
+                            judge_failure=None,
+                            judge_metadata={
+                                **result.metadata,
+                                "judge_attempt": attempt,
+                                "judge_max_attempts": (
+                                    MAX_JUDGE_ATTEMPTS
+                                ),
+                                "judge_recovered": (
+                                    attempt > 1
+                                ),
+                                "initial_failure": initial_failure,
+                        "initial_failure_type": initial_failure_type,
+                    },
+                        )
+
+                    current_failure = (
+                        "Judge schema validation produced an "
+                        "unexpected model type"
+                    )
+                    current_failure_type = "schema_invalid"
+
+                else:
+                    current_failure = (
+                        "Judge schema validation failed: "
+                        f"{validation.errors}"
+                    )
+                    current_failure_type = "schema_invalid"
+
+            if current_failure is not None:
+                if initial_failure is None:
+                    initial_failure = current_failure
+                    initial_failure_type = current_failure_type
+
+                last_failure = current_failure
+
+            if attempt < MAX_JUDGE_ATTEMPTS:
+                continue
+
+            judge_model, judge_provider = (
+                self._observed_provenance(last_result)
+            )
 
             return JudgeVerdict(
                 result=None,
                 status=JudgeStatus.SYSTEM_ERROR,
-                judge_model="unknown",
-                judge_provider="unknown",
+                judge_model=judge_model,
+                judge_provider=judge_provider,
                 judge_latency_ms=elapsed_ms,
-                judge_tokens=GenerationUsage(),
-                judge_cost_usd=0.0,
+                judge_tokens=last_result.usage,
+                judge_cost_usd=last_result.estimated_cost_usd,
                 structured_output_valid=False,
-                judge_failure=f"Judge generation failed: {exc}",
-                judge_metadata={},
+                judge_failure=last_failure,
+                judge_metadata={
+                    **last_result.metadata,
+                    "judge_attempt": attempt,
+                    "judge_max_attempts": MAX_JUDGE_ATTEMPTS,
+                    "judge_recovered": False,
+                    "initial_failure": initial_failure,
+                        "initial_failure_type": initial_failure_type,
+                    },
             )
 
-        elapsed_ms = (time.perf_counter() - started) * 1000.0
-
-        if result.structured_output_status == (
-            StructuredOutputStatus.MISSING_CONTENT
-        ):
-            return self._system_error(
-                result=result,
-                elapsed_ms=elapsed_ms,
-                failure="Judge generation missing content",
-            )
-
-        if result.structured_output_status == (
-            StructuredOutputStatus.PARSE_FAILED
-        ):
-            parse_error = result.metadata.get(
-                "structured_output_error"
-            )
-
-            failure = "Judge generation parsing failed"
-
-            if parse_error:
-                failure = f"{failure}: {parse_error}"
-
-            return self._system_error(
-                result=result,
-                elapsed_ms=elapsed_ms,
-                failure=failure,
-            )
-
-        if result.structured_output is None:
-            return self._system_error(
-                result=result,
-                elapsed_ms=elapsed_ms,
-                failure="Judge generation produced no structured output",
-            )
-
-        try:
-            validated = AnswerJudgeResult.model_validate(
-                result.structured_output
-            )
-        except Exception as exc:
-            return self._system_error(
-                result=result,
-                elapsed_ms=elapsed_ms,
-                failure=f"Judge schema validation failed: {exc}",
-            )
-
-        judge_model, judge_provider = self._observed_provenance(result)
-
-        return JudgeVerdict(
-            result=validated,
-            status=JudgeStatus.VALID,
-            judge_model=judge_model,
-            judge_provider=judge_provider,
-            judge_latency_ms=elapsed_ms,
-            judge_tokens=result.usage,
-            judge_cost_usd=result.estimated_cost_usd,
-            structured_output_valid=True,
-            judge_failure=None,
-            judge_metadata=result.metadata,
-        )
+        raise RuntimeError("Unreachable judge state")
 
     def batch_judge(
         self,
@@ -217,7 +310,35 @@ class AnswerJudge:
 
         try:
             result = self.generator.generate(request)
-        except Exception:
+        except Exception as exc:
+            message = str(exc).lower()
+
+            is_rate_limit = (
+                getattr(exc, "status_code", None) == 429
+                or (
+                    getattr(exc, "response", None) is not None
+                    and getattr(
+                        exc.response,
+                        "status_code",
+                        None,
+                    ) == 429
+                )
+                or any(
+                    marker in message
+                    for marker in (
+                        "429",
+                        "rate limit",
+                        "rate_limit",
+                        "too many requests",
+                        "quota",
+                        "resource exhausted",
+                    )
+                )
+            )
+
+            if is_rate_limit:
+                raise
+
             return [
                 self.judge(
                     question=case["question"],
@@ -297,14 +418,18 @@ class AnswerJudge:
         verdicts = []
 
         for raw_verdict in raw_verdicts:
-            try:
-                validated = AnswerJudgeResult.model_validate(
-                    raw_verdict
-                )
+            validation = StructuredOutputValidator.validate(
+                raw_verdict,
+                AnswerJudgeResult,
+            )
 
+            if validation.valid and isinstance(
+                validation.value,
+                AnswerJudgeResult,
+            ):
                 verdicts.append(
                     JudgeVerdict(
-                        result=validated,
+                        result=validation.value,
                         status=JudgeStatus.VALID,
                         judge_model=judge_model,
                         judge_provider=judge_provider,
@@ -316,8 +441,9 @@ class AnswerJudge:
                         judge_metadata=result.metadata,
                     )
                 )
+            else:
+                errors = validation.errors
 
-            except Exception as exc:
                 verdicts.append(
                     JudgeVerdict(
                         result=None,
@@ -330,7 +456,7 @@ class AnswerJudge:
                         structured_output_valid=False,
                         judge_failure=(
                             "Judge schema validation failed: "
-                            f"{exc}"
+                            f"{errors}"
                         ),
                         judge_metadata=result.metadata,
                     )
@@ -339,27 +465,22 @@ class AnswerJudge:
         return verdicts
 
     @staticmethod
-    def _system_error(
+    def _build_retry_input(
         *,
-        result: GenerationResult,
-        elapsed_ms: float,
+        base_question: str,
         failure: str,
-    ) -> JudgeVerdict:
-        judge_model, judge_provider = AnswerJudge._observed_provenance(
-            result
-        )
-
-        return JudgeVerdict(
-            result=None,
-            status=JudgeStatus.SYSTEM_ERROR,
-            judge_model=judge_model,
-            judge_provider=judge_provider,
-            judge_latency_ms=elapsed_ms,
-            judge_tokens=result.usage,
-            judge_cost_usd=result.estimated_cost_usd,
-            structured_output_valid=False,
-            judge_failure=failure,
-            judge_metadata=result.metadata,
+    ) -> str:
+        return (
+            f"{base_question}\n\n"
+            "RETRY INSTRUCTION:\n"
+            "The previous judge response was rejected by the "
+            "application validator.\n"
+            f"Validation failure: {failure}\n\n"
+            "Produce a new response that strictly conforms to "
+            "the requested schema.\n"
+            "Use exactly the required field names and types.\n"
+            "Do not add extra fields.\n"
+            "Return only the structured output."
         )
 
     @staticmethod
