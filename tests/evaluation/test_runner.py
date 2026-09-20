@@ -67,7 +67,7 @@ class FakeRetriever:
     reranker_candidate_k = 10
     hybrid_retrieval_enabled = False
 
-    def retrieve(self, query, top_k):
+    def retrieve(self, query, top_k, trace_metadata=None):
         return type(
             "RetrievalResult",
             (),

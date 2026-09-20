@@ -1,4 +1,4 @@
-﻿from functools import lru_cache
+from functools import lru_cache
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -27,6 +27,7 @@ class Settings(BaseSettings):
     langfuse_enabled: bool = False
     langfuse_public_key: str | None = None
     langfuse_secret_key: str | None = None
+    langfuse_capture_content: bool = False
 
     database_url: str = (
         "postgresql+psycopg://evalforge:evalforge@localhost:5432/evalforge"

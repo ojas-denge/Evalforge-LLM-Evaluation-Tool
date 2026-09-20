@@ -168,7 +168,14 @@ def test_retrieval_emits_observability_data() -> None:
         tracer=tracer,
     )
 
-    result = retriever.retrieve("query", top_k=2)
+    result = retriever.retrieve(
+        "query",
+        top_k=2,
+        trace_metadata={
+            "evaluation_run_id": "run-1",
+            "case_id": "case-1",
+        },
+    )
 
     assert len(tracer.calls) == 1
 
@@ -180,10 +187,27 @@ def test_retrieval_emits_observability_data() -> None:
     assert call["metadata"]["mode"] == "dense"
     assert call["metadata"]["candidate_k"] == 2
     assert call["metadata"]["top_k"] == 2
+    assert call["metadata"]["evaluation_run_id"] == "run-1"
+    assert call["metadata"]["case_id"] == "case-1"
 
     assert call["observation"].output == {
+        "status": "success",
         "result_count": 2,
         "document_ids": ["a.md", "b.md"],
+        "ranked_results": [
+            {
+                "rank": 1,
+                "chunk_id": "chunk-a",
+                "document_id": "a.md",
+                "distance": 0.1,
+            },
+            {
+                "rank": 2,
+                "chunk_id": "chunk-b",
+                "document_id": "b.md",
+                "distance": 0.2,
+            },
+        ],
     }
 
     assert call["observation"].metadata["latency_ms"] >= 0

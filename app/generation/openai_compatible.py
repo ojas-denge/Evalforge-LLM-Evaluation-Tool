@@ -1,4 +1,4 @@
-﻿from json import JSONDecodeError, loads
+from json import JSONDecodeError, loads
 from time import perf_counter
 from typing import Any
 
@@ -114,7 +114,7 @@ class OpenAICompatibleGenerator(Generator):
         with self.tracer.generation(
             name="generation",
             input={
-                "question": request.question,
+                "question": self.tracer.redact(request.question),
                 "model": model,
                 "context_count": len(request.context),
                 "structured_output": (
@@ -127,6 +127,7 @@ class OpenAICompatibleGenerator(Generator):
                 "model": model,
                 "base_url": self.base_url,
                 "structured_output_mode": self.structured_output_mode,
+                **request.metadata,
             },
         ) as trace_observation:
             response = httpx.post(
@@ -287,8 +288,11 @@ class OpenAICompatibleGenerator(Generator):
             if trace_observation is not None:
                 trace_observation.update(
                     output={
-                        "answer": answer,
-                        "structured_output": structured_output,
+                        "status": "success",
+                        "answer": self.tracer.redact(answer),
+                        "structured_output": self.tracer.redact(
+                            structured_output
+                        ),
                     },
                     metadata={
                         "provider": result.provider,

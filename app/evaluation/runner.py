@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import json
 import time
@@ -215,10 +215,20 @@ class Evaluator:
             ),
         )
 
-    def evaluate_case(self, case):
+    def evaluate_case(
+        self,
+        case,
+        evaluation_run_id: str | None = None,
+    ):
+        trace_metadata = {
+            "evaluation_run_id": evaluation_run_id,
+            "case_id": case.case_id,
+        }
+
         retrieval = self.retriever.retrieve(
             query=case.question,
             top_k=5,
+            trace_metadata=trace_metadata,
         )
 
         retrieved_evidence = [
@@ -247,6 +257,7 @@ class Evaluator:
             context=retrieval.results,
             model=None,
             temperature=0.0,
+            metadata=trace_metadata,
         )
 
         generation = self.generator.generate(
@@ -327,12 +338,15 @@ class Evaluator:
         dataset,
         run_id: str | None = None,
     ):
+        run_id = run_id or str(uuid4())
+
         with self.tracer.trace(
             name="evaluation_run",
             input={
                 "dataset_size": len(dataset)
             },
             metadata={
+                "evaluation_run_id": run_id,
                 "retriever_mode": self.retriever.mode,
                 "retrieval_top_k": 5,
                 "answer_judge_enabled": (
@@ -487,7 +501,8 @@ class Evaluator:
                     )
 
                     result = self.evaluate_case(
-                        case
+                        case,
+                        evaluation_run_id=run_id,
                     )
 
                     results_by_case_id[
@@ -655,11 +670,25 @@ class Evaluator:
                             flush=True,
                         )
 
-                        verdicts = (
-                            self.answer_judge.batch_judge(
-                                judge_cases
+                        with self.tracer.judge(
+                            name="judge_batch",
+                            input={
+                                "case_count": len(judge_cases),
+                            },
+                            metadata={
+                                "evaluation_run_id": run_id,
+                                "batch_number": batch_number,
+                                "case_ids": [
+                                    item["case_id"]
+                                    for item in judge_cases
+                                ],
+                            },
+                        ):
+                            verdicts = (
+                                self.answer_judge.batch_judge(
+                                    judge_cases
+                                )
                             )
-                        )
 
                         if len(verdicts) != len(
                             judge_cases

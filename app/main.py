@@ -1,5 +1,6 @@
 from contextlib import asynccontextmanager
 from time import perf_counter
+from uuid import uuid4
 
 from fastapi import FastAPI, HTTPException
 
@@ -50,12 +51,14 @@ def health():
 @app.post("/query", response_model=QueryResponse)
 def query(request: QueryRequest):
     request_start = perf_counter()
+    request_id = str(uuid4())
 
     with tracer.trace(
         name="rag_request",
-        input={"question": request.question},
+        input={"question": tracer.redact(request.question)},
         metadata={
             "endpoint": "/query",
+            "request_id": request_id,
             "retrieval_top_k": 3,
         },
     ) as observation:
@@ -65,6 +68,7 @@ def query(request: QueryRequest):
         retrieval = retriever.retrieve(
             query=request.question,
             top_k=3,
+            trace_metadata={"request_id": request_id},
         )
 
         citations = [
@@ -77,6 +81,7 @@ def query(request: QueryRequest):
             context=retrieval.results,
             model=settings.llm_model,
             temperature=0.0,
+            metadata={"request_id": request_id},
         )
 
         generation = generator.generate(generation_request)

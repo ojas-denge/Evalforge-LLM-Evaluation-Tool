@@ -108,20 +108,35 @@ class Retriever:
 
         return "dense"
 
-    def retrieve(self, query: str, top_k: int = 5) -> RetrievalResult:
+    def retrieve(
+        self,
+        query: str,
+        top_k: int = 5,
+        trace_metadata: dict[str, object] | None = None,
+    ) -> RetrievalResult:
         start_time = perf_counter()
         candidate_k = self._resolve_candidate_k(top_k)
 
+        retrieval_metadata = {
+            "mode": self.mode,
+            "candidate_k": candidate_k,
+            "top_k": top_k,
+            "reranking_enabled": self.reranking_enabled,
+            "hybrid_retrieval_enabled": self.hybrid_retrieval_enabled,
+        }
+        if trace_metadata:
+            retrieval_metadata.update(trace_metadata)
+
+        trace_query = (
+            self.tracer.redact(query)
+            if hasattr(self.tracer, "redact")
+            else query
+        )
+
         with self.tracer.retrieval(
             name="retrieval",
-            input={"query": query},
-            metadata={
-                "mode": self.mode,
-                "candidate_k": candidate_k,
-                "top_k": top_k,
-                "reranking_enabled": self.reranking_enabled,
-                "hybrid_retrieval_enabled": self.hybrid_retrieval_enabled,
-            },
+            input={"query": trace_query},
+            metadata=retrieval_metadata,
         ) as observation:
 
             if self.lexical_only:
@@ -197,9 +212,19 @@ class Retriever:
             if observation is not None:
                 observation.update(
                     output={
+                        "status": "success",
                         "result_count": len(results),
                         "document_ids": [
                             result.document_id
+                            for result in results
+                        ],
+                        "ranked_results": [
+                            {
+                                "rank": result.rank,
+                                "chunk_id": result.chunk_id,
+                                "document_id": result.document_id,
+                                "distance": result.distance,
+                            }
                             for result in results
                         ],
                     },
