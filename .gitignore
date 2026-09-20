@@ -11,3 +11,6 @@ data/chroma/
 candidate_diagnosis.json
 
 logs/
+
+# EvalForge runtime state
+.evalforge_checkpoints/
