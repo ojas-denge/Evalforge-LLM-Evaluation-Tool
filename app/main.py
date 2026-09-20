@@ -3,10 +3,12 @@ from time import perf_counter
 from uuid import uuid4
 
 from fastapi import FastAPI, HTTPException
+from sqlalchemy import text
 
 from app.core.config import get_settings
 from app.core.logging import configure_logging, get_logger
 from app.db.repository import EvaluationRepository
+from app.db.session import engine
 from app.evaluation.comparison import compare_runs
 from app.evaluation.regression import RegressionPolicy
 from app.generation.base import GenerationRequest, Generator
@@ -47,6 +49,29 @@ def health():
         "version": settings.app_version,
     }
 
+@app.get("/health/ready")
+def readiness():
+    try:
+        with engine.connect() as connection:
+            connection.execute(text("SELECT 1"))
+
+        return {
+            "status": "ready",
+            "service": "evalforge",
+            "version": settings.app_version,
+        }
+
+    except Exception:
+        logger.exception("Readiness check failed")
+
+        raise HTTPException(
+            status_code=503,
+            detail={
+                "status": "not_ready",
+                "service": "evalforge",
+                "version": settings.app_version,
+            },
+        )
 
 @app.post("/query", response_model=QueryResponse)
 def query(request: QueryRequest):
