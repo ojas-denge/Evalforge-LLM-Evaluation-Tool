@@ -1,0 +1,2306 @@
+{
+  "experiment": "g3b_retrieval_only_screening",
+  "dataset_size": 16,
+  "cases": [
+    {
+      "case_id": "evaluation_strategy_003",
+      "question": "Why can a system with strong recall still require investigation before it is called better?",
+      "category": "cross_document",
+      "expected_documents": [
+        "evaluation/evaluation-strategy.md",
+        "evaluation/retrieval-metrics.md"
+      ],
+      "dense": {
+        "latency_ms": 49.072999998315936,
+        "metrics": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 0.5,
+          "mrr": 0.3333333333333333
+        },
+        "expected": {
+          "expected_ranks": {
+            "evaluation/evaluation-strategy.md": null,
+            "evaluation/retrieval-metrics.md": 3
+          },
+          "expected_present": [
+            "evaluation/retrieval-metrics.md"
+          ],
+          "expected_missing": [
+            "evaluation/evaluation-strategy.md"
+          ],
+          "all_expected_present": false
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "policies/retry-policy.md:0",
+            "document_id": "policies/retry-policy.md",
+            "distance": 0.6913235187530518,
+            "text": "\\# Retry Policy Retries are intended to recover from transient failures. A retry should not silently replace the original failed execution in observability data. Each retry attempt should be recorded with its reason and outcome. Retries can increase latency and cost, so retry behavior must be included in system evaluation. Repeated retries should be bounded to prevent uncontrolled execution."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "engineering/context-management.md:0",
+            "document_id": "engineering/context-management.md",
+            "distance": 0.6969832181930542,
+            "text": "\\# Context Management Retrieved evidence is passed to the generation layer as model context. More retrieved context is not always better. Additional context can improve answer completeness when relevant evidence is distributed across multiple chunks. Irrelevant context can increase generation cost and make it harder for a model to identify the most useful evidence. Context construction should therefore balance evidence coverage, relevance, context length, latency, and cost."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "evaluation/retrieval-metrics.md:0",
+            "document_id": "evaluation/retrieval-metrics.md",
+            "distance": 0.7074769735336304,
+            "text": "\\# Retrieval Metrics EvalForge uses retrieval metrics to measure whether relevant evidence is returned by the retriever. Hit@K measures whether at least one expected document appears within the first K retrieved results. Recall@K measures the proportion of expected documents retrieved within the first K results. Reciprocal rank measures how highly the first relevant document appears in the ranked results. Metrics should be interpreted together because a system can retrieve all required evidence while still ranking the most important evidence poorly. Retrieval metrics should be evaluated across a representative golden dataset rather than a small collection of manually selected queries."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "operations/reliability-policy.md:0",
+            "document_id": "operations/reliability-policy.md",
+            "distance": 0.7152082920074463,
+            "text": "\\# Reliability Policy EvalForge tracks failures occurring during retrieval, generation, validation, and external service calls. A successful request should not hide component-level failures. Transient failures may be retried when retry behavior is explicitly configured. Retries should be observable so that additional latency and repeated model calls can be measured. Reliability improvements should be evaluated together with latency, cost, and answer quality."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "engineering/retrieval-guidelines.md:0",
+            "document_id": "engineering/retrieval-guidelines.md",
+            "distance": 0.730111837387085,
+            "text": "# Retrieval Guidelines The baseline retrieval implementation uses semantic similarity search. Documents are divided into chunks before they are embedded. Each chunk should contain enough surrounding context to preserve meaning, while avoiding unnecessarily large chunks. The baseline system retrieves a configurable number of top-k chunks. Increasing top-k can improve recall when relevant information is distributed across multiple chunks, but excessive context can introduce irrelevant information and increase generation cost. Retrieval quality should be evaluated independently from final answer quality. A retrieval failure occurs when the information required to answer a question is absent from the retrieved context even though it exists in the knowledge base. The baseline retrieval system should be measured before introducing hybrid retrieval or reranking."
+          }
+        ]
+      },
+      "dense_crossencoder": {
+        "latency_ms": 136.99369999812916,
+        "metrics": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 0.5,
+          "mrr": 0.5
+        },
+        "expected": {
+          "expected_ranks": {
+            "evaluation/evaluation-strategy.md": null,
+            "evaluation/retrieval-metrics.md": 2
+          },
+          "expected_present": [
+            "evaluation/retrieval-metrics.md"
+          ],
+          "expected_missing": [
+            "evaluation/evaluation-strategy.md"
+          ],
+          "all_expected_present": false
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "engineering/retrieval-guidelines.md:0",
+            "document_id": "engineering/retrieval-guidelines.md",
+            "distance": 0.730111837387085,
+            "text": "# Retrieval Guidelines The baseline retrieval implementation uses semantic similarity search. Documents are divided into chunks before they are embedded. Each chunk should contain enough surrounding context to preserve meaning, while avoiding unnecessarily large chunks. The baseline system retrieves a configurable number of top-k chunks. Increasing top-k can improve recall when relevant information is distributed across multiple chunks, but excessive context can introduce irrelevant information and increase generation cost. Retrieval quality should be evaluated independently from final answer quality. A retrieval failure occurs when the information required to answer a question is absent from the retrieved context even though it exists in the knowledge base. The baseline retrieval system should be measured before introducing hybrid retrieval or reranking."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "evaluation/retrieval-metrics.md:0",
+            "document_id": "evaluation/retrieval-metrics.md",
+            "distance": 0.7074769735336304,
+            "text": "\\# Retrieval Metrics EvalForge uses retrieval metrics to measure whether relevant evidence is returned by the retriever. Hit@K measures whether at least one expected document appears within the first K retrieved results. Recall@K measures the proportion of expected documents retrieved within the first K results. Reciprocal rank measures how highly the first relevant document appears in the ranked results. Metrics should be interpreted together because a system can retrieve all required evidence while still ranking the most important evidence poorly. Retrieval metrics should be evaluated across a representative golden dataset rather than a small collection of manually selected queries."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "policies/retry-policy.md:0",
+            "document_id": "policies/retry-policy.md",
+            "distance": 0.6913235187530518,
+            "text": "\\# Retry Policy Retries are intended to recover from transient failures. A retry should not silently replace the original failed execution in observability data. Each retry attempt should be recorded with its reason and outcome. Retries can increase latency and cost, so retry behavior must be included in system evaluation. Repeated retries should be bounded to prevent uncontrolled execution."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "engineering/context-management.md:0",
+            "document_id": "engineering/context-management.md",
+            "distance": 0.6969832181930542,
+            "text": "\\# Context Management Retrieved evidence is passed to the generation layer as model context. More retrieved context is not always better. Additional context can improve answer completeness when relevant evidence is distributed across multiple chunks. Irrelevant context can increase generation cost and make it harder for a model to identify the most useful evidence. Context construction should therefore balance evidence coverage, relevance, context length, latency, and cost."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "operations/reliability-policy.md:0",
+            "document_id": "operations/reliability-policy.md",
+            "distance": 0.7152082920074463,
+            "text": "\\# Reliability Policy EvalForge tracks failures occurring during retrieval, generation, validation, and external service calls. A successful request should not hide component-level failures. Transient failures may be retried when retry behavior is explicitly configured. Retries should be observable so that additional latency and repeated model calls can be measured. Reliability improvements should be evaluated together with latency, cost, and answer quality."
+          }
+        ]
+      },
+      "comparison": {
+        "document_set_changed": false,
+        "dense_only_documents": [],
+        "crossencoder_only_documents": [],
+        "order_changed": true,
+        "expected_rank_changed": {
+          "evaluation/evaluation-strategy.md": false,
+          "evaluation/retrieval-metrics.md": true
+        },
+        "missing_expected_changed": false,
+        "metrics_delta": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "recall_at_5": 0.0,
+          "mrr": 0.16666666666666669
+        }
+      }
+    },
+    {
+      "case_id": "cross_003",
+      "question": "What does a successful LLM call fail to guarantee, and what system components are responsible for checking the result?",
+      "category": "cross_document",
+      "expected_documents": [
+        "architecture/system-architecture.md",
+        "policies/validation-policy.md"
+      ],
+      "dense": {
+        "latency_ms": 28.08550000190735,
+        "metrics": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 0.3333333333333333
+        },
+        "expected": {
+          "expected_ranks": {
+            "architecture/system-architecture.md": 5,
+            "policies/validation-policy.md": 3
+          },
+          "expected_present": [
+            "architecture/system-architecture.md",
+            "policies/validation-policy.md"
+          ],
+          "expected_missing": [],
+          "all_expected_present": true
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "policies/structured-output-policy.md:0",
+            "document_id": "policies/structured-output-policy.md",
+            "distance": 0.5721777677536011,
+            "text": "\\# Structured Output Policy Structured LLM responses should conform to a defined application schema. Schema validation should occur before downstream components rely on generated fields. Required fields must be present and values must satisfy their declared constraints. Validation errors should identify the failed field or constraint when possible. A repair or retry operation may be used when configured, but the original invalid response should remain observable."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "operations/reliability-policy.md:0",
+            "document_id": "operations/reliability-policy.md",
+            "distance": 0.5801471471786499,
+            "text": "\\# Reliability Policy EvalForge tracks failures occurring during retrieval, generation, validation, and external service calls. A successful request should not hide component-level failures. Transient failures may be retried when retry behavior is explicitly configured. Retries should be observable so that additional latency and repeated model calls can be measured. Reliability improvements should be evaluated together with latency, cost, and answer quality."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "policies/validation-policy.md:0",
+            "document_id": "policies/validation-policy.md",
+            "distance": 0.6585777997970581,
+            "text": "# Output Validation Policy Generated answers must conform to the application's structured response schema. The response schema contains an answer, citations, confidence score, human-review indicator, and execution metrics. Confidence values must be between zero and one. Citations should identify the source documents used to construct the answer. Malformed structured output must not be silently accepted. Validation failures should be recorded and may trigger a retry or repair operation. A successful LLM call does not imply that the output is valid."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "policies/retry-policy.md:0",
+            "document_id": "policies/retry-policy.md",
+            "distance": 0.7037484049797058,
+            "text": "\\# Retry Policy Retries are intended to recover from transient failures. A retry should not silently replace the original failed execution in observability data. Each retry attempt should be recorded with its reason and outcome. Retries can increase latency and cost, so retry behavior must be included in system evaluation. Repeated retries should be bounded to prevent uncontrolled execution."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "architecture/system-architecture.md:0",
+            "document_id": "architecture/system-architecture.md",
+            "distance": 0.7217785120010376,
+            "text": "# System Architecture EvalForge is an LLM evaluation and observability platform designed to test retrieval-augmented generation and agentic LLM applications. The platform consists of an API layer, orchestration layer, retrieval layer, generation layer, validation layer, observability layer, and evaluation layer. The API layer exposes application endpoints through FastAPI. The orchestration layer controls execution flow and may route requests through retrieval, tools, generation, and validation. The retrieval layer searches the indexed knowledge base and provides relevant context to the generation layer. The generation layer uses an LLM to produce an answer from the user request and retrieved context. The validation layer verifies that generated responses conform to required schemas and application constraints. The observability layer records traces, latency, token usage, costs,"
+          }
+        ]
+      },
+      "dense_crossencoder": {
+        "latency_ms": 155.75689999968745,
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "expected": {
+          "expected_ranks": {
+            "architecture/system-architecture.md": 4,
+            "policies/validation-policy.md": 1
+          },
+          "expected_present": [
+            "architecture/system-architecture.md",
+            "policies/validation-policy.md"
+          ],
+          "expected_missing": [],
+          "all_expected_present": true
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "policies/validation-policy.md:0",
+            "document_id": "policies/validation-policy.md",
+            "distance": 0.6585777997970581,
+            "text": "# Output Validation Policy Generated answers must conform to the application's structured response schema. The response schema contains an answer, citations, confidence score, human-review indicator, and execution metrics. Confidence values must be between zero and one. Citations should identify the source documents used to construct the answer. Malformed structured output must not be silently accepted. Validation failures should be recorded and may trigger a retry or repair operation. A successful LLM call does not imply that the output is valid."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "policies/structured-output-policy.md:0",
+            "document_id": "policies/structured-output-policy.md",
+            "distance": 0.5721777677536011,
+            "text": "\\# Structured Output Policy Structured LLM responses should conform to a defined application schema. Schema validation should occur before downstream components rely on generated fields. Required fields must be present and values must satisfy their declared constraints. Validation errors should identify the failed field or constraint when possible. A repair or retry operation may be used when configured, but the original invalid response should remain observable."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "operations/reliability-policy.md:0",
+            "document_id": "operations/reliability-policy.md",
+            "distance": 0.5801471471786499,
+            "text": "\\# Reliability Policy EvalForge tracks failures occurring during retrieval, generation, validation, and external service calls. A successful request should not hide component-level failures. Transient failures may be retried when retry behavior is explicitly configured. Retries should be observable so that additional latency and repeated model calls can be measured. Reliability improvements should be evaluated together with latency, cost, and answer quality."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "architecture/system-architecture.md:0",
+            "document_id": "architecture/system-architecture.md",
+            "distance": 0.7217785120010376,
+            "text": "# System Architecture EvalForge is an LLM evaluation and observability platform designed to test retrieval-augmented generation and agentic LLM applications. The platform consists of an API layer, orchestration layer, retrieval layer, generation layer, validation layer, observability layer, and evaluation layer. The API layer exposes application endpoints through FastAPI. The orchestration layer controls execution flow and may route requests through retrieval, tools, generation, and validation. The retrieval layer searches the indexed knowledge base and provides relevant context to the generation layer. The generation layer uses an LLM to produce an answer from the user request and retrieved context. The validation layer verifies that generated responses conform to required schemas and application constraints. The observability layer records traces, latency, token usage, costs,"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "policies/retry-policy.md:0",
+            "document_id": "policies/retry-policy.md",
+            "distance": 0.7037484049797058,
+            "text": "\\# Retry Policy Retries are intended to recover from transient failures. A retry should not silently replace the original failed execution in observability data. Each retry attempt should be recorded with its reason and outcome. Retries can increase latency and cost, so retry behavior must be included in system evaluation. Repeated retries should be bounded to prevent uncontrolled execution."
+          }
+        ]
+      },
+      "comparison": {
+        "document_set_changed": false,
+        "dense_only_documents": [],
+        "crossencoder_only_documents": [],
+        "order_changed": true,
+        "expected_rank_changed": {
+          "architecture/system-architecture.md": true,
+          "policies/validation-policy.md": true
+        },
+        "missing_expected_changed": false,
+        "metrics_delta": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "recall_at_5": 0.0,
+          "mrr": 0.6666666666666667
+        }
+      }
+    },
+    {
+      "case_id": "routing_006",
+      "question": "How should a proposed model change be evaluated and compared fairly?",
+      "category": "cross_document",
+      "expected_documents": [
+        "architecture/model-routing.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "dense": {
+        "latency_ms": 21.710600001824787,
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "expected": {
+          "expected_ranks": {
+            "architecture/model-routing.md": 1,
+            "evaluation/evaluation-strategy.md": 3
+          },
+          "expected_present": [
+            "architecture/model-routing.md",
+            "evaluation/evaluation-strategy.md"
+          ],
+          "expected_missing": [],
+          "all_expected_present": true
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "architecture/model-routing.md:0",
+            "document_id": "architecture/model-routing.md",
+            "distance": 0.4728202223777771,
+            "text": "# Model Routing EvalForge may support multiple LLM providers and models. Model selection should consider task complexity, latency, reliability, and cost. A simple request does not necessarily require the most capable model. Model routing experiments should record which model handled each request. Changing the model can affect answer quality, latency, token usage, and cost. Therefore model changes must be evaluated against a fixed evaluation dataset rather than judged from a small number of manually selected examples."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "operations/deployment-policy.md:0",
+            "document_id": "operations/deployment-policy.md",
+            "distance": 0.5491790771484375,
+            "text": "\\# Deployment Policy Application changes should be evaluated before deployment. Changes that modify retrieval, generation, model configuration, validation, or orchestration should be compared against a known baseline. A deployment should not be considered safe solely because the application starts successfully. Evaluation results should be reviewed for quality, latency, cost, reliability, and validation regressions. Automated evaluation can be used as a deployment gate when explicit thresholds have been configured."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "evaluation/evaluation-strategy.md:0",
+            "document_id": "evaluation/evaluation-strategy.md",
+            "distance": 0.5936969518661499,
+            "text": "\\# Evaluation Strategy EvalForge evaluates LLM applications using a fixed golden dataset. Evaluation should separate retrieval quality, answer quality, latency, cost, and structured-output validity. A single metric should not determine whether a system change is better. Evaluation runs should record the application configuration used during the run. The same evaluation dataset should be used when comparing two application versions so that changes can be attributed to the system rather than differences in test cases. Evaluation results should preserve per-case evidence so that aggregate regressions can be investigated."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "operations/cost-policy.md:0",
+            "document_id": "operations/cost-policy.md",
+            "distance": 0.6359992027282715,
+            "text": "# Cost Policy EvalForge records token usage and estimates the cost of each LLM request. Input and output tokens are tracked separately. Cost should be calculated using the configured model's applicable input and output token prices. The baseline system should report average cost per request. A lower cost is not automatically an improvement if answer quality decreases. Cost optimization experiments must therefore be evaluated together with quality metrics and latency."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "operations/reliability-policy.md:0",
+            "document_id": "operations/reliability-policy.md",
+            "distance": 0.6670913696289062,
+            "text": "\\# Reliability Policy EvalForge tracks failures occurring during retrieval, generation, validation, and external service calls. A successful request should not hide component-level failures. Transient failures may be retried when retry behavior is explicitly configured. Retries should be observable so that additional latency and repeated model calls can be measured. Reliability improvements should be evaluated together with latency, cost, and answer quality."
+          }
+        ]
+      },
+      "dense_crossencoder": {
+        "latency_ms": 112.62580000038724,
+        "metrics": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 0.5
+        },
+        "expected": {
+          "expected_ranks": {
+            "architecture/model-routing.md": 2,
+            "evaluation/evaluation-strategy.md": 3
+          },
+          "expected_present": [
+            "architecture/model-routing.md",
+            "evaluation/evaluation-strategy.md"
+          ],
+          "expected_missing": [],
+          "all_expected_present": true
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "operations/deployment-policy.md:0",
+            "document_id": "operations/deployment-policy.md",
+            "distance": 0.5491790771484375,
+            "text": "\\# Deployment Policy Application changes should be evaluated before deployment. Changes that modify retrieval, generation, model configuration, validation, or orchestration should be compared against a known baseline. A deployment should not be considered safe solely because the application starts successfully. Evaluation results should be reviewed for quality, latency, cost, reliability, and validation regressions. Automated evaluation can be used as a deployment gate when explicit thresholds have been configured."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "architecture/model-routing.md:0",
+            "document_id": "architecture/model-routing.md",
+            "distance": 0.4728202223777771,
+            "text": "# Model Routing EvalForge may support multiple LLM providers and models. Model selection should consider task complexity, latency, reliability, and cost. A simple request does not necessarily require the most capable model. Model routing experiments should record which model handled each request. Changing the model can affect answer quality, latency, token usage, and cost. Therefore model changes must be evaluated against a fixed evaluation dataset rather than judged from a small number of manually selected examples."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "evaluation/evaluation-strategy.md:0",
+            "document_id": "evaluation/evaluation-strategy.md",
+            "distance": 0.5936969518661499,
+            "text": "\\# Evaluation Strategy EvalForge evaluates LLM applications using a fixed golden dataset. Evaluation should separate retrieval quality, answer quality, latency, cost, and structured-output validity. A single metric should not determine whether a system change is better. Evaluation runs should record the application configuration used during the run. The same evaluation dataset should be used when comparing two application versions so that changes can be attributed to the system rather than differences in test cases. Evaluation results should preserve per-case evidence so that aggregate regressions can be investigated."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "operations/cost-policy.md:0",
+            "document_id": "operations/cost-policy.md",
+            "distance": 0.6359992027282715,
+            "text": "# Cost Policy EvalForge records token usage and estimates the cost of each LLM request. Input and output tokens are tracked separately. Cost should be calculated using the configured model's applicable input and output token prices. The baseline system should report average cost per request. A lower cost is not automatically an improvement if answer quality decreases. Cost optimization experiments must therefore be evaluated together with quality metrics and latency."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "operations/reliability-policy.md:0",
+            "document_id": "operations/reliability-policy.md",
+            "distance": 0.6670913696289062,
+            "text": "\\# Reliability Policy EvalForge tracks failures occurring during retrieval, generation, validation, and external service calls. A successful request should not hide component-level failures. Transient failures may be retried when retry behavior is explicitly configured. Retries should be observable so that additional latency and repeated model calls can be measured. Reliability improvements should be evaluated together with latency, cost, and answer quality."
+          }
+        ]
+      },
+      "comparison": {
+        "document_set_changed": false,
+        "dense_only_documents": [],
+        "crossencoder_only_documents": [],
+        "order_changed": true,
+        "expected_rank_changed": {
+          "architecture/model-routing.md": true,
+          "evaluation/evaluation-strategy.md": false
+        },
+        "missing_expected_changed": false,
+        "metrics_delta": {
+          "hit_at_1": -1.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "recall_at_5": 0.0,
+          "mrr": -0.5
+        }
+      }
+    },
+    {
+      "case_id": "golden_004",
+      "question": "How should dataset changes be handled relative to retrieval changes?",
+      "category": "golden_dataset",
+      "expected_documents": [
+        "evaluation/golden-datasets.md"
+      ],
+      "dense": {
+        "latency_ms": 22.734700000000885,
+        "metrics": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "recall_at_5": 0.0,
+          "mrr": 0.0
+        },
+        "expected": {
+          "expected_ranks": {
+            "evaluation/golden-datasets.md": null
+          },
+          "expected_present": [],
+          "expected_missing": [
+            "evaluation/golden-datasets.md"
+          ],
+          "all_expected_present": false
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "engineering/embedding-guidelines.md:0",
+            "document_id": "engineering/embedding-guidelines.md",
+            "distance": 0.5382252931594849,
+            "text": "\\# Embedding Guidelines Embeddings represent documents and queries as vectors that can be compared using semantic similarity. The same embedding model configuration should be used consistently when comparing document and query representations. Changing the embedding model can change similarity scores and retrieval rankings. Embedding quality should be evaluated using the same golden dataset used to evaluate the retrieval system. Embedding model changes should be treated as experiments rather than assumed improvements."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "evaluation/retrieval-metrics.md:0",
+            "document_id": "evaluation/retrieval-metrics.md",
+            "distance": 0.5650104880332947,
+            "text": "\\# Retrieval Metrics EvalForge uses retrieval metrics to measure whether relevant evidence is returned by the retriever. Hit@K measures whether at least one expected document appears within the first K retrieved results. Recall@K measures the proportion of expected documents retrieved within the first K results. Reciprocal rank measures how highly the first relevant document appears in the ranked results. Metrics should be interpreted together because a system can retrieve all required evidence while still ranking the most important evidence poorly. Retrieval metrics should be evaluated across a representative golden dataset rather than a small collection of manually selected queries."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "engineering/retrieval-guidelines.md:0",
+            "document_id": "engineering/retrieval-guidelines.md",
+            "distance": 0.5692151784896851,
+            "text": "# Retrieval Guidelines The baseline retrieval implementation uses semantic similarity search. Documents are divided into chunks before they are embedded. Each chunk should contain enough surrounding context to preserve meaning, while avoiding unnecessarily large chunks. The baseline system retrieves a configurable number of top-k chunks. Increasing top-k can improve recall when relevant information is distributed across multiple chunks, but excessive context can introduce irrelevant information and increase generation cost. Retrieval quality should be evaluated independently from final answer quality. A retrieval failure occurs when the information required to answer a question is absent from the retrieved context even though it exists in the knowledge base. The baseline retrieval system should be measured before introducing hybrid retrieval or reranking."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "evaluation/evaluation-strategy.md:0",
+            "document_id": "evaluation/evaluation-strategy.md",
+            "distance": 0.5948811173439026,
+            "text": "\\# Evaluation Strategy EvalForge evaluates LLM applications using a fixed golden dataset. Evaluation should separate retrieval quality, answer quality, latency, cost, and structured-output validity. A single metric should not determine whether a system change is better. Evaluation runs should record the application configuration used during the run. The same evaluation dataset should be used when comparing two application versions so that changes can be attributed to the system rather than differences in test cases. Evaluation results should preserve per-case evidence so that aggregate regressions can be investigated."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "engineering/chunking-guidelines.md:0",
+            "document_id": "engineering/chunking-guidelines.md",
+            "distance": 0.5954208374023438,
+            "text": "\\# Chunking Guidelines Document chunking determines the units that are indexed and retrieved by the vector store. Chunks should preserve enough surrounding context for their content to remain meaningful when retrieved independently. Very large chunks can contain unrelated information and reduce retrieval precision. Very small chunks can remove important context and make evidence difficult to interpret. Chunk size and overlap should therefore be treated as retrieval parameters that can be evaluated experimentally. Changes to chunking can alter retrieval rankings even when the embedding model remains unchanged."
+          }
+        ]
+      },
+      "dense_crossencoder": {
+        "latency_ms": 134.4779999999446,
+        "metrics": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "recall_at_5": 0.0,
+          "mrr": 0.0
+        },
+        "expected": {
+          "expected_ranks": {
+            "evaluation/golden-datasets.md": null
+          },
+          "expected_present": [],
+          "expected_missing": [
+            "evaluation/golden-datasets.md"
+          ],
+          "all_expected_present": false
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "engineering/embedding-guidelines.md:0",
+            "document_id": "engineering/embedding-guidelines.md",
+            "distance": 0.5382252931594849,
+            "text": "\\# Embedding Guidelines Embeddings represent documents and queries as vectors that can be compared using semantic similarity. The same embedding model configuration should be used consistently when comparing document and query representations. Changing the embedding model can change similarity scores and retrieval rankings. Embedding quality should be evaluated using the same golden dataset used to evaluate the retrieval system. Embedding model changes should be treated as experiments rather than assumed improvements."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "evaluation/evaluation-strategy.md:0",
+            "document_id": "evaluation/evaluation-strategy.md",
+            "distance": 0.5948811173439026,
+            "text": "\\# Evaluation Strategy EvalForge evaluates LLM applications using a fixed golden dataset. Evaluation should separate retrieval quality, answer quality, latency, cost, and structured-output validity. A single metric should not determine whether a system change is better. Evaluation runs should record the application configuration used during the run. The same evaluation dataset should be used when comparing two application versions so that changes can be attributed to the system rather than differences in test cases. Evaluation results should preserve per-case evidence so that aggregate regressions can be investigated."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "engineering/chunking-guidelines.md:0",
+            "document_id": "engineering/chunking-guidelines.md",
+            "distance": 0.5954208374023438,
+            "text": "\\# Chunking Guidelines Document chunking determines the units that are indexed and retrieved by the vector store. Chunks should preserve enough surrounding context for their content to remain meaningful when retrieved independently. Very large chunks can contain unrelated information and reduce retrieval precision. Very small chunks can remove important context and make evidence difficult to interpret. Chunk size and overlap should therefore be treated as retrieval parameters that can be evaluated experimentally. Changes to chunking can alter retrieval rankings even when the embedding model remains unchanged."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "engineering/retrieval-guidelines.md:0",
+            "document_id": "engineering/retrieval-guidelines.md",
+            "distance": 0.5692151784896851,
+            "text": "# Retrieval Guidelines The baseline retrieval implementation uses semantic similarity search. Documents are divided into chunks before they are embedded. Each chunk should contain enough surrounding context to preserve meaning, while avoiding unnecessarily large chunks. The baseline system retrieves a configurable number of top-k chunks. Increasing top-k can improve recall when relevant information is distributed across multiple chunks, but excessive context can introduce irrelevant information and increase generation cost. Retrieval quality should be evaluated independently from final answer quality. A retrieval failure occurs when the information required to answer a question is absent from the retrieved context even though it exists in the knowledge base. The baseline retrieval system should be measured before introducing hybrid retrieval or reranking."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "evaluation/retrieval-metrics.md:0",
+            "document_id": "evaluation/retrieval-metrics.md",
+            "distance": 0.5650104880332947,
+            "text": "\\# Retrieval Metrics EvalForge uses retrieval metrics to measure whether relevant evidence is returned by the retriever. Hit@K measures whether at least one expected document appears within the first K retrieved results. Recall@K measures the proportion of expected documents retrieved within the first K results. Reciprocal rank measures how highly the first relevant document appears in the ranked results. Metrics should be interpreted together because a system can retrieve all required evidence while still ranking the most important evidence poorly. Retrieval metrics should be evaluated across a representative golden dataset rather than a small collection of manually selected queries."
+          }
+        ]
+      },
+      "comparison": {
+        "document_set_changed": false,
+        "dense_only_documents": [],
+        "crossencoder_only_documents": [],
+        "order_changed": true,
+        "expected_rank_changed": {
+          "evaluation/golden-datasets.md": false
+        },
+        "missing_expected_changed": false,
+        "metrics_delta": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "recall_at_5": 0.0,
+          "mrr": 0.0
+        }
+      }
+    },
+    {
+      "case_id": "architecture_003",
+      "question": "After retrieval, how is evidence used by the generation layer and what risk must be managed?",
+      "category": "cross_document",
+      "expected_documents": [
+        "architecture/system-architecture.md",
+        "engineering/context-management.md"
+      ],
+      "dense": {
+        "latency_ms": 20.14239999698475,
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "expected": {
+          "expected_ranks": {
+            "architecture/system-architecture.md": 2,
+            "engineering/context-management.md": 1
+          },
+          "expected_present": [
+            "architecture/system-architecture.md",
+            "engineering/context-management.md"
+          ],
+          "expected_missing": [],
+          "all_expected_present": true
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "engineering/context-management.md:0",
+            "document_id": "engineering/context-management.md",
+            "distance": 0.364875853061676,
+            "text": "\\# Context Management Retrieved evidence is passed to the generation layer as model context. More retrieved context is not always better. Additional context can improve answer completeness when relevant evidence is distributed across multiple chunks. Irrelevant context can increase generation cost and make it harder for a model to identify the most useful evidence. Context construction should therefore balance evidence coverage, relevance, context length, latency, and cost."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "architecture/system-architecture.md:0",
+            "document_id": "architecture/system-architecture.md",
+            "distance": 0.5237528681755066,
+            "text": "# System Architecture EvalForge is an LLM evaluation and observability platform designed to test retrieval-augmented generation and agentic LLM applications. The platform consists of an API layer, orchestration layer, retrieval layer, generation layer, validation layer, observability layer, and evaluation layer. The API layer exposes application endpoints through FastAPI. The orchestration layer controls execution flow and may route requests through retrieval, tools, generation, and validation. The retrieval layer searches the indexed knowledge base and provides relevant context to the generation layer. The generation layer uses an LLM to produce an answer from the user request and retrieved context. The validation layer verifies that generated responses conform to required schemas and application constraints. The observability layer records traces, latency, token usage, costs,"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "architecture/system-architecture.md:1",
+            "document_id": "architecture/system-architecture.md",
+            "distance": 0.5576836466789246,
+            "text": "from the user request and retrieved context. The validation layer verifies that generated responses conform to required schemas and application constraints. The observability layer records traces, latency, token usage, costs, errors, and execution metadata. The evaluation layer measures system quality and detects regressions between application versions."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "operations/reliability-policy.md:0",
+            "document_id": "operations/reliability-policy.md",
+            "distance": 0.569668173789978,
+            "text": "\\# Reliability Policy EvalForge tracks failures occurring during retrieval, generation, validation, and external service calls. A successful request should not hide component-level failures. Transient failures may be retried when retry behavior is explicitly configured. Retries should be observable so that additional latency and repeated model calls can be measured. Reliability improvements should be evaluated together with latency, cost, and answer quality."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "evaluation/retrieval-metrics.md:0",
+            "document_id": "evaluation/retrieval-metrics.md",
+            "distance": 0.5926063060760498,
+            "text": "\\# Retrieval Metrics EvalForge uses retrieval metrics to measure whether relevant evidence is returned by the retriever. Hit@K measures whether at least one expected document appears within the first K retrieved results. Recall@K measures the proportion of expected documents retrieved within the first K results. Reciprocal rank measures how highly the first relevant document appears in the ranked results. Metrics should be interpreted together because a system can retrieve all required evidence while still ranking the most important evidence poorly. Retrieval metrics should be evaluated across a representative golden dataset rather than a small collection of manually selected queries."
+          }
+        ]
+      },
+      "dense_crossencoder": {
+        "latency_ms": 140.54720000058296,
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "expected": {
+          "expected_ranks": {
+            "architecture/system-architecture.md": 2,
+            "engineering/context-management.md": 1
+          },
+          "expected_present": [
+            "architecture/system-architecture.md",
+            "engineering/context-management.md"
+          ],
+          "expected_missing": [],
+          "all_expected_present": true
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "engineering/context-management.md:0",
+            "document_id": "engineering/context-management.md",
+            "distance": 0.364875853061676,
+            "text": "\\# Context Management Retrieved evidence is passed to the generation layer as model context. More retrieved context is not always better. Additional context can improve answer completeness when relevant evidence is distributed across multiple chunks. Irrelevant context can increase generation cost and make it harder for a model to identify the most useful evidence. Context construction should therefore balance evidence coverage, relevance, context length, latency, and cost."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "architecture/system-architecture.md:0",
+            "document_id": "architecture/system-architecture.md",
+            "distance": 0.5237528681755066,
+            "text": "# System Architecture EvalForge is an LLM evaluation and observability platform designed to test retrieval-augmented generation and agentic LLM applications. The platform consists of an API layer, orchestration layer, retrieval layer, generation layer, validation layer, observability layer, and evaluation layer. The API layer exposes application endpoints through FastAPI. The orchestration layer controls execution flow and may route requests through retrieval, tools, generation, and validation. The retrieval layer searches the indexed knowledge base and provides relevant context to the generation layer. The generation layer uses an LLM to produce an answer from the user request and retrieved context. The validation layer verifies that generated responses conform to required schemas and application constraints. The observability layer records traces, latency, token usage, costs,"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "operations/reliability-policy.md:0",
+            "document_id": "operations/reliability-policy.md",
+            "distance": 0.569668173789978,
+            "text": "\\# Reliability Policy EvalForge tracks failures occurring during retrieval, generation, validation, and external service calls. A successful request should not hide component-level failures. Transient failures may be retried when retry behavior is explicitly configured. Retries should be observable so that additional latency and repeated model calls can be measured. Reliability improvements should be evaluated together with latency, cost, and answer quality."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "evaluation/retrieval-metrics.md:0",
+            "document_id": "evaluation/retrieval-metrics.md",
+            "distance": 0.5926063060760498,
+            "text": "\\# Retrieval Metrics EvalForge uses retrieval metrics to measure whether relevant evidence is returned by the retriever. Hit@K measures whether at least one expected document appears within the first K retrieved results. Recall@K measures the proportion of expected documents retrieved within the first K results. Reciprocal rank measures how highly the first relevant document appears in the ranked results. Metrics should be interpreted together because a system can retrieve all required evidence while still ranking the most important evidence poorly. Retrieval metrics should be evaluated across a representative golden dataset rather than a small collection of manually selected queries."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "architecture/system-architecture.md:1",
+            "document_id": "architecture/system-architecture.md",
+            "distance": 0.5576836466789246,
+            "text": "from the user request and retrieved context. The validation layer verifies that generated responses conform to required schemas and application constraints. The observability layer records traces, latency, token usage, costs, errors, and execution metadata. The evaluation layer measures system quality and detects regressions between application versions."
+          }
+        ]
+      },
+      "comparison": {
+        "document_set_changed": false,
+        "dense_only_documents": [],
+        "crossencoder_only_documents": [],
+        "order_changed": true,
+        "expected_rank_changed": {
+          "architecture/system-architecture.md": false,
+          "engineering/context-management.md": false
+        },
+        "missing_expected_changed": false,
+        "metrics_delta": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "recall_at_5": 0.0,
+          "mrr": 0.0
+        }
+      }
+    },
+    {
+      "case_id": "context_004",
+      "question": "When increasing top-k, what context trade-offs should be evaluated beyond evidence coverage?",
+      "category": "cross_document",
+      "expected_documents": [
+        "engineering/context-management.md",
+        "engineering/retrieval-guidelines.md"
+      ],
+      "dense": {
+        "latency_ms": 25.102899999183137,
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "expected": {
+          "expected_ranks": {
+            "engineering/context-management.md": 1,
+            "engineering/retrieval-guidelines.md": 2
+          },
+          "expected_present": [
+            "engineering/context-management.md",
+            "engineering/retrieval-guidelines.md"
+          ],
+          "expected_missing": [],
+          "all_expected_present": true
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "engineering/context-management.md:0",
+            "document_id": "engineering/context-management.md",
+            "distance": 0.477897047996521,
+            "text": "\\# Context Management Retrieved evidence is passed to the generation layer as model context. More retrieved context is not always better. Additional context can improve answer completeness when relevant evidence is distributed across multiple chunks. Irrelevant context can increase generation cost and make it harder for a model to identify the most useful evidence. Context construction should therefore balance evidence coverage, relevance, context length, latency, and cost."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "engineering/retrieval-guidelines.md:0",
+            "document_id": "engineering/retrieval-guidelines.md",
+            "distance": 0.5485007166862488,
+            "text": "# Retrieval Guidelines The baseline retrieval implementation uses semantic similarity search. Documents are divided into chunks before they are embedded. Each chunk should contain enough surrounding context to preserve meaning, while avoiding unnecessarily large chunks. The baseline system retrieves a configurable number of top-k chunks. Increasing top-k can improve recall when relevant information is distributed across multiple chunks, but excessive context can introduce irrelevant information and increase generation cost. Retrieval quality should be evaluated independently from final answer quality. A retrieval failure occurs when the information required to answer a question is absent from the retrieved context even though it exists in the knowledge base. The baseline retrieval system should be measured before introducing hybrid retrieval or reranking."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "evaluation/retrieval-metrics.md:0",
+            "document_id": "evaluation/retrieval-metrics.md",
+            "distance": 0.6309587955474854,
+            "text": "\\# Retrieval Metrics EvalForge uses retrieval metrics to measure whether relevant evidence is returned by the retriever. Hit@K measures whether at least one expected document appears within the first K retrieved results. Recall@K measures the proportion of expected documents retrieved within the first K results. Reciprocal rank measures how highly the first relevant document appears in the ranked results. Metrics should be interpreted together because a system can retrieve all required evidence while still ranking the most important evidence poorly. Retrieval metrics should be evaluated across a representative golden dataset rather than a small collection of manually selected queries."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "evaluation/evaluation-strategy.md:0",
+            "document_id": "evaluation/evaluation-strategy.md",
+            "distance": 0.6753789782524109,
+            "text": "\\# Evaluation Strategy EvalForge evaluates LLM applications using a fixed golden dataset. Evaluation should separate retrieval quality, answer quality, latency, cost, and structured-output validity. A single metric should not determine whether a system change is better. Evaluation runs should record the application configuration used during the run. The same evaluation dataset should be used when comparing two application versions so that changes can be attributed to the system rather than differences in test cases. Evaluation results should preserve per-case evidence so that aggregate regressions can be investigated."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "evaluation/golden-datasets.md:0",
+            "document_id": "evaluation/golden-datasets.md",
+            "distance": 0.6873960494995117,
+            "text": "\\# Golden Datasets A golden dataset contains representative questions with expected evidence and expected answers. Golden cases should cover different categories and difficulty levels. Cases should include direct questions, paraphrases, cross-document questions, and queries that distinguish between closely related concepts. Expected documents define the evidence required to answer a case. Golden datasets should remain stable when comparing application versions. Changes to the golden dataset should be reviewed separately from changes to the retrieval or generation system."
+          }
+        ]
+      },
+      "dense_crossencoder": {
+        "latency_ms": 133.601000001363,
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "expected": {
+          "expected_ranks": {
+            "engineering/context-management.md": 2,
+            "engineering/retrieval-guidelines.md": 1
+          },
+          "expected_present": [
+            "engineering/context-management.md",
+            "engineering/retrieval-guidelines.md"
+          ],
+          "expected_missing": [],
+          "all_expected_present": true
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "engineering/retrieval-guidelines.md:0",
+            "document_id": "engineering/retrieval-guidelines.md",
+            "distance": 0.5485007166862488,
+            "text": "# Retrieval Guidelines The baseline retrieval implementation uses semantic similarity search. Documents are divided into chunks before they are embedded. Each chunk should contain enough surrounding context to preserve meaning, while avoiding unnecessarily large chunks. The baseline system retrieves a configurable number of top-k chunks. Increasing top-k can improve recall when relevant information is distributed across multiple chunks, but excessive context can introduce irrelevant information and increase generation cost. Retrieval quality should be evaluated independently from final answer quality. A retrieval failure occurs when the information required to answer a question is absent from the retrieved context even though it exists in the knowledge base. The baseline retrieval system should be measured before introducing hybrid retrieval or reranking."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "engineering/context-management.md:0",
+            "document_id": "engineering/context-management.md",
+            "distance": 0.477897047996521,
+            "text": "\\# Context Management Retrieved evidence is passed to the generation layer as model context. More retrieved context is not always better. Additional context can improve answer completeness when relevant evidence is distributed across multiple chunks. Irrelevant context can increase generation cost and make it harder for a model to identify the most useful evidence. Context construction should therefore balance evidence coverage, relevance, context length, latency, and cost."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "evaluation/retrieval-metrics.md:0",
+            "document_id": "evaluation/retrieval-metrics.md",
+            "distance": 0.6309587955474854,
+            "text": "\\# Retrieval Metrics EvalForge uses retrieval metrics to measure whether relevant evidence is returned by the retriever. Hit@K measures whether at least one expected document appears within the first K retrieved results. Recall@K measures the proportion of expected documents retrieved within the first K results. Reciprocal rank measures how highly the first relevant document appears in the ranked results. Metrics should be interpreted together because a system can retrieve all required evidence while still ranking the most important evidence poorly. Retrieval metrics should be evaluated across a representative golden dataset rather than a small collection of manually selected queries."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "evaluation/evaluation-strategy.md:0",
+            "document_id": "evaluation/evaluation-strategy.md",
+            "distance": 0.6753789782524109,
+            "text": "\\# Evaluation Strategy EvalForge evaluates LLM applications using a fixed golden dataset. Evaluation should separate retrieval quality, answer quality, latency, cost, and structured-output validity. A single metric should not determine whether a system change is better. Evaluation runs should record the application configuration used during the run. The same evaluation dataset should be used when comparing two application versions so that changes can be attributed to the system rather than differences in test cases. Evaluation results should preserve per-case evidence so that aggregate regressions can be investigated."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "evaluation/golden-datasets.md:0",
+            "document_id": "evaluation/golden-datasets.md",
+            "distance": 0.6873960494995117,
+            "text": "\\# Golden Datasets A golden dataset contains representative questions with expected evidence and expected answers. Golden cases should cover different categories and difficulty levels. Cases should include direct questions, paraphrases, cross-document questions, and queries that distinguish between closely related concepts. Expected documents define the evidence required to answer a case. Golden datasets should remain stable when comparing application versions. Changes to the golden dataset should be reviewed separately from changes to the retrieval or generation system."
+          }
+        ]
+      },
+      "comparison": {
+        "document_set_changed": false,
+        "dense_only_documents": [],
+        "crossencoder_only_documents": [],
+        "order_changed": true,
+        "expected_rank_changed": {
+          "engineering/context-management.md": true,
+          "engineering/retrieval-guidelines.md": true
+        },
+        "missing_expected_changed": false,
+        "metrics_delta": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "recall_at_5": 0.0,
+          "mrr": 0.0
+        }
+      }
+    },
+    {
+      "case_id": "deployment_004",
+      "question": "When can automated evaluation safely gate deployment, and what must a run retain for follow-up?",
+      "category": "cross_document",
+      "expected_documents": [
+        "operations/deployment-policy.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "dense": {
+        "latency_ms": 26.2202999983856,
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "expected": {
+          "expected_ranks": {
+            "operations/deployment-policy.md": 1,
+            "evaluation/evaluation-strategy.md": 3
+          },
+          "expected_present": [
+            "operations/deployment-policy.md",
+            "evaluation/evaluation-strategy.md"
+          ],
+          "expected_missing": [],
+          "all_expected_present": true
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "operations/deployment-policy.md:0",
+            "document_id": "operations/deployment-policy.md",
+            "distance": 0.3309580385684967,
+            "text": "\\# Deployment Policy Application changes should be evaluated before deployment. Changes that modify retrieval, generation, model configuration, validation, or orchestration should be compared against a known baseline. A deployment should not be considered safe solely because the application starts successfully. Evaluation results should be reviewed for quality, latency, cost, reliability, and validation regressions. Automated evaluation can be used as a deployment gate when explicit thresholds have been configured."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "operations/reliability-policy.md:0",
+            "document_id": "operations/reliability-policy.md",
+            "distance": 0.5496906638145447,
+            "text": "\\# Reliability Policy EvalForge tracks failures occurring during retrieval, generation, validation, and external service calls. A successful request should not hide component-level failures. Transient failures may be retried when retry behavior is explicitly configured. Retries should be observable so that additional latency and repeated model calls can be measured. Reliability improvements should be evaluated together with latency, cost, and answer quality."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "evaluation/evaluation-strategy.md:0",
+            "document_id": "evaluation/evaluation-strategy.md",
+            "distance": 0.5894500613212585,
+            "text": "\\# Evaluation Strategy EvalForge evaluates LLM applications using a fixed golden dataset. Evaluation should separate retrieval quality, answer quality, latency, cost, and structured-output validity. A single metric should not determine whether a system change is better. Evaluation runs should record the application configuration used during the run. The same evaluation dataset should be used when comparing two application versions so that changes can be attributed to the system rather than differences in test cases. Evaluation results should preserve per-case evidence so that aggregate regressions can be investigated."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "architecture/system-architecture.md:0",
+            "document_id": "architecture/system-architecture.md",
+            "distance": 0.6249461770057678,
+            "text": "# System Architecture EvalForge is an LLM evaluation and observability platform designed to test retrieval-augmented generation and agentic LLM applications. The platform consists of an API layer, orchestration layer, retrieval layer, generation layer, validation layer, observability layer, and evaluation layer. The API layer exposes application endpoints through FastAPI. The orchestration layer controls execution flow and may route requests through retrieval, tools, generation, and validation. The retrieval layer searches the indexed knowledge base and provides relevant context to the generation layer. The generation layer uses an LLM to produce an answer from the user request and retrieved context. The validation layer verifies that generated responses conform to required schemas and application constraints. The observability layer records traces, latency, token usage, costs,"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "policies/structured-output-policy.md:0",
+            "document_id": "policies/structured-output-policy.md",
+            "distance": 0.659628689289093,
+            "text": "\\# Structured Output Policy Structured LLM responses should conform to a defined application schema. Schema validation should occur before downstream components rely on generated fields. Required fields must be present and values must satisfy their declared constraints. Validation errors should identify the failed field or constraint when possible. A repair or retry operation may be used when configured, but the original invalid response should remain observable."
+          }
+        ]
+      },
+      "dense_crossencoder": {
+        "latency_ms": 151.56579999893438,
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "expected": {
+          "expected_ranks": {
+            "operations/deployment-policy.md": 1,
+            "evaluation/evaluation-strategy.md": 2
+          },
+          "expected_present": [
+            "operations/deployment-policy.md",
+            "evaluation/evaluation-strategy.md"
+          ],
+          "expected_missing": [],
+          "all_expected_present": true
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "operations/deployment-policy.md:0",
+            "document_id": "operations/deployment-policy.md",
+            "distance": 0.3309580385684967,
+            "text": "\\# Deployment Policy Application changes should be evaluated before deployment. Changes that modify retrieval, generation, model configuration, validation, or orchestration should be compared against a known baseline. A deployment should not be considered safe solely because the application starts successfully. Evaluation results should be reviewed for quality, latency, cost, reliability, and validation regressions. Automated evaluation can be used as a deployment gate when explicit thresholds have been configured."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "evaluation/evaluation-strategy.md:0",
+            "document_id": "evaluation/evaluation-strategy.md",
+            "distance": 0.5894500613212585,
+            "text": "\\# Evaluation Strategy EvalForge evaluates LLM applications using a fixed golden dataset. Evaluation should separate retrieval quality, answer quality, latency, cost, and structured-output validity. A single metric should not determine whether a system change is better. Evaluation runs should record the application configuration used during the run. The same evaluation dataset should be used when comparing two application versions so that changes can be attributed to the system rather than differences in test cases. Evaluation results should preserve per-case evidence so that aggregate regressions can be investigated."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "operations/reliability-policy.md:0",
+            "document_id": "operations/reliability-policy.md",
+            "distance": 0.5496906638145447,
+            "text": "\\# Reliability Policy EvalForge tracks failures occurring during retrieval, generation, validation, and external service calls. A successful request should not hide component-level failures. Transient failures may be retried when retry behavior is explicitly configured. Retries should be observable so that additional latency and repeated model calls can be measured. Reliability improvements should be evaluated together with latency, cost, and answer quality."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "architecture/system-architecture.md:0",
+            "document_id": "architecture/system-architecture.md",
+            "distance": 0.6249461770057678,
+            "text": "# System Architecture EvalForge is an LLM evaluation and observability platform designed to test retrieval-augmented generation and agentic LLM applications. The platform consists of an API layer, orchestration layer, retrieval layer, generation layer, validation layer, observability layer, and evaluation layer. The API layer exposes application endpoints through FastAPI. The orchestration layer controls execution flow and may route requests through retrieval, tools, generation, and validation. The retrieval layer searches the indexed knowledge base and provides relevant context to the generation layer. The generation layer uses an LLM to produce an answer from the user request and retrieved context. The validation layer verifies that generated responses conform to required schemas and application constraints. The observability layer records traces, latency, token usage, costs,"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "policies/structured-output-policy.md:0",
+            "document_id": "policies/structured-output-policy.md",
+            "distance": 0.659628689289093,
+            "text": "\\# Structured Output Policy Structured LLM responses should conform to a defined application schema. Schema validation should occur before downstream components rely on generated fields. Required fields must be present and values must satisfy their declared constraints. Validation errors should identify the failed field or constraint when possible. A repair or retry operation may be used when configured, but the original invalid response should remain observable."
+          }
+        ]
+      },
+      "comparison": {
+        "document_set_changed": false,
+        "dense_only_documents": [],
+        "crossencoder_only_documents": [],
+        "order_changed": true,
+        "expected_rank_changed": {
+          "operations/deployment-policy.md": false,
+          "evaluation/evaluation-strategy.md": true
+        },
+        "missing_expected_changed": false,
+        "metrics_delta": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "recall_at_5": 0.0,
+          "mrr": 0.0
+        }
+      }
+    },
+    {
+      "case_id": "embedding_004",
+      "question": "How should an embedding-model change be evaluated so its effect is attributable?",
+      "category": "cross_document",
+      "expected_documents": [
+        "engineering/embedding-guidelines.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "dense": {
+        "latency_ms": 38.67240000181482,
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "expected": {
+          "expected_ranks": {
+            "engineering/embedding-guidelines.md": 1,
+            "evaluation/evaluation-strategy.md": 4
+          },
+          "expected_present": [
+            "engineering/embedding-guidelines.md",
+            "evaluation/evaluation-strategy.md"
+          ],
+          "expected_missing": [],
+          "all_expected_present": true
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "engineering/embedding-guidelines.md:0",
+            "document_id": "engineering/embedding-guidelines.md",
+            "distance": 0.4651874303817749,
+            "text": "\\# Embedding Guidelines Embeddings represent documents and queries as vectors that can be compared using semantic similarity. The same embedding model configuration should be used consistently when comparing document and query representations. Changing the embedding model can change similarity scores and retrieval rankings. Embedding quality should be evaluated using the same golden dataset used to evaluate the retrieval system. Embedding model changes should be treated as experiments rather than assumed improvements."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "architecture/model-routing.md:0",
+            "document_id": "architecture/model-routing.md",
+            "distance": 0.5250656604766846,
+            "text": "# Model Routing EvalForge may support multiple LLM providers and models. Model selection should consider task complexity, latency, reliability, and cost. A simple request does not necessarily require the most capable model. Model routing experiments should record which model handled each request. Changing the model can affect answer quality, latency, token usage, and cost. Therefore model changes must be evaluated against a fixed evaluation dataset rather than judged from a small number of manually selected examples."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "engineering/context-management.md:0",
+            "document_id": "engineering/context-management.md",
+            "distance": 0.652879536151886,
+            "text": "\\# Context Management Retrieved evidence is passed to the generation layer as model context. More retrieved context is not always better. Additional context can improve answer completeness when relevant evidence is distributed across multiple chunks. Irrelevant context can increase generation cost and make it harder for a model to identify the most useful evidence. Context construction should therefore balance evidence coverage, relevance, context length, latency, and cost."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "evaluation/evaluation-strategy.md:0",
+            "document_id": "evaluation/evaluation-strategy.md",
+            "distance": 0.6650769114494324,
+            "text": "\\# Evaluation Strategy EvalForge evaluates LLM applications using a fixed golden dataset. Evaluation should separate retrieval quality, answer quality, latency, cost, and structured-output validity. A single metric should not determine whether a system change is better. Evaluation runs should record the application configuration used during the run. The same evaluation dataset should be used when comparing two application versions so that changes can be attributed to the system rather than differences in test cases. Evaluation results should preserve per-case evidence so that aggregate regressions can be investigated."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "operations/reliability-policy.md:0",
+            "document_id": "operations/reliability-policy.md",
+            "distance": 0.6669961810112,
+            "text": "\\# Reliability Policy EvalForge tracks failures occurring during retrieval, generation, validation, and external service calls. A successful request should not hide component-level failures. Transient failures may be retried when retry behavior is explicitly configured. Retries should be observable so that additional latency and repeated model calls can be measured. Reliability improvements should be evaluated together with latency, cost, and answer quality."
+          }
+        ]
+      },
+      "dense_crossencoder": {
+        "latency_ms": 124.28729999737698,
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "expected": {
+          "expected_ranks": {
+            "engineering/embedding-guidelines.md": 1,
+            "evaluation/evaluation-strategy.md": 3
+          },
+          "expected_present": [
+            "engineering/embedding-guidelines.md",
+            "evaluation/evaluation-strategy.md"
+          ],
+          "expected_missing": [],
+          "all_expected_present": true
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "engineering/embedding-guidelines.md:0",
+            "document_id": "engineering/embedding-guidelines.md",
+            "distance": 0.4651874303817749,
+            "text": "\\# Embedding Guidelines Embeddings represent documents and queries as vectors that can be compared using semantic similarity. The same embedding model configuration should be used consistently when comparing document and query representations. Changing the embedding model can change similarity scores and retrieval rankings. Embedding quality should be evaluated using the same golden dataset used to evaluate the retrieval system. Embedding model changes should be treated as experiments rather than assumed improvements."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "architecture/model-routing.md:0",
+            "document_id": "architecture/model-routing.md",
+            "distance": 0.5250656604766846,
+            "text": "# Model Routing EvalForge may support multiple LLM providers and models. Model selection should consider task complexity, latency, reliability, and cost. A simple request does not necessarily require the most capable model. Model routing experiments should record which model handled each request. Changing the model can affect answer quality, latency, token usage, and cost. Therefore model changes must be evaluated against a fixed evaluation dataset rather than judged from a small number of manually selected examples."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "evaluation/evaluation-strategy.md:0",
+            "document_id": "evaluation/evaluation-strategy.md",
+            "distance": 0.6650769114494324,
+            "text": "\\# Evaluation Strategy EvalForge evaluates LLM applications using a fixed golden dataset. Evaluation should separate retrieval quality, answer quality, latency, cost, and structured-output validity. A single metric should not determine whether a system change is better. Evaluation runs should record the application configuration used during the run. The same evaluation dataset should be used when comparing two application versions so that changes can be attributed to the system rather than differences in test cases. Evaluation results should preserve per-case evidence so that aggregate regressions can be investigated."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "operations/reliability-policy.md:0",
+            "document_id": "operations/reliability-policy.md",
+            "distance": 0.6669961810112,
+            "text": "\\# Reliability Policy EvalForge tracks failures occurring during retrieval, generation, validation, and external service calls. A successful request should not hide component-level failures. Transient failures may be retried when retry behavior is explicitly configured. Retries should be observable so that additional latency and repeated model calls can be measured. Reliability improvements should be evaluated together with latency, cost, and answer quality."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "engineering/context-management.md:0",
+            "document_id": "engineering/context-management.md",
+            "distance": 0.652879536151886,
+            "text": "\\# Context Management Retrieved evidence is passed to the generation layer as model context. More retrieved context is not always better. Additional context can improve answer completeness when relevant evidence is distributed across multiple chunks. Irrelevant context can increase generation cost and make it harder for a model to identify the most useful evidence. Context construction should therefore balance evidence coverage, relevance, context length, latency, and cost."
+          }
+        ]
+      },
+      "comparison": {
+        "document_set_changed": false,
+        "dense_only_documents": [],
+        "crossencoder_only_documents": [],
+        "order_changed": true,
+        "expected_rank_changed": {
+          "engineering/embedding-guidelines.md": false,
+          "evaluation/evaluation-strategy.md": true
+        },
+        "missing_expected_changed": false,
+        "metrics_delta": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "recall_at_5": 0.0,
+          "mrr": 0.0
+        }
+      }
+    },
+    {
+      "case_id": "reliability_004",
+      "question": "Why must a retry-based reliability improvement be evaluated with more than success rate?",
+      "category": "cross_document",
+      "expected_documents": [
+        "operations/reliability-policy.md",
+        "policies/retry-policy.md"
+      ],
+      "dense": {
+        "latency_ms": 24.062200001935707,
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "expected": {
+          "expected_ranks": {
+            "operations/reliability-policy.md": 1,
+            "policies/retry-policy.md": 2
+          },
+          "expected_present": [
+            "operations/reliability-policy.md",
+            "policies/retry-policy.md"
+          ],
+          "expected_missing": [],
+          "all_expected_present": true
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "operations/reliability-policy.md:0",
+            "document_id": "operations/reliability-policy.md",
+            "distance": 0.4260570704936981,
+            "text": "\\# Reliability Policy EvalForge tracks failures occurring during retrieval, generation, validation, and external service calls. A successful request should not hide component-level failures. Transient failures may be retried when retry behavior is explicitly configured. Retries should be observable so that additional latency and repeated model calls can be measured. Reliability improvements should be evaluated together with latency, cost, and answer quality."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "policies/retry-policy.md:0",
+            "document_id": "policies/retry-policy.md",
+            "distance": 0.48360252380371094,
+            "text": "\\# Retry Policy Retries are intended to recover from transient failures. A retry should not silently replace the original failed execution in observability data. Each retry attempt should be recorded with its reason and outcome. Retries can increase latency and cost, so retry behavior must be included in system evaluation. Repeated retries should be bounded to prevent uncontrolled execution."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "operations/deployment-policy.md:0",
+            "document_id": "operations/deployment-policy.md",
+            "distance": 0.6456220149993896,
+            "text": "\\# Deployment Policy Application changes should be evaluated before deployment. Changes that modify retrieval, generation, model configuration, validation, or orchestration should be compared against a known baseline. A deployment should not be considered safe solely because the application starts successfully. Evaluation results should be reviewed for quality, latency, cost, reliability, and validation regressions. Automated evaluation can be used as a deployment gate when explicit thresholds have been configured."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "evaluation/evaluation-strategy.md:0",
+            "document_id": "evaluation/evaluation-strategy.md",
+            "distance": 0.6722725629806519,
+            "text": "\\# Evaluation Strategy EvalForge evaluates LLM applications using a fixed golden dataset. Evaluation should separate retrieval quality, answer quality, latency, cost, and structured-output validity. A single metric should not determine whether a system change is better. Evaluation runs should record the application configuration used during the run. The same evaluation dataset should be used when comparing two application versions so that changes can be attributed to the system rather than differences in test cases. Evaluation results should preserve per-case evidence so that aggregate regressions can be investigated."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "architecture/model-routing.md:0",
+            "document_id": "architecture/model-routing.md",
+            "distance": 0.6803966760635376,
+            "text": "# Model Routing EvalForge may support multiple LLM providers and models. Model selection should consider task complexity, latency, reliability, and cost. A simple request does not necessarily require the most capable model. Model routing experiments should record which model handled each request. Changing the model can affect answer quality, latency, token usage, and cost. Therefore model changes must be evaluated against a fixed evaluation dataset rather than judged from a small number of manually selected examples."
+          }
+        ]
+      },
+      "dense_crossencoder": {
+        "latency_ms": 112.27430000144523,
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "expected": {
+          "expected_ranks": {
+            "operations/reliability-policy.md": 1,
+            "policies/retry-policy.md": 2
+          },
+          "expected_present": [
+            "operations/reliability-policy.md",
+            "policies/retry-policy.md"
+          ],
+          "expected_missing": [],
+          "all_expected_present": true
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "operations/reliability-policy.md:0",
+            "document_id": "operations/reliability-policy.md",
+            "distance": 0.4260570704936981,
+            "text": "\\# Reliability Policy EvalForge tracks failures occurring during retrieval, generation, validation, and external service calls. A successful request should not hide component-level failures. Transient failures may be retried when retry behavior is explicitly configured. Retries should be observable so that additional latency and repeated model calls can be measured. Reliability improvements should be evaluated together with latency, cost, and answer quality."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "policies/retry-policy.md:0",
+            "document_id": "policies/retry-policy.md",
+            "distance": 0.48360252380371094,
+            "text": "\\# Retry Policy Retries are intended to recover from transient failures. A retry should not silently replace the original failed execution in observability data. Each retry attempt should be recorded with its reason and outcome. Retries can increase latency and cost, so retry behavior must be included in system evaluation. Repeated retries should be bounded to prevent uncontrolled execution."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "operations/deployment-policy.md:0",
+            "document_id": "operations/deployment-policy.md",
+            "distance": 0.6456220149993896,
+            "text": "\\# Deployment Policy Application changes should be evaluated before deployment. Changes that modify retrieval, generation, model configuration, validation, or orchestration should be compared against a known baseline. A deployment should not be considered safe solely because the application starts successfully. Evaluation results should be reviewed for quality, latency, cost, reliability, and validation regressions. Automated evaluation can be used as a deployment gate when explicit thresholds have been configured."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "architecture/model-routing.md:0",
+            "document_id": "architecture/model-routing.md",
+            "distance": 0.6803966760635376,
+            "text": "# Model Routing EvalForge may support multiple LLM providers and models. Model selection should consider task complexity, latency, reliability, and cost. A simple request does not necessarily require the most capable model. Model routing experiments should record which model handled each request. Changing the model can affect answer quality, latency, token usage, and cost. Therefore model changes must be evaluated against a fixed evaluation dataset rather than judged from a small number of manually selected examples."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "evaluation/evaluation-strategy.md:0",
+            "document_id": "evaluation/evaluation-strategy.md",
+            "distance": 0.6722725629806519,
+            "text": "\\# Evaluation Strategy EvalForge evaluates LLM applications using a fixed golden dataset. Evaluation should separate retrieval quality, answer quality, latency, cost, and structured-output validity. A single metric should not determine whether a system change is better. Evaluation runs should record the application configuration used during the run. The same evaluation dataset should be used when comparing two application versions so that changes can be attributed to the system rather than differences in test cases. Evaluation results should preserve per-case evidence so that aggregate regressions can be investigated."
+          }
+        ]
+      },
+      "comparison": {
+        "document_set_changed": false,
+        "dense_only_documents": [],
+        "crossencoder_only_documents": [],
+        "order_changed": true,
+        "expected_rank_changed": {
+          "operations/reliability-policy.md": false,
+          "policies/retry-policy.md": false
+        },
+        "missing_expected_changed": false,
+        "metrics_delta": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "recall_at_5": 0.0,
+          "mrr": 0.0
+        }
+      }
+    },
+    {
+      "case_id": "retrieval_004",
+      "question": "Why are documents split before semantic retrieval, and what must each resulting unit retain?",
+      "category": "cross_document",
+      "expected_documents": [
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md"
+      ],
+      "dense": {
+        "latency_ms": 23.80030000131228,
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "expected": {
+          "expected_ranks": {
+            "engineering/retrieval-guidelines.md": 2,
+            "engineering/chunking-guidelines.md": 1
+          },
+          "expected_present": [
+            "engineering/retrieval-guidelines.md",
+            "engineering/chunking-guidelines.md"
+          ],
+          "expected_missing": [],
+          "all_expected_present": true
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "engineering/chunking-guidelines.md:0",
+            "document_id": "engineering/chunking-guidelines.md",
+            "distance": 0.3944222331047058,
+            "text": "\\# Chunking Guidelines Document chunking determines the units that are indexed and retrieved by the vector store. Chunks should preserve enough surrounding context for their content to remain meaningful when retrieved independently. Very large chunks can contain unrelated information and reduce retrieval precision. Very small chunks can remove important context and make evidence difficult to interpret. Chunk size and overlap should therefore be treated as retrieval parameters that can be evaluated experimentally. Changes to chunking can alter retrieval rankings even when the embedding model remains unchanged."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "engineering/retrieval-guidelines.md:0",
+            "document_id": "engineering/retrieval-guidelines.md",
+            "distance": 0.4213016927242279,
+            "text": "# Retrieval Guidelines The baseline retrieval implementation uses semantic similarity search. Documents are divided into chunks before they are embedded. Each chunk should contain enough surrounding context to preserve meaning, while avoiding unnecessarily large chunks. The baseline system retrieves a configurable number of top-k chunks. Increasing top-k can improve recall when relevant information is distributed across multiple chunks, but excessive context can introduce irrelevant information and increase generation cost. Retrieval quality should be evaluated independently from final answer quality. A retrieval failure occurs when the information required to answer a question is absent from the retrieved context even though it exists in the knowledge base. The baseline retrieval system should be measured before introducing hybrid retrieval or reranking."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "evaluation/retrieval-metrics.md:0",
+            "document_id": "evaluation/retrieval-metrics.md",
+            "distance": 0.5319660305976868,
+            "text": "\\# Retrieval Metrics EvalForge uses retrieval metrics to measure whether relevant evidence is returned by the retriever. Hit@K measures whether at least one expected document appears within the first K retrieved results. Recall@K measures the proportion of expected documents retrieved within the first K results. Reciprocal rank measures how highly the first relevant document appears in the ranked results. Metrics should be interpreted together because a system can retrieve all required evidence while still ranking the most important evidence poorly. Retrieval metrics should be evaluated across a representative golden dataset rather than a small collection of manually selected queries."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "engineering/embedding-guidelines.md:0",
+            "document_id": "engineering/embedding-guidelines.md",
+            "distance": 0.5367538928985596,
+            "text": "\\# Embedding Guidelines Embeddings represent documents and queries as vectors that can be compared using semantic similarity. The same embedding model configuration should be used consistently when comparing document and query representations. Changing the embedding model can change similarity scores and retrieval rankings. Embedding quality should be evaluated using the same golden dataset used to evaluate the retrieval system. Embedding model changes should be treated as experiments rather than assumed improvements."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "engineering/context-management.md:0",
+            "document_id": "engineering/context-management.md",
+            "distance": 0.630075991153717,
+            "text": "\\# Context Management Retrieved evidence is passed to the generation layer as model context. More retrieved context is not always better. Additional context can improve answer completeness when relevant evidence is distributed across multiple chunks. Irrelevant context can increase generation cost and make it harder for a model to identify the most useful evidence. Context construction should therefore balance evidence coverage, relevance, context length, latency, and cost."
+          }
+        ]
+      },
+      "dense_crossencoder": {
+        "latency_ms": 129.32920000093873,
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "expected": {
+          "expected_ranks": {
+            "engineering/retrieval-guidelines.md": 1,
+            "engineering/chunking-guidelines.md": 2
+          },
+          "expected_present": [
+            "engineering/retrieval-guidelines.md",
+            "engineering/chunking-guidelines.md"
+          ],
+          "expected_missing": [],
+          "all_expected_present": true
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "engineering/retrieval-guidelines.md:0",
+            "document_id": "engineering/retrieval-guidelines.md",
+            "distance": 0.4213016927242279,
+            "text": "# Retrieval Guidelines The baseline retrieval implementation uses semantic similarity search. Documents are divided into chunks before they are embedded. Each chunk should contain enough surrounding context to preserve meaning, while avoiding unnecessarily large chunks. The baseline system retrieves a configurable number of top-k chunks. Increasing top-k can improve recall when relevant information is distributed across multiple chunks, but excessive context can introduce irrelevant information and increase generation cost. Retrieval quality should be evaluated independently from final answer quality. A retrieval failure occurs when the information required to answer a question is absent from the retrieved context even though it exists in the knowledge base. The baseline retrieval system should be measured before introducing hybrid retrieval or reranking."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "engineering/chunking-guidelines.md:0",
+            "document_id": "engineering/chunking-guidelines.md",
+            "distance": 0.3944222331047058,
+            "text": "\\# Chunking Guidelines Document chunking determines the units that are indexed and retrieved by the vector store. Chunks should preserve enough surrounding context for their content to remain meaningful when retrieved independently. Very large chunks can contain unrelated information and reduce retrieval precision. Very small chunks can remove important context and make evidence difficult to interpret. Chunk size and overlap should therefore be treated as retrieval parameters that can be evaluated experimentally. Changes to chunking can alter retrieval rankings even when the embedding model remains unchanged."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "engineering/embedding-guidelines.md:0",
+            "document_id": "engineering/embedding-guidelines.md",
+            "distance": 0.5367538928985596,
+            "text": "\\# Embedding Guidelines Embeddings represent documents and queries as vectors that can be compared using semantic similarity. The same embedding model configuration should be used consistently when comparing document and query representations. Changing the embedding model can change similarity scores and retrieval rankings. Embedding quality should be evaluated using the same golden dataset used to evaluate the retrieval system. Embedding model changes should be treated as experiments rather than assumed improvements."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "evaluation/retrieval-metrics.md:0",
+            "document_id": "evaluation/retrieval-metrics.md",
+            "distance": 0.5319660305976868,
+            "text": "\\# Retrieval Metrics EvalForge uses retrieval metrics to measure whether relevant evidence is returned by the retriever. Hit@K measures whether at least one expected document appears within the first K retrieved results. Recall@K measures the proportion of expected documents retrieved within the first K results. Reciprocal rank measures how highly the first relevant document appears in the ranked results. Metrics should be interpreted together because a system can retrieve all required evidence while still ranking the most important evidence poorly. Retrieval metrics should be evaluated across a representative golden dataset rather than a small collection of manually selected queries."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "engineering/context-management.md:0",
+            "document_id": "engineering/context-management.md",
+            "distance": 0.630075991153717,
+            "text": "\\# Context Management Retrieved evidence is passed to the generation layer as model context. More retrieved context is not always better. Additional context can improve answer completeness when relevant evidence is distributed across multiple chunks. Irrelevant context can increase generation cost and make it harder for a model to identify the most useful evidence. Context construction should therefore balance evidence coverage, relevance, context length, latency, and cost."
+          }
+        ]
+      },
+      "comparison": {
+        "document_set_changed": false,
+        "dense_only_documents": [],
+        "crossencoder_only_documents": [],
+        "order_changed": true,
+        "expected_rank_changed": {
+          "engineering/retrieval-guidelines.md": true,
+          "engineering/chunking-guidelines.md": true
+        },
+        "missing_expected_changed": false,
+        "metrics_delta": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "recall_at_5": 0.0,
+          "mrr": 0.0
+        }
+      }
+    },
+    {
+      "case_id": "cost_001",
+      "question": "Which token measurements does EvalForge track for LLM requests?",
+      "category": "cost",
+      "expected_documents": [
+        "operations/cost-policy.md"
+      ],
+      "dense": {
+        "latency_ms": 23.377900000923546,
+        "metrics": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 0.5
+        },
+        "expected": {
+          "expected_ranks": {
+            "operations/cost-policy.md": 2
+          },
+          "expected_present": [
+            "operations/cost-policy.md"
+          ],
+          "expected_missing": [],
+          "all_expected_present": true
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "architecture/system-architecture.md:0",
+            "document_id": "architecture/system-architecture.md",
+            "distance": 0.42069995403289795,
+            "text": "# System Architecture EvalForge is an LLM evaluation and observability platform designed to test retrieval-augmented generation and agentic LLM applications. The platform consists of an API layer, orchestration layer, retrieval layer, generation layer, validation layer, observability layer, and evaluation layer. The API layer exposes application endpoints through FastAPI. The orchestration layer controls execution flow and may route requests through retrieval, tools, generation, and validation. The retrieval layer searches the indexed knowledge base and provides relevant context to the generation layer. The generation layer uses an LLM to produce an answer from the user request and retrieved context. The validation layer verifies that generated responses conform to required schemas and application constraints. The observability layer records traces, latency, token usage, costs,"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "operations/cost-policy.md:0",
+            "document_id": "operations/cost-policy.md",
+            "distance": 0.4402596056461334,
+            "text": "# Cost Policy EvalForge records token usage and estimates the cost of each LLM request. Input and output tokens are tracked separately. Cost should be calculated using the configured model's applicable input and output token prices. The baseline system should report average cost per request. A lower cost is not automatically an improvement if answer quality decreases. Cost optimization experiments must therefore be evaluated together with quality metrics and latency."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "evaluation/evaluation-strategy.md:0",
+            "document_id": "evaluation/evaluation-strategy.md",
+            "distance": 0.5170864462852478,
+            "text": "\\# Evaluation Strategy EvalForge evaluates LLM applications using a fixed golden dataset. Evaluation should separate retrieval quality, answer quality, latency, cost, and structured-output validity. A single metric should not determine whether a system change is better. Evaluation runs should record the application configuration used during the run. The same evaluation dataset should be used when comparing two application versions so that changes can be attributed to the system rather than differences in test cases. Evaluation results should preserve per-case evidence so that aggregate regressions can be investigated."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "architecture/model-routing.md:0",
+            "document_id": "architecture/model-routing.md",
+            "distance": 0.5474122166633606,
+            "text": "# Model Routing EvalForge may support multiple LLM providers and models. Model selection should consider task complexity, latency, reliability, and cost. A simple request does not necessarily require the most capable model. Model routing experiments should record which model handled each request. Changing the model can affect answer quality, latency, token usage, and cost. Therefore model changes must be evaluated against a fixed evaluation dataset rather than judged from a small number of manually selected examples."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "operations/reliability-policy.md:0",
+            "document_id": "operations/reliability-policy.md",
+            "distance": 0.617657482624054,
+            "text": "\\# Reliability Policy EvalForge tracks failures occurring during retrieval, generation, validation, and external service calls. A successful request should not hide component-level failures. Transient failures may be retried when retry behavior is explicitly configured. Retries should be observable so that additional latency and repeated model calls can be measured. Reliability improvements should be evaluated together with latency, cost, and answer quality."
+          }
+        ]
+      },
+      "dense_crossencoder": {
+        "latency_ms": 222.14030000031926,
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "expected": {
+          "expected_ranks": {
+            "operations/cost-policy.md": 1
+          },
+          "expected_present": [
+            "operations/cost-policy.md"
+          ],
+          "expected_missing": [],
+          "all_expected_present": true
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "operations/cost-policy.md:0",
+            "document_id": "operations/cost-policy.md",
+            "distance": 0.4402596056461334,
+            "text": "# Cost Policy EvalForge records token usage and estimates the cost of each LLM request. Input and output tokens are tracked separately. Cost should be calculated using the configured model's applicable input and output token prices. The baseline system should report average cost per request. A lower cost is not automatically an improvement if answer quality decreases. Cost optimization experiments must therefore be evaluated together with quality metrics and latency."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "architecture/model-routing.md:0",
+            "document_id": "architecture/model-routing.md",
+            "distance": 0.5474122166633606,
+            "text": "# Model Routing EvalForge may support multiple LLM providers and models. Model selection should consider task complexity, latency, reliability, and cost. A simple request does not necessarily require the most capable model. Model routing experiments should record which model handled each request. Changing the model can affect answer quality, latency, token usage, and cost. Therefore model changes must be evaluated against a fixed evaluation dataset rather than judged from a small number of manually selected examples."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "architecture/system-architecture.md:0",
+            "document_id": "architecture/system-architecture.md",
+            "distance": 0.42069995403289795,
+            "text": "# System Architecture EvalForge is an LLM evaluation and observability platform designed to test retrieval-augmented generation and agentic LLM applications. The platform consists of an API layer, orchestration layer, retrieval layer, generation layer, validation layer, observability layer, and evaluation layer. The API layer exposes application endpoints through FastAPI. The orchestration layer controls execution flow and may route requests through retrieval, tools, generation, and validation. The retrieval layer searches the indexed knowledge base and provides relevant context to the generation layer. The generation layer uses an LLM to produce an answer from the user request and retrieved context. The validation layer verifies that generated responses conform to required schemas and application constraints. The observability layer records traces, latency, token usage, costs,"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "operations/reliability-policy.md:0",
+            "document_id": "operations/reliability-policy.md",
+            "distance": 0.617657482624054,
+            "text": "\\# Reliability Policy EvalForge tracks failures occurring during retrieval, generation, validation, and external service calls. A successful request should not hide component-level failures. Transient failures may be retried when retry behavior is explicitly configured. Retries should be observable so that additional latency and repeated model calls can be measured. Reliability improvements should be evaluated together with latency, cost, and answer quality."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "evaluation/evaluation-strategy.md:0",
+            "document_id": "evaluation/evaluation-strategy.md",
+            "distance": 0.5170864462852478,
+            "text": "\\# Evaluation Strategy EvalForge evaluates LLM applications using a fixed golden dataset. Evaluation should separate retrieval quality, answer quality, latency, cost, and structured-output validity. A single metric should not determine whether a system change is better. Evaluation runs should record the application configuration used during the run. The same evaluation dataset should be used when comparing two application versions so that changes can be attributed to the system rather than differences in test cases. Evaluation results should preserve per-case evidence so that aggregate regressions can be investigated."
+          }
+        ]
+      },
+      "comparison": {
+        "document_set_changed": false,
+        "dense_only_documents": [],
+        "crossencoder_only_documents": [],
+        "order_changed": true,
+        "expected_rank_changed": {
+          "operations/cost-policy.md": true
+        },
+        "missing_expected_changed": false,
+        "metrics_delta": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "recall_at_5": 0.0,
+          "mrr": 0.5
+        }
+      }
+    },
+    {
+      "case_id": "cost_002",
+      "question": "Why can't a cheaper model automatically be considered an improvement?",
+      "category": "cost",
+      "expected_documents": [
+        "operations/cost-policy.md"
+      ],
+      "dense": {
+        "latency_ms": 22.311699998681433,
+        "metrics": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 0.5
+        },
+        "expected": {
+          "expected_ranks": {
+            "operations/cost-policy.md": 2
+          },
+          "expected_present": [
+            "operations/cost-policy.md"
+          ],
+          "expected_missing": [],
+          "all_expected_present": true
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "architecture/model-routing.md:0",
+            "document_id": "architecture/model-routing.md",
+            "distance": 0.6143852472305298,
+            "text": "# Model Routing EvalForge may support multiple LLM providers and models. Model selection should consider task complexity, latency, reliability, and cost. A simple request does not necessarily require the most capable model. Model routing experiments should record which model handled each request. Changing the model can affect answer quality, latency, token usage, and cost. Therefore model changes must be evaluated against a fixed evaluation dataset rather than judged from a small number of manually selected examples."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "operations/cost-policy.md:0",
+            "document_id": "operations/cost-policy.md",
+            "distance": 0.6156424283981323,
+            "text": "# Cost Policy EvalForge records token usage and estimates the cost of each LLM request. Input and output tokens are tracked separately. Cost should be calculated using the configured model's applicable input and output token prices. The baseline system should report average cost per request. A lower cost is not automatically an improvement if answer quality decreases. Cost optimization experiments must therefore be evaluated together with quality metrics and latency."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "operations/reliability-policy.md:0",
+            "document_id": "operations/reliability-policy.md",
+            "distance": 0.7277863025665283,
+            "text": "\\# Reliability Policy EvalForge tracks failures occurring during retrieval, generation, validation, and external service calls. A successful request should not hide component-level failures. Transient failures may be retried when retry behavior is explicitly configured. Retries should be observable so that additional latency and repeated model calls can be measured. Reliability improvements should be evaluated together with latency, cost, and answer quality."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "engineering/context-management.md:0",
+            "document_id": "engineering/context-management.md",
+            "distance": 0.7336589097976685,
+            "text": "\\# Context Management Retrieved evidence is passed to the generation layer as model context. More retrieved context is not always better. Additional context can improve answer completeness when relevant evidence is distributed across multiple chunks. Irrelevant context can increase generation cost and make it harder for a model to identify the most useful evidence. Context construction should therefore balance evidence coverage, relevance, context length, latency, and cost."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "evaluation/evaluation-strategy.md:0",
+            "document_id": "evaluation/evaluation-strategy.md",
+            "distance": 0.739472508430481,
+            "text": "\\# Evaluation Strategy EvalForge evaluates LLM applications using a fixed golden dataset. Evaluation should separate retrieval quality, answer quality, latency, cost, and structured-output validity. A single metric should not determine whether a system change is better. Evaluation runs should record the application configuration used during the run. The same evaluation dataset should be used when comparing two application versions so that changes can be attributed to the system rather than differences in test cases. Evaluation results should preserve per-case evidence so that aggregate regressions can be investigated."
+          }
+        ]
+      },
+      "dense_crossencoder": {
+        "latency_ms": 114.18549999871175,
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "expected": {
+          "expected_ranks": {
+            "operations/cost-policy.md": 1
+          },
+          "expected_present": [
+            "operations/cost-policy.md"
+          ],
+          "expected_missing": [],
+          "all_expected_present": true
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "operations/cost-policy.md:0",
+            "document_id": "operations/cost-policy.md",
+            "distance": 0.6156424283981323,
+            "text": "# Cost Policy EvalForge records token usage and estimates the cost of each LLM request. Input and output tokens are tracked separately. Cost should be calculated using the configured model's applicable input and output token prices. The baseline system should report average cost per request. A lower cost is not automatically an improvement if answer quality decreases. Cost optimization experiments must therefore be evaluated together with quality metrics and latency."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "engineering/context-management.md:0",
+            "document_id": "engineering/context-management.md",
+            "distance": 0.7336589097976685,
+            "text": "\\# Context Management Retrieved evidence is passed to the generation layer as model context. More retrieved context is not always better. Additional context can improve answer completeness when relevant evidence is distributed across multiple chunks. Irrelevant context can increase generation cost and make it harder for a model to identify the most useful evidence. Context construction should therefore balance evidence coverage, relevance, context length, latency, and cost."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "operations/reliability-policy.md:0",
+            "document_id": "operations/reliability-policy.md",
+            "distance": 0.7277863025665283,
+            "text": "\\# Reliability Policy EvalForge tracks failures occurring during retrieval, generation, validation, and external service calls. A successful request should not hide component-level failures. Transient failures may be retried when retry behavior is explicitly configured. Retries should be observable so that additional latency and repeated model calls can be measured. Reliability improvements should be evaluated together with latency, cost, and answer quality."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "architecture/model-routing.md:0",
+            "document_id": "architecture/model-routing.md",
+            "distance": 0.6143852472305298,
+            "text": "# Model Routing EvalForge may support multiple LLM providers and models. Model selection should consider task complexity, latency, reliability, and cost. A simple request does not necessarily require the most capable model. Model routing experiments should record which model handled each request. Changing the model can affect answer quality, latency, token usage, and cost. Therefore model changes must be evaluated against a fixed evaluation dataset rather than judged from a small number of manually selected examples."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "evaluation/evaluation-strategy.md:0",
+            "document_id": "evaluation/evaluation-strategy.md",
+            "distance": 0.739472508430481,
+            "text": "\\# Evaluation Strategy EvalForge evaluates LLM applications using a fixed golden dataset. Evaluation should separate retrieval quality, answer quality, latency, cost, and structured-output validity. A single metric should not determine whether a system change is better. Evaluation runs should record the application configuration used during the run. The same evaluation dataset should be used when comparing two application versions so that changes can be attributed to the system rather than differences in test cases. Evaluation results should preserve per-case evidence so that aggregate regressions can be investigated."
+          }
+        ]
+      },
+      "comparison": {
+        "document_set_changed": false,
+        "dense_only_documents": [],
+        "crossencoder_only_documents": [],
+        "order_changed": true,
+        "expected_rank_changed": {
+          "operations/cost-policy.md": true
+        },
+        "missing_expected_changed": false,
+        "metrics_delta": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "recall_at_5": 0.0,
+          "mrr": 0.5
+        }
+      }
+    },
+    {
+      "case_id": "latency_001",
+      "question": "What is the performance target for a normal EvalForge query?",
+      "category": "latency",
+      "expected_documents": [
+        "operations/latency-policy.md"
+      ],
+      "dense": {
+        "latency_ms": 25.664900000265334,
+        "metrics": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 0.5
+        },
+        "expected": {
+          "expected_ranks": {
+            "operations/latency-policy.md": 2
+          },
+          "expected_present": [
+            "operations/latency-policy.md"
+          ],
+          "expected_missing": [],
+          "all_expected_present": true
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "evaluation/evaluation-strategy.md:0",
+            "document_id": "evaluation/evaluation-strategy.md",
+            "distance": 0.47745126485824585,
+            "text": "\\# Evaluation Strategy EvalForge evaluates LLM applications using a fixed golden dataset. Evaluation should separate retrieval quality, answer quality, latency, cost, and structured-output validity. A single metric should not determine whether a system change is better. Evaluation runs should record the application configuration used during the run. The same evaluation dataset should be used when comparing two application versions so that changes can be attributed to the system rather than differences in test cases. Evaluation results should preserve per-case evidence so that aggregate regressions can be investigated."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "operations/latency-policy.md:0",
+            "document_id": "operations/latency-policy.md",
+            "distance": 0.48736771941185,
+            "text": "# Latency Policy EvalForge tracks latency for every query. Latency is measured from the beginning of request processing until the final response is produced. The system records total latency as well as component-level latency when instrumentation is available. The target baseline for a normal query is a p95 latency below 2500 milliseconds. A p95 latency above 2500 milliseconds is considered a performance regression for the baseline application. Latency measurements must be evaluated together with answer quality. Reducing latency at the expense of retrieval quality or groundedness should not automatically be considered an improvement."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "architecture/system-architecture.md:0",
+            "document_id": "architecture/system-architecture.md",
+            "distance": 0.5067405700683594,
+            "text": "# System Architecture EvalForge is an LLM evaluation and observability platform designed to test retrieval-augmented generation and agentic LLM applications. The platform consists of an API layer, orchestration layer, retrieval layer, generation layer, validation layer, observability layer, and evaluation layer. The API layer exposes application endpoints through FastAPI. The orchestration layer controls execution flow and may route requests through retrieval, tools, generation, and validation. The retrieval layer searches the indexed knowledge base and provides relevant context to the generation layer. The generation layer uses an LLM to produce an answer from the user request and retrieved context. The validation layer verifies that generated responses conform to required schemas and application constraints. The observability layer records traces, latency, token usage, costs,"
+          },
+          {
+            "rank": 4,
+            "chunk_id": "evaluation/retrieval-metrics.md:0",
+            "document_id": "evaluation/retrieval-metrics.md",
+            "distance": 0.5760793685913086,
+            "text": "\\# Retrieval Metrics EvalForge uses retrieval metrics to measure whether relevant evidence is returned by the retriever. Hit@K measures whether at least one expected document appears within the first K retrieved results. Recall@K measures the proportion of expected documents retrieved within the first K results. Reciprocal rank measures how highly the first relevant document appears in the ranked results. Metrics should be interpreted together because a system can retrieve all required evidence while still ranking the most important evidence poorly. Retrieval metrics should be evaluated across a representative golden dataset rather than a small collection of manually selected queries."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "architecture/model-routing.md:0",
+            "document_id": "architecture/model-routing.md",
+            "distance": 0.6098483800888062,
+            "text": "# Model Routing EvalForge may support multiple LLM providers and models. Model selection should consider task complexity, latency, reliability, and cost. A simple request does not necessarily require the most capable model. Model routing experiments should record which model handled each request. Changing the model can affect answer quality, latency, token usage, and cost. Therefore model changes must be evaluated against a fixed evaluation dataset rather than judged from a small number of manually selected examples."
+          }
+        ]
+      },
+      "dense_crossencoder": {
+        "latency_ms": 158.80879999895114,
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "expected": {
+          "expected_ranks": {
+            "operations/latency-policy.md": 1
+          },
+          "expected_present": [
+            "operations/latency-policy.md"
+          ],
+          "expected_missing": [],
+          "all_expected_present": true
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "operations/latency-policy.md:0",
+            "document_id": "operations/latency-policy.md",
+            "distance": 0.48736771941185,
+            "text": "# Latency Policy EvalForge tracks latency for every query. Latency is measured from the beginning of request processing until the final response is produced. The system records total latency as well as component-level latency when instrumentation is available. The target baseline for a normal query is a p95 latency below 2500 milliseconds. A p95 latency above 2500 milliseconds is considered a performance regression for the baseline application. Latency measurements must be evaluated together with answer quality. Reducing latency at the expense of retrieval quality or groundedness should not automatically be considered an improvement."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "architecture/system-architecture.md:0",
+            "document_id": "architecture/system-architecture.md",
+            "distance": 0.5067405700683594,
+            "text": "# System Architecture EvalForge is an LLM evaluation and observability platform designed to test retrieval-augmented generation and agentic LLM applications. The platform consists of an API layer, orchestration layer, retrieval layer, generation layer, validation layer, observability layer, and evaluation layer. The API layer exposes application endpoints through FastAPI. The orchestration layer controls execution flow and may route requests through retrieval, tools, generation, and validation. The retrieval layer searches the indexed knowledge base and provides relevant context to the generation layer. The generation layer uses an LLM to produce an answer from the user request and retrieved context. The validation layer verifies that generated responses conform to required schemas and application constraints. The observability layer records traces, latency, token usage, costs,"
+          },
+          {
+            "rank": 3,
+            "chunk_id": "architecture/model-routing.md:0",
+            "document_id": "architecture/model-routing.md",
+            "distance": 0.6098483800888062,
+            "text": "# Model Routing EvalForge may support multiple LLM providers and models. Model selection should consider task complexity, latency, reliability, and cost. A simple request does not necessarily require the most capable model. Model routing experiments should record which model handled each request. Changing the model can affect answer quality, latency, token usage, and cost. Therefore model changes must be evaluated against a fixed evaluation dataset rather than judged from a small number of manually selected examples."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "evaluation/evaluation-strategy.md:0",
+            "document_id": "evaluation/evaluation-strategy.md",
+            "distance": 0.47745126485824585,
+            "text": "\\# Evaluation Strategy EvalForge evaluates LLM applications using a fixed golden dataset. Evaluation should separate retrieval quality, answer quality, latency, cost, and structured-output validity. A single metric should not determine whether a system change is better. Evaluation runs should record the application configuration used during the run. The same evaluation dataset should be used when comparing two application versions so that changes can be attributed to the system rather than differences in test cases. Evaluation results should preserve per-case evidence so that aggregate regressions can be investigated."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "evaluation/retrieval-metrics.md:0",
+            "document_id": "evaluation/retrieval-metrics.md",
+            "distance": 0.5760793685913086,
+            "text": "\\# Retrieval Metrics EvalForge uses retrieval metrics to measure whether relevant evidence is returned by the retriever. Hit@K measures whether at least one expected document appears within the first K retrieved results. Recall@K measures the proportion of expected documents retrieved within the first K results. Reciprocal rank measures how highly the first relevant document appears in the ranked results. Metrics should be interpreted together because a system can retrieve all required evidence while still ranking the most important evidence poorly. Retrieval metrics should be evaluated across a representative golden dataset rather than a small collection of manually selected queries."
+          }
+        ]
+      },
+      "comparison": {
+        "document_set_changed": false,
+        "dense_only_documents": [],
+        "crossencoder_only_documents": [],
+        "order_changed": true,
+        "expected_rank_changed": {
+          "operations/latency-policy.md": true
+        },
+        "missing_expected_changed": false,
+        "metrics_delta": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "recall_at_5": 0.0,
+          "mrr": 0.5
+        }
+      }
+    },
+    {
+      "case_id": "validation_003",
+      "question": "Which fields are part of EvalForge's structured response schema?",
+      "category": "validation",
+      "expected_documents": [
+        "policies/validation-policy.md"
+      ],
+      "dense": {
+        "latency_ms": 24.329699997906573,
+        "metrics": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 0.25
+        },
+        "expected": {
+          "expected_ranks": {
+            "policies/validation-policy.md": 4
+          },
+          "expected_present": [
+            "policies/validation-policy.md"
+          ],
+          "expected_missing": [],
+          "all_expected_present": true
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "architecture/system-architecture.md:0",
+            "document_id": "architecture/system-architecture.md",
+            "distance": 0.42071521282196045,
+            "text": "# System Architecture EvalForge is an LLM evaluation and observability platform designed to test retrieval-augmented generation and agentic LLM applications. The platform consists of an API layer, orchestration layer, retrieval layer, generation layer, validation layer, observability layer, and evaluation layer. The API layer exposes application endpoints through FastAPI. The orchestration layer controls execution flow and may route requests through retrieval, tools, generation, and validation. The retrieval layer searches the indexed knowledge base and provides relevant context to the generation layer. The generation layer uses an LLM to produce an answer from the user request and retrieved context. The validation layer verifies that generated responses conform to required schemas and application constraints. The observability layer records traces, latency, token usage, costs,"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "policies/structured-output-policy.md:0",
+            "document_id": "policies/structured-output-policy.md",
+            "distance": 0.4364081025123596,
+            "text": "\\# Structured Output Policy Structured LLM responses should conform to a defined application schema. Schema validation should occur before downstream components rely on generated fields. Required fields must be present and values must satisfy their declared constraints. Validation errors should identify the failed field or constraint when possible. A repair or retry operation may be used when configured, but the original invalid response should remain observable."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "evaluation/evaluation-strategy.md:0",
+            "document_id": "evaluation/evaluation-strategy.md",
+            "distance": 0.5368051528930664,
+            "text": "\\# Evaluation Strategy EvalForge evaluates LLM applications using a fixed golden dataset. Evaluation should separate retrieval quality, answer quality, latency, cost, and structured-output validity. A single metric should not determine whether a system change is better. Evaluation runs should record the application configuration used during the run. The same evaluation dataset should be used when comparing two application versions so that changes can be attributed to the system rather than differences in test cases. Evaluation results should preserve per-case evidence so that aggregate regressions can be investigated."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "policies/validation-policy.md:0",
+            "document_id": "policies/validation-policy.md",
+            "distance": 0.5386703610420227,
+            "text": "# Output Validation Policy Generated answers must conform to the application's structured response schema. The response schema contains an answer, citations, confidence score, human-review indicator, and execution metrics. Confidence values must be between zero and one. Citations should identify the source documents used to construct the answer. Malformed structured output must not be silently accepted. Validation failures should be recorded and may trigger a retry or repair operation. A successful LLM call does not imply that the output is valid."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "architecture/model-routing.md:0",
+            "document_id": "architecture/model-routing.md",
+            "distance": 0.6229415535926819,
+            "text": "# Model Routing EvalForge may support multiple LLM providers and models. Model selection should consider task complexity, latency, reliability, and cost. A simple request does not necessarily require the most capable model. Model routing experiments should record which model handled each request. Changing the model can affect answer quality, latency, token usage, and cost. Therefore model changes must be evaluated against a fixed evaluation dataset rather than judged from a small number of manually selected examples."
+          }
+        ]
+      },
+      "dense_crossencoder": {
+        "latency_ms": 150.21930000148132,
+        "metrics": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 0.3333333333333333
+        },
+        "expected": {
+          "expected_ranks": {
+            "policies/validation-policy.md": 3
+          },
+          "expected_present": [
+            "policies/validation-policy.md"
+          ],
+          "expected_missing": [],
+          "all_expected_present": true
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "architecture/system-architecture.md:0",
+            "document_id": "architecture/system-architecture.md",
+            "distance": 0.42071521282196045,
+            "text": "# System Architecture EvalForge is an LLM evaluation and observability platform designed to test retrieval-augmented generation and agentic LLM applications. The platform consists of an API layer, orchestration layer, retrieval layer, generation layer, validation layer, observability layer, and evaluation layer. The API layer exposes application endpoints through FastAPI. The orchestration layer controls execution flow and may route requests through retrieval, tools, generation, and validation. The retrieval layer searches the indexed knowledge base and provides relevant context to the generation layer. The generation layer uses an LLM to produce an answer from the user request and retrieved context. The validation layer verifies that generated responses conform to required schemas and application constraints. The observability layer records traces, latency, token usage, costs,"
+          },
+          {
+            "rank": 2,
+            "chunk_id": "policies/structured-output-policy.md:0",
+            "document_id": "policies/structured-output-policy.md",
+            "distance": 0.4364081025123596,
+            "text": "\\# Structured Output Policy Structured LLM responses should conform to a defined application schema. Schema validation should occur before downstream components rely on generated fields. Required fields must be present and values must satisfy their declared constraints. Validation errors should identify the failed field or constraint when possible. A repair or retry operation may be used when configured, but the original invalid response should remain observable."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "policies/validation-policy.md:0",
+            "document_id": "policies/validation-policy.md",
+            "distance": 0.5386703610420227,
+            "text": "# Output Validation Policy Generated answers must conform to the application's structured response schema. The response schema contains an answer, citations, confidence score, human-review indicator, and execution metrics. Confidence values must be between zero and one. Citations should identify the source documents used to construct the answer. Malformed structured output must not be silently accepted. Validation failures should be recorded and may trigger a retry or repair operation. A successful LLM call does not imply that the output is valid."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "evaluation/evaluation-strategy.md:0",
+            "document_id": "evaluation/evaluation-strategy.md",
+            "distance": 0.5368051528930664,
+            "text": "\\# Evaluation Strategy EvalForge evaluates LLM applications using a fixed golden dataset. Evaluation should separate retrieval quality, answer quality, latency, cost, and structured-output validity. A single metric should not determine whether a system change is better. Evaluation runs should record the application configuration used during the run. The same evaluation dataset should be used when comparing two application versions so that changes can be attributed to the system rather than differences in test cases. Evaluation results should preserve per-case evidence so that aggregate regressions can be investigated."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "architecture/model-routing.md:0",
+            "document_id": "architecture/model-routing.md",
+            "distance": 0.6229415535926819,
+            "text": "# Model Routing EvalForge may support multiple LLM providers and models. Model selection should consider task complexity, latency, reliability, and cost. A simple request does not necessarily require the most capable model. Model routing experiments should record which model handled each request. Changing the model can affect answer quality, latency, token usage, and cost. Therefore model changes must be evaluated against a fixed evaluation dataset rather than judged from a small number of manually selected examples."
+          }
+        ]
+      },
+      "comparison": {
+        "document_set_changed": false,
+        "dense_only_documents": [],
+        "crossencoder_only_documents": [],
+        "order_changed": true,
+        "expected_rank_changed": {
+          "policies/validation-policy.md": true
+        },
+        "missing_expected_changed": false,
+        "metrics_delta": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 0.0,
+          "recall_at_5": 0.0,
+          "mrr": 0.08333333333333331
+        }
+      }
+    },
+    {
+      "case_id": "validation_005",
+      "question": "Does a successful LLM call prove its output is valid?",
+      "category": "validation",
+      "expected_documents": [
+        "policies/validation-policy.md"
+      ],
+      "dense": {
+        "latency_ms": 19.308099999761907,
+        "metrics": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 0.5
+        },
+        "expected": {
+          "expected_ranks": {
+            "policies/validation-policy.md": 2
+          },
+          "expected_present": [
+            "policies/validation-policy.md"
+          ],
+          "expected_missing": [],
+          "all_expected_present": true
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "policies/structured-output-policy.md:0",
+            "document_id": "policies/structured-output-policy.md",
+            "distance": 0.4970794916152954,
+            "text": "\\# Structured Output Policy Structured LLM responses should conform to a defined application schema. Schema validation should occur before downstream components rely on generated fields. Required fields must be present and values must satisfy their declared constraints. Validation errors should identify the failed field or constraint when possible. A repair or retry operation may be used when configured, but the original invalid response should remain observable."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "policies/validation-policy.md:0",
+            "document_id": "policies/validation-policy.md",
+            "distance": 0.5008957386016846,
+            "text": "# Output Validation Policy Generated answers must conform to the application's structured response schema. The response schema contains an answer, citations, confidence score, human-review indicator, and execution metrics. Confidence values must be between zero and one. Citations should identify the source documents used to construct the answer. Malformed structured output must not be silently accepted. Validation failures should be recorded and may trigger a retry or repair operation. A successful LLM call does not imply that the output is valid."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "evaluation/evaluation-strategy.md:0",
+            "document_id": "evaluation/evaluation-strategy.md",
+            "distance": 0.679206132888794,
+            "text": "\\# Evaluation Strategy EvalForge evaluates LLM applications using a fixed golden dataset. Evaluation should separate retrieval quality, answer quality, latency, cost, and structured-output validity. A single metric should not determine whether a system change is better. Evaluation runs should record the application configuration used during the run. The same evaluation dataset should be used when comparing two application versions so that changes can be attributed to the system rather than differences in test cases. Evaluation results should preserve per-case evidence so that aggregate regressions can be investigated."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "architecture/system-architecture.md:0",
+            "document_id": "architecture/system-architecture.md",
+            "distance": 0.680129885673523,
+            "text": "# System Architecture EvalForge is an LLM evaluation and observability platform designed to test retrieval-augmented generation and agentic LLM applications. The platform consists of an API layer, orchestration layer, retrieval layer, generation layer, validation layer, observability layer, and evaluation layer. The API layer exposes application endpoints through FastAPI. The orchestration layer controls execution flow and may route requests through retrieval, tools, generation, and validation. The retrieval layer searches the indexed knowledge base and provides relevant context to the generation layer. The generation layer uses an LLM to produce an answer from the user request and retrieved context. The validation layer verifies that generated responses conform to required schemas and application constraints. The observability layer records traces, latency, token usage, costs,"
+          },
+          {
+            "rank": 5,
+            "chunk_id": "operations/reliability-policy.md:0",
+            "document_id": "operations/reliability-policy.md",
+            "distance": 0.6831197738647461,
+            "text": "\\# Reliability Policy EvalForge tracks failures occurring during retrieval, generation, validation, and external service calls. A successful request should not hide component-level failures. Transient failures may be retried when retry behavior is explicitly configured. Retries should be observable so that additional latency and repeated model calls can be measured. Reliability improvements should be evaluated together with latency, cost, and answer quality."
+          }
+        ]
+      },
+      "dense_crossencoder": {
+        "latency_ms": 148.09629999945173,
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "expected": {
+          "expected_ranks": {
+            "policies/validation-policy.md": 1
+          },
+          "expected_present": [
+            "policies/validation-policy.md"
+          ],
+          "expected_missing": [],
+          "all_expected_present": true
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "policies/validation-policy.md:0",
+            "document_id": "policies/validation-policy.md",
+            "distance": 0.5008957386016846,
+            "text": "# Output Validation Policy Generated answers must conform to the application's structured response schema. The response schema contains an answer, citations, confidence score, human-review indicator, and execution metrics. Confidence values must be between zero and one. Citations should identify the source documents used to construct the answer. Malformed structured output must not be silently accepted. Validation failures should be recorded and may trigger a retry or repair operation. A successful LLM call does not imply that the output is valid."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "policies/structured-output-policy.md:0",
+            "document_id": "policies/structured-output-policy.md",
+            "distance": 0.4970794916152954,
+            "text": "\\# Structured Output Policy Structured LLM responses should conform to a defined application schema. Schema validation should occur before downstream components rely on generated fields. Required fields must be present and values must satisfy their declared constraints. Validation errors should identify the failed field or constraint when possible. A repair or retry operation may be used when configured, but the original invalid response should remain observable."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "evaluation/evaluation-strategy.md:0",
+            "document_id": "evaluation/evaluation-strategy.md",
+            "distance": 0.679206132888794,
+            "text": "\\# Evaluation Strategy EvalForge evaluates LLM applications using a fixed golden dataset. Evaluation should separate retrieval quality, answer quality, latency, cost, and structured-output validity. A single metric should not determine whether a system change is better. Evaluation runs should record the application configuration used during the run. The same evaluation dataset should be used when comparing two application versions so that changes can be attributed to the system rather than differences in test cases. Evaluation results should preserve per-case evidence so that aggregate regressions can be investigated."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "operations/reliability-policy.md:0",
+            "document_id": "operations/reliability-policy.md",
+            "distance": 0.6831197738647461,
+            "text": "\\# Reliability Policy EvalForge tracks failures occurring during retrieval, generation, validation, and external service calls. A successful request should not hide component-level failures. Transient failures may be retried when retry behavior is explicitly configured. Retries should be observable so that additional latency and repeated model calls can be measured. Reliability improvements should be evaluated together with latency, cost, and answer quality."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "architecture/system-architecture.md:0",
+            "document_id": "architecture/system-architecture.md",
+            "distance": 0.680129885673523,
+            "text": "# System Architecture EvalForge is an LLM evaluation and observability platform designed to test retrieval-augmented generation and agentic LLM applications. The platform consists of an API layer, orchestration layer, retrieval layer, generation layer, validation layer, observability layer, and evaluation layer. The API layer exposes application endpoints through FastAPI. The orchestration layer controls execution flow and may route requests through retrieval, tools, generation, and validation. The retrieval layer searches the indexed knowledge base and provides relevant context to the generation layer. The generation layer uses an LLM to produce an answer from the user request and retrieved context. The validation layer verifies that generated responses conform to required schemas and application constraints. The observability layer records traces, latency, token usage, costs,"
+          }
+        ]
+      },
+      "comparison": {
+        "document_set_changed": false,
+        "dense_only_documents": [],
+        "crossencoder_only_documents": [],
+        "order_changed": true,
+        "expected_rank_changed": {
+          "policies/validation-policy.md": true
+        },
+        "missing_expected_changed": false,
+        "metrics_delta": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "recall_at_5": 0.0,
+          "mrr": 0.5
+        }
+      }
+    },
+    {
+      "case_id": "reliability_002",
+      "question": "What must a successful request not conceal?",
+      "category": "reliability",
+      "expected_documents": [
+        "operations/reliability-policy.md"
+      ],
+      "dense": {
+        "latency_ms": 21.07160000014119,
+        "metrics": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 0.5
+        },
+        "expected": {
+          "expected_ranks": {
+            "operations/reliability-policy.md": 2
+          },
+          "expected_present": [
+            "operations/reliability-policy.md"
+          ],
+          "expected_missing": [],
+          "all_expected_present": true
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "policies/structured-output-policy.md:0",
+            "document_id": "policies/structured-output-policy.md",
+            "distance": 0.6726760864257812,
+            "text": "\\# Structured Output Policy Structured LLM responses should conform to a defined application schema. Schema validation should occur before downstream components rely on generated fields. Required fields must be present and values must satisfy their declared constraints. Validation errors should identify the failed field or constraint when possible. A repair or retry operation may be used when configured, but the original invalid response should remain observable."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "operations/reliability-policy.md:0",
+            "document_id": "operations/reliability-policy.md",
+            "distance": 0.6971426010131836,
+            "text": "\\# Reliability Policy EvalForge tracks failures occurring during retrieval, generation, validation, and external service calls. A successful request should not hide component-level failures. Transient failures may be retried when retry behavior is explicitly configured. Retries should be observable so that additional latency and repeated model calls can be measured. Reliability improvements should be evaluated together with latency, cost, and answer quality."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "policies/validation-policy.md:0",
+            "document_id": "policies/validation-policy.md",
+            "distance": 0.7128701210021973,
+            "text": "# Output Validation Policy Generated answers must conform to the application's structured response schema. The response schema contains an answer, citations, confidence score, human-review indicator, and execution metrics. Confidence values must be between zero and one. Citations should identify the source documents used to construct the answer. Malformed structured output must not be silently accepted. Validation failures should be recorded and may trigger a retry or repair operation. A successful LLM call does not imply that the output is valid."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "policies/retry-policy.md:0",
+            "document_id": "policies/retry-policy.md",
+            "distance": 0.74300616979599,
+            "text": "\\# Retry Policy Retries are intended to recover from transient failures. A retry should not silently replace the original failed execution in observability data. Each retry attempt should be recorded with its reason and outcome. Retries can increase latency and cost, so retry behavior must be included in system evaluation. Repeated retries should be bounded to prevent uncontrolled execution."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "architecture/model-routing.md:0",
+            "document_id": "architecture/model-routing.md",
+            "distance": 0.7606258988380432,
+            "text": "# Model Routing EvalForge may support multiple LLM providers and models. Model selection should consider task complexity, latency, reliability, and cost. A simple request does not necessarily require the most capable model. Model routing experiments should record which model handled each request. Changing the model can affect answer quality, latency, token usage, and cost. Therefore model changes must be evaluated against a fixed evaluation dataset rather than judged from a small number of manually selected examples."
+          }
+        ]
+      },
+      "dense_crossencoder": {
+        "latency_ms": 96.30699999979697,
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "expected": {
+          "expected_ranks": {
+            "operations/reliability-policy.md": 1
+          },
+          "expected_present": [
+            "operations/reliability-policy.md"
+          ],
+          "expected_missing": [],
+          "all_expected_present": true
+        },
+        "results": [
+          {
+            "rank": 1,
+            "chunk_id": "operations/reliability-policy.md:0",
+            "document_id": "operations/reliability-policy.md",
+            "distance": 0.6971426010131836,
+            "text": "\\# Reliability Policy EvalForge tracks failures occurring during retrieval, generation, validation, and external service calls. A successful request should not hide component-level failures. Transient failures may be retried when retry behavior is explicitly configured. Retries should be observable so that additional latency and repeated model calls can be measured. Reliability improvements should be evaluated together with latency, cost, and answer quality."
+          },
+          {
+            "rank": 2,
+            "chunk_id": "policies/validation-policy.md:0",
+            "document_id": "policies/validation-policy.md",
+            "distance": 0.7128701210021973,
+            "text": "# Output Validation Policy Generated answers must conform to the application's structured response schema. The response schema contains an answer, citations, confidence score, human-review indicator, and execution metrics. Confidence values must be between zero and one. Citations should identify the source documents used to construct the answer. Malformed structured output must not be silently accepted. Validation failures should be recorded and may trigger a retry or repair operation. A successful LLM call does not imply that the output is valid."
+          },
+          {
+            "rank": 3,
+            "chunk_id": "architecture/model-routing.md:0",
+            "document_id": "architecture/model-routing.md",
+            "distance": 0.7606258988380432,
+            "text": "# Model Routing EvalForge may support multiple LLM providers and models. Model selection should consider task complexity, latency, reliability, and cost. A simple request does not necessarily require the most capable model. Model routing experiments should record which model handled each request. Changing the model can affect answer quality, latency, token usage, and cost. Therefore model changes must be evaluated against a fixed evaluation dataset rather than judged from a small number of manually selected examples."
+          },
+          {
+            "rank": 4,
+            "chunk_id": "policies/retry-policy.md:0",
+            "document_id": "policies/retry-policy.md",
+            "distance": 0.74300616979599,
+            "text": "\\# Retry Policy Retries are intended to recover from transient failures. A retry should not silently replace the original failed execution in observability data. Each retry attempt should be recorded with its reason and outcome. Retries can increase latency and cost, so retry behavior must be included in system evaluation. Repeated retries should be bounded to prevent uncontrolled execution."
+          },
+          {
+            "rank": 5,
+            "chunk_id": "policies/structured-output-policy.md:0",
+            "document_id": "policies/structured-output-policy.md",
+            "distance": 0.6726760864257812,
+            "text": "\\# Structured Output Policy Structured LLM responses should conform to a defined application schema. Schema validation should occur before downstream components rely on generated fields. Required fields must be present and values must satisfy their declared constraints. Validation errors should identify the failed field or constraint when possible. A repair or retry operation may be used when configured, but the original invalid response should remain observable."
+          }
+        ]
+      },
+      "comparison": {
+        "document_set_changed": false,
+        "dense_only_documents": [],
+        "crossencoder_only_documents": [],
+        "order_changed": true,
+        "expected_rank_changed": {
+          "operations/reliability-policy.md": true
+        },
+        "missing_expected_changed": false,
+        "metrics_delta": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "recall_at_5": 0.0,
+          "mrr": 0.5
+        }
+      }
+    }
+  ],
+  "summary": {
+    "dense": {
+      "hit_at_1": 0.4375,
+      "hit_at_3": 0.875,
+      "hit_at_5": 0.9375,
+      "recall_at_5": 0.90625,
+      "mrr": 0.6510416666666666
+    },
+    "dense_crossencoder": {
+      "hit_at_1": 0.75,
+      "hit_at_3": 0.9375,
+      "hit_at_5": 0.9375,
+      "recall_at_5": 0.90625,
+      "mrr": 0.8333333333333334
+    },
+    "document_set_changed_cases": 0,
+    "order_changed_cases": 16,
+    "expected_rank_changed_cases": 13,
+    "missing_expected_changed_cases": 0
+  }
+}

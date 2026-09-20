@@ -1,0 +1,533 @@
+{
+  "experiment": "g3b_hard_case_dataset",
+  "version": "0.1",
+  "status": "DESIGN_STAGE",
+  "dataset_size_target": 30,
+  "source_corpus": "data\\evaluation_cases.json",
+  "source_forensics": "logs\\dense_vs_crossencoder_forensic.json",
+  "api_calls_used": 0,
+  "selection_summary": {
+    "multi_evidence": {
+      "target": 6,
+      "existing_candidates": 13
+    },
+    "distractor_competition": {
+      "target": 6,
+      "existing_candidates": 0
+    },
+    "ranking_sensitive": {
+      "target": 6,
+      "existing_candidates": 0
+    },
+    "contradiction": {
+      "target": 6,
+      "existing_candidates": 0
+    },
+    "missing_evidence": {
+      "target": 6,
+      "existing_candidates": 0
+    }
+  },
+  "design_rules": {
+    "fixed_corpus": true,
+    "production_pipeline_modified": false,
+    "llm_generation_during_build": false,
+    "retrieval_screening_after_dataset_completion": true
+  },
+  "categories": {
+    "multi_evidence": 6,
+    "distractor_competition": 6,
+    "ranking_sensitive": 6,
+    "contradiction": 6,
+    "missing_evidence": 6
+  },
+  "cases": [
+    {
+      "case_id": "g3b_mult_001",
+      "category": "multi_evidence",
+      "status": "SOURCE_CANDIDATE",
+      "question": "If changing the model can affect latency and cost, what should be used to determine whether the change is actually better?",
+      "expected_answer": "Model changes should be evaluated against a fixed evaluation dataset, and cost and latency should be evaluated together with answer quality.",
+      "expected_topics": [
+        "model changes",
+        "evaluation dataset",
+        "answer quality",
+        "cost",
+        "latency"
+      ],
+      "expected_documents": [
+        "architecture/model-routing.md",
+        "operations/cost-policy.md",
+        "operations/latency-policy.md"
+      ],
+      "difficulty_reason": "Tests cross-document synthesis.",
+      "construction_requirements": [
+        "Answer must require information from at least two distinct documents.",
+        "No single expected document should contain the complete answer."
+      ],
+      "source_case_id": "cross_001"
+    },
+    {
+      "case_id": "g3b_mult_002",
+      "category": "multi_evidence",
+      "status": "SOURCE_CANDIDATE",
+      "question": "How does the retrieval layer fit into the overall EvalForge architecture, and how should retrieval quality be assessed?",
+      "expected_answer": "The retrieval layer searches the indexed knowledge base and provides relevant context to the generation layer. Retrieval quality should be evaluated independently from final answer quality.",
+      "expected_topics": [
+        "retrieval layer",
+        "knowledge base",
+        "generation layer",
+        "retrieval evaluation"
+      ],
+      "expected_documents": [
+        "architecture/system-architecture.md",
+        "engineering/retrieval-guidelines.md"
+      ],
+      "difficulty_reason": "Tests cross-document synthesis.",
+      "construction_requirements": [
+        "Answer must require information from at least two distinct documents.",
+        "No single expected document should contain the complete answer."
+      ],
+      "source_case_id": "cross_002"
+    },
+    {
+      "case_id": "g3b_mult_003",
+      "category": "multi_evidence",
+      "status": "SOURCE_CANDIDATE",
+      "question": "What does a successful LLM call fail to guarantee, and what system components are responsible for checking the result?",
+      "expected_answer": "A successful LLM call does not imply that the output is valid. The validation layer verifies that generated responses conform to required schemas and application constraints.",
+      "expected_topics": [
+        "LLM call",
+        "output validation",
+        "validation layer",
+        "schemas",
+        "application constraints"
+      ],
+      "expected_documents": [
+        "architecture/system-architecture.md",
+        "policies/validation-policy.md"
+      ],
+      "difficulty_reason": "Tests cross-document synthesis.",
+      "construction_requirements": [
+        "Answer must require information from at least two distinct documents.",
+        "No single expected document should contain the complete answer."
+      ],
+      "source_case_id": "cross_003"
+    },
+    {
+      "case_id": "g3b_mult_004",
+      "category": "multi_evidence",
+      "status": "SOURCE_CANDIDATE",
+      "question": "How should a proposed model change be evaluated and compared fairly?",
+      "expected_answer": "Record the model used and compare it against a fixed golden dataset rather than selected examples.",
+      "expected_topics": [],
+      "expected_documents": [
+        "architecture/model-routing.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "difficulty_reason": "Tests cross-document synthesis.",
+      "construction_requirements": [
+        "Answer must require information from at least two distinct documents.",
+        "No single expected document should contain the complete answer."
+      ],
+      "source_case_id": "routing_006"
+    },
+    {
+      "case_id": "g3b_mult_005",
+      "category": "multi_evidence",
+      "status": "SOURCE_CANDIDATE",
+      "question": "After retrieval, how is evidence used by the generation layer and what risk must be managed?",
+      "expected_answer": "Retrieved evidence is provided as generation context, which must avoid irrelevant material that obscures useful evidence.",
+      "expected_topics": [],
+      "expected_documents": [
+        "architecture/system-architecture.md",
+        "engineering/context-management.md"
+      ],
+      "difficulty_reason": "Tests cross-document synthesis.",
+      "construction_requirements": [
+        "Answer must require information from at least two distinct documents.",
+        "No single expected document should contain the complete answer."
+      ],
+      "source_case_id": "architecture_003"
+    },
+    {
+      "case_id": "g3b_mult_006",
+      "category": "multi_evidence",
+      "status": "SOURCE_CANDIDATE",
+      "question": "Why are documents split before semantic retrieval, and what must each resulting unit retain?",
+      "expected_answer": "Documents are chunked before embedding, and each chunk needs enough context to remain meaningful independently.",
+      "expected_topics": [],
+      "expected_documents": [
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md"
+      ],
+      "difficulty_reason": "Tests cross-document synthesis.",
+      "construction_requirements": [
+        "Answer must require information from at least two distinct documents.",
+        "No single expected document should contain the complete answer."
+      ],
+      "source_case_id": "retrieval_004"
+    },
+    {
+      "case_id": "g3b_dist_001",
+      "category": "distractor_competition",
+      "status": "CONSTRUCTION_REQUIRED",
+      "question": null,
+      "expected_answer": null,
+      "expected_topics": [],
+      "expected_documents": [],
+      "difficulty_reason": "Tests semantic distractor resistance.",
+      "construction_requirements": [
+        "At least one highly similar but non-sufficient distractor must exist.",
+        "Correct evidence must remain distinguishable from the distractor."
+      ],
+      "source_case_id": null
+    },
+    {
+      "case_id": "g3b_dist_002",
+      "category": "distractor_competition",
+      "status": "CONSTRUCTION_REQUIRED",
+      "question": null,
+      "expected_answer": null,
+      "expected_topics": [],
+      "expected_documents": [],
+      "difficulty_reason": "Tests semantic distractor resistance.",
+      "construction_requirements": [
+        "At least one highly similar but non-sufficient distractor must exist.",
+        "Correct evidence must remain distinguishable from the distractor."
+      ],
+      "source_case_id": null
+    },
+    {
+      "case_id": "g3b_dist_003",
+      "category": "distractor_competition",
+      "status": "CONSTRUCTION_REQUIRED",
+      "question": null,
+      "expected_answer": null,
+      "expected_topics": [],
+      "expected_documents": [],
+      "difficulty_reason": "Tests semantic distractor resistance.",
+      "construction_requirements": [
+        "At least one highly similar but non-sufficient distractor must exist.",
+        "Correct evidence must remain distinguishable from the distractor."
+      ],
+      "source_case_id": null
+    },
+    {
+      "case_id": "g3b_dist_004",
+      "category": "distractor_competition",
+      "status": "CONSTRUCTION_REQUIRED",
+      "question": null,
+      "expected_answer": null,
+      "expected_topics": [],
+      "expected_documents": [],
+      "difficulty_reason": "Tests semantic distractor resistance.",
+      "construction_requirements": [
+        "At least one highly similar but non-sufficient distractor must exist.",
+        "Correct evidence must remain distinguishable from the distractor."
+      ],
+      "source_case_id": null
+    },
+    {
+      "case_id": "g3b_dist_005",
+      "category": "distractor_competition",
+      "status": "CONSTRUCTION_REQUIRED",
+      "question": null,
+      "expected_answer": null,
+      "expected_topics": [],
+      "expected_documents": [],
+      "difficulty_reason": "Tests semantic distractor resistance.",
+      "construction_requirements": [
+        "At least one highly similar but non-sufficient distractor must exist.",
+        "Correct evidence must remain distinguishable from the distractor."
+      ],
+      "source_case_id": null
+    },
+    {
+      "case_id": "g3b_dist_006",
+      "category": "distractor_competition",
+      "status": "CONSTRUCTION_REQUIRED",
+      "question": null,
+      "expected_answer": null,
+      "expected_topics": [],
+      "expected_documents": [],
+      "difficulty_reason": "Tests semantic distractor resistance.",
+      "construction_requirements": [
+        "At least one highly similar but non-sufficient distractor must exist.",
+        "Correct evidence must remain distinguishable from the distractor."
+      ],
+      "source_case_id": null
+    },
+    {
+      "case_id": "g3b_rank_001",
+      "category": "ranking_sensitive",
+      "status": "CONSTRUCTION_REQUIRED",
+      "question": null,
+      "expected_answer": null,
+      "expected_topics": [],
+      "expected_documents": [],
+      "difficulty_reason": "Tests whether ranking changes final answer quality.",
+      "construction_requirements": [
+        "Correct evidence should be retrievable in the candidate pool.",
+        "Its rank should plausibly change between Dense and CrossEncoder."
+      ],
+      "source_case_id": null
+    },
+    {
+      "case_id": "g3b_rank_002",
+      "category": "ranking_sensitive",
+      "status": "CONSTRUCTION_REQUIRED",
+      "question": null,
+      "expected_answer": null,
+      "expected_topics": [],
+      "expected_documents": [],
+      "difficulty_reason": "Tests whether ranking changes final answer quality.",
+      "construction_requirements": [
+        "Correct evidence should be retrievable in the candidate pool.",
+        "Its rank should plausibly change between Dense and CrossEncoder."
+      ],
+      "source_case_id": null
+    },
+    {
+      "case_id": "g3b_rank_003",
+      "category": "ranking_sensitive",
+      "status": "CONSTRUCTION_REQUIRED",
+      "question": null,
+      "expected_answer": null,
+      "expected_topics": [],
+      "expected_documents": [],
+      "difficulty_reason": "Tests whether ranking changes final answer quality.",
+      "construction_requirements": [
+        "Correct evidence should be retrievable in the candidate pool.",
+        "Its rank should plausibly change between Dense and CrossEncoder."
+      ],
+      "source_case_id": null
+    },
+    {
+      "case_id": "g3b_rank_004",
+      "category": "ranking_sensitive",
+      "status": "CONSTRUCTION_REQUIRED",
+      "question": null,
+      "expected_answer": null,
+      "expected_topics": [],
+      "expected_documents": [],
+      "difficulty_reason": "Tests whether ranking changes final answer quality.",
+      "construction_requirements": [
+        "Correct evidence should be retrievable in the candidate pool.",
+        "Its rank should plausibly change between Dense and CrossEncoder."
+      ],
+      "source_case_id": null
+    },
+    {
+      "case_id": "g3b_rank_005",
+      "category": "ranking_sensitive",
+      "status": "CONSTRUCTION_REQUIRED",
+      "question": null,
+      "expected_answer": null,
+      "expected_topics": [],
+      "expected_documents": [],
+      "difficulty_reason": "Tests whether ranking changes final answer quality.",
+      "construction_requirements": [
+        "Correct evidence should be retrievable in the candidate pool.",
+        "Its rank should plausibly change between Dense and CrossEncoder."
+      ],
+      "source_case_id": null
+    },
+    {
+      "case_id": "g3b_rank_006",
+      "category": "ranking_sensitive",
+      "status": "CONSTRUCTION_REQUIRED",
+      "question": null,
+      "expected_answer": null,
+      "expected_topics": [],
+      "expected_documents": [],
+      "difficulty_reason": "Tests whether ranking changes final answer quality.",
+      "construction_requirements": [
+        "Correct evidence should be retrievable in the candidate pool.",
+        "Its rank should plausibly change between Dense and CrossEncoder."
+      ],
+      "source_case_id": null
+    },
+    {
+      "case_id": "g3b_cont_001",
+      "category": "contradiction",
+      "status": "CONSTRUCTION_REQUIRED",
+      "question": null,
+      "expected_answer": null,
+      "expected_topics": [],
+      "expected_documents": [],
+      "difficulty_reason": "Tests evidence applicability under competing statements.",
+      "construction_requirements": [
+        "Use related policies/rules with different applicability rather than invented contradictions.",
+        "Question must require selecting the applicable evidence."
+      ],
+      "source_case_id": null
+    },
+    {
+      "case_id": "g3b_cont_002",
+      "category": "contradiction",
+      "status": "CONSTRUCTION_REQUIRED",
+      "question": null,
+      "expected_answer": null,
+      "expected_topics": [],
+      "expected_documents": [],
+      "difficulty_reason": "Tests evidence applicability under competing statements.",
+      "construction_requirements": [
+        "Use related policies/rules with different applicability rather than invented contradictions.",
+        "Question must require selecting the applicable evidence."
+      ],
+      "source_case_id": null
+    },
+    {
+      "case_id": "g3b_cont_003",
+      "category": "contradiction",
+      "status": "CONSTRUCTION_REQUIRED",
+      "question": null,
+      "expected_answer": null,
+      "expected_topics": [],
+      "expected_documents": [],
+      "difficulty_reason": "Tests evidence applicability under competing statements.",
+      "construction_requirements": [
+        "Use related policies/rules with different applicability rather than invented contradictions.",
+        "Question must require selecting the applicable evidence."
+      ],
+      "source_case_id": null
+    },
+    {
+      "case_id": "g3b_cont_004",
+      "category": "contradiction",
+      "status": "CONSTRUCTION_REQUIRED",
+      "question": null,
+      "expected_answer": null,
+      "expected_topics": [],
+      "expected_documents": [],
+      "difficulty_reason": "Tests evidence applicability under competing statements.",
+      "construction_requirements": [
+        "Use related policies/rules with different applicability rather than invented contradictions.",
+        "Question must require selecting the applicable evidence."
+      ],
+      "source_case_id": null
+    },
+    {
+      "case_id": "g3b_cont_005",
+      "category": "contradiction",
+      "status": "CONSTRUCTION_REQUIRED",
+      "question": null,
+      "expected_answer": null,
+      "expected_topics": [],
+      "expected_documents": [],
+      "difficulty_reason": "Tests evidence applicability under competing statements.",
+      "construction_requirements": [
+        "Use related policies/rules with different applicability rather than invented contradictions.",
+        "Question must require selecting the applicable evidence."
+      ],
+      "source_case_id": null
+    },
+    {
+      "case_id": "g3b_cont_006",
+      "category": "contradiction",
+      "status": "CONSTRUCTION_REQUIRED",
+      "question": null,
+      "expected_answer": null,
+      "expected_topics": [],
+      "expected_documents": [],
+      "difficulty_reason": "Tests evidence applicability under competing statements.",
+      "construction_requirements": [
+        "Use related policies/rules with different applicability rather than invented contradictions.",
+        "Question must require selecting the applicable evidence."
+      ],
+      "source_case_id": null
+    },
+    {
+      "case_id": "g3b_miss_001",
+      "category": "missing_evidence",
+      "status": "CONSTRUCTION_REQUIRED",
+      "question": null,
+      "expected_answer": null,
+      "expected_topics": [],
+      "expected_documents": [],
+      "difficulty_reason": "Tests grounded behavior when required evidence is unavailable.",
+      "construction_requirements": [
+        "Required evidence must genuinely be absent from the retrieved context.",
+        "Expected behavior must be evidence-aware rather than hallucinated."
+      ],
+      "source_case_id": null
+    },
+    {
+      "case_id": "g3b_miss_002",
+      "category": "missing_evidence",
+      "status": "CONSTRUCTION_REQUIRED",
+      "question": null,
+      "expected_answer": null,
+      "expected_topics": [],
+      "expected_documents": [],
+      "difficulty_reason": "Tests grounded behavior when required evidence is unavailable.",
+      "construction_requirements": [
+        "Required evidence must genuinely be absent from the retrieved context.",
+        "Expected behavior must be evidence-aware rather than hallucinated."
+      ],
+      "source_case_id": null
+    },
+    {
+      "case_id": "g3b_miss_003",
+      "category": "missing_evidence",
+      "status": "CONSTRUCTION_REQUIRED",
+      "question": null,
+      "expected_answer": null,
+      "expected_topics": [],
+      "expected_documents": [],
+      "difficulty_reason": "Tests grounded behavior when required evidence is unavailable.",
+      "construction_requirements": [
+        "Required evidence must genuinely be absent from the retrieved context.",
+        "Expected behavior must be evidence-aware rather than hallucinated."
+      ],
+      "source_case_id": null
+    },
+    {
+      "case_id": "g3b_miss_004",
+      "category": "missing_evidence",
+      "status": "CONSTRUCTION_REQUIRED",
+      "question": null,
+      "expected_answer": null,
+      "expected_topics": [],
+      "expected_documents": [],
+      "difficulty_reason": "Tests grounded behavior when required evidence is unavailable.",
+      "construction_requirements": [
+        "Required evidence must genuinely be absent from the retrieved context.",
+        "Expected behavior must be evidence-aware rather than hallucinated."
+      ],
+      "source_case_id": null
+    },
+    {
+      "case_id": "g3b_miss_005",
+      "category": "missing_evidence",
+      "status": "CONSTRUCTION_REQUIRED",
+      "question": null,
+      "expected_answer": null,
+      "expected_topics": [],
+      "expected_documents": [],
+      "difficulty_reason": "Tests grounded behavior when required evidence is unavailable.",
+      "construction_requirements": [
+        "Required evidence must genuinely be absent from the retrieved context.",
+        "Expected behavior must be evidence-aware rather than hallucinated."
+      ],
+      "source_case_id": null
+    },
+    {
+      "case_id": "g3b_miss_006",
+      "category": "missing_evidence",
+      "status": "CONSTRUCTION_REQUIRED",
+      "question": null,
+      "expected_answer": null,
+      "expected_topics": [],
+      "expected_documents": [],
+      "difficulty_reason": "Tests grounded behavior when required evidence is unavailable.",
+      "construction_requirements": [
+        "Required evidence must genuinely be absent from the retrieved context.",
+        "Expected behavior must be evidence-aware rather than hallucinated."
+      ],
+      "source_case_id": null
+    }
+  ],
+  "next_step": "Manually finalize CONSTRUCTION_REQUIRED slots from the existing corpus, then run retrieval-only Dense vs CrossEncoder screening before any generation/judging calls."
+}

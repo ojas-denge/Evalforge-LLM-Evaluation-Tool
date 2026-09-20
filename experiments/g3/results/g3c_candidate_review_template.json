@@ -1,0 +1,48 @@
+{
+  "experiment": "g3c_retrieval_dependent_dataset",
+  "version": "0.1",
+  "status": "DESIGN_STAGE",
+  "target_size": 10,
+  "api_calls_used": 0,
+  "purpose": "Final diagnostic dataset before freezing experimentation.",
+  "hard_requirements": [
+    "Answer should require retrieved evidence.",
+    "Question should not be safely answerable from generic knowledge or question wording alone.",
+    "At least some cases must require synthesis across two or more documents.",
+    "At least some cases must contain plausible distractor evidence.",
+    "At least some cases must be sensitive to evidence ordering.",
+    "Include at least one genuine missing-evidence control.",
+    "Do not modify production retrieval or generation code.",
+    "Do not use LLM calls while constructing or screening the dataset."
+  ],
+  "review_schema": {
+    "evidence_dependency": "REQUIRED / PARTIAL / NO",
+    "single_document_sufficient": "YES / NO",
+    "distractor_is_plausible": "YES / NO",
+    "answer_inferable_without_retrieval": "YES / NO",
+    "critical_relationship": "free text",
+    "why_dense_and_ce_should_differ": "free text",
+    "include_in_final_g3c": "YES / NO"
+  },
+  "recommended_mix": {
+    "multi_document_synthesis": 3,
+    "distractor_competition": 2,
+    "ranking_sensitive": 2,
+    "fine_grained_distinction": 2,
+    "missing_evidence_control": 1
+  },
+  "candidate_sources": [
+    "cross_001",
+    "cross_003",
+    "routing_006",
+    "retrieval_004",
+    "architecture_003",
+    "cost_005",
+    "evaluation_strategy_003",
+    "golden_004",
+    "context_004",
+    "validation_005",
+    "reliability_002",
+    "embedding_004"
+  ]
+}

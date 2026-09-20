@@ -1,0 +1,1059 @@
+{
+  "experiment": "g3c_candidate_mining",
+  "version": "0.1",
+  "api_calls_used": 0,
+  "purpose": "Identify existing benchmark cases that are plausible candidates for a retrieval-dependent G3C diagnostic set.",
+  "selection_rules": {
+    "prefer_multi_document": true,
+    "prefer_evidence_set_change": true,
+    "prefer_expected_rank_change": true,
+    "manual_review_required": true,
+    "no_llm_generation_during_mining": true
+  },
+  "summary": {
+    "dataset_size": 75,
+    "candidate_count": 23,
+    "signal_counts": {
+      "MULTI_DOCUMENT": 13,
+      "EXPECTED_RANK_CHANGE": 18,
+      "FIRST_RELEVANT_RANK_CHANGE": 10
+    }
+  },
+  "candidates": [
+    {
+      "case_id": "cross_003",
+      "question": "What does a successful LLM call fail to guarantee, and what system components are responsible for checking the result?",
+      "category": "cross_document",
+      "difficulty": "hard",
+      "expected_documents": [
+        "architecture/system-architecture.md",
+        "policies/validation-policy.md"
+      ],
+      "dense_documents": [
+        "policies/structured-output-policy.md",
+        "operations/reliability-policy.md",
+        "policies/validation-policy.md",
+        "policies/retry-policy.md",
+        "architecture/system-architecture.md"
+      ],
+      "crossencoder_documents": [
+        "policies/validation-policy.md",
+        "policies/structured-output-policy.md",
+        "operations/reliability-policy.md",
+        "architecture/system-architecture.md",
+        "policies/retry-policy.md"
+      ],
+      "dense_expected_ranks": [
+        3,
+        5
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        4
+      ],
+      "signals": [
+        "MULTI_DOCUMENT",
+        "EXPECTED_RANK_CHANGE",
+        "FIRST_RELEVANT_RANK_CHANGE"
+      ],
+      "score": 11,
+      "g3c_review_required": true,
+      "review_fields": {
+        "evidence_dependency": null,
+        "single_document_sufficient": null,
+        "distractor_is_plausible": null,
+        "answer_inferable_without_retrieval": null,
+        "critical_relationship": null,
+        "why_dense_and_ce_should_differ": null
+      }
+    },
+    {
+      "case_id": "evaluation_strategy_003",
+      "question": "Why can a system with strong recall still require investigation before it is called better?",
+      "category": "cross_document",
+      "difficulty": "hard",
+      "expected_documents": [
+        "evaluation/evaluation-strategy.md",
+        "evaluation/retrieval-metrics.md"
+      ],
+      "dense_documents": [
+        "policies/retry-policy.md",
+        "engineering/context-management.md",
+        "evaluation/retrieval-metrics.md",
+        "operations/reliability-policy.md",
+        "engineering/retrieval-guidelines.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/retrieval-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "policies/retry-policy.md",
+        "engineering/context-management.md",
+        "operations/reliability-policy.md"
+      ],
+      "dense_expected_ranks": [
+        3
+      ],
+      "crossencoder_expected_ranks": [
+        2
+      ],
+      "signals": [
+        "MULTI_DOCUMENT",
+        "EXPECTED_RANK_CHANGE",
+        "FIRST_RELEVANT_RANK_CHANGE"
+      ],
+      "score": 11,
+      "g3c_review_required": true,
+      "review_fields": {
+        "evidence_dependency": null,
+        "single_document_sufficient": null,
+        "distractor_is_plausible": null,
+        "answer_inferable_without_retrieval": null,
+        "critical_relationship": null,
+        "why_dense_and_ce_should_differ": null
+      }
+    },
+    {
+      "case_id": "routing_006",
+      "question": "How should a proposed model change be evaluated and compared fairly?",
+      "category": "cross_document",
+      "difficulty": "hard",
+      "expected_documents": [
+        "architecture/model-routing.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "dense_documents": [
+        "architecture/model-routing.md",
+        "operations/deployment-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/cost-policy.md",
+        "operations/reliability-policy.md"
+      ],
+      "crossencoder_documents": [
+        "operations/deployment-policy.md",
+        "architecture/model-routing.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/cost-policy.md",
+        "operations/reliability-policy.md"
+      ],
+      "dense_expected_ranks": [
+        1,
+        3
+      ],
+      "crossencoder_expected_ranks": [
+        2,
+        3
+      ],
+      "signals": [
+        "MULTI_DOCUMENT",
+        "EXPECTED_RANK_CHANGE",
+        "FIRST_RELEVANT_RANK_CHANGE"
+      ],
+      "score": 11,
+      "g3c_review_required": true,
+      "review_fields": {
+        "evidence_dependency": null,
+        "single_document_sufficient": null,
+        "distractor_is_plausible": null,
+        "answer_inferable_without_retrieval": null,
+        "critical_relationship": null,
+        "why_dense_and_ce_should_differ": null
+      }
+    },
+    {
+      "case_id": "architecture_003",
+      "question": "After retrieval, how is evidence used by the generation layer and what risk must be managed?",
+      "category": "cross_document",
+      "difficulty": "hard",
+      "expected_documents": [
+        "architecture/system-architecture.md",
+        "engineering/context-management.md"
+      ],
+      "dense_documents": [
+        "engineering/context-management.md",
+        "architecture/system-architecture.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md",
+        "evaluation/retrieval-metrics.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/context-management.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md",
+        "evaluation/retrieval-metrics.md",
+        "architecture/system-architecture.md"
+      ],
+      "dense_expected_ranks": [
+        1,
+        2,
+        3
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        2,
+        5
+      ],
+      "signals": [
+        "MULTI_DOCUMENT",
+        "EXPECTED_RANK_CHANGE"
+      ],
+      "score": 7,
+      "g3c_review_required": true,
+      "review_fields": {
+        "evidence_dependency": null,
+        "single_document_sufficient": null,
+        "distractor_is_plausible": null,
+        "answer_inferable_without_retrieval": null,
+        "critical_relationship": null,
+        "why_dense_and_ce_should_differ": null
+      }
+    },
+    {
+      "case_id": "cross_001",
+      "question": "If changing the model can affect latency and cost, what should be used to determine whether the change is actually better?",
+      "category": "cross_document",
+      "difficulty": "hard",
+      "expected_documents": [
+        "architecture/model-routing.md",
+        "operations/cost-policy.md",
+        "operations/latency-policy.md"
+      ],
+      "dense_documents": [
+        "architecture/model-routing.md",
+        "operations/latency-policy.md",
+        "operations/cost-policy.md",
+        "operations/reliability-policy.md",
+        "operations/deployment-policy.md"
+      ],
+      "crossencoder_documents": [
+        "architecture/model-routing.md",
+        "operations/deployment-policy.md",
+        "operations/cost-policy.md",
+        "operations/reliability-policy.md",
+        "operations/latency-policy.md"
+      ],
+      "dense_expected_ranks": [
+        1,
+        2,
+        3
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        3,
+        5
+      ],
+      "signals": [
+        "MULTI_DOCUMENT",
+        "EXPECTED_RANK_CHANGE"
+      ],
+      "score": 7,
+      "g3c_review_required": true,
+      "review_fields": {
+        "evidence_dependency": null,
+        "single_document_sufficient": null,
+        "distractor_is_plausible": null,
+        "answer_inferable_without_retrieval": null,
+        "critical_relationship": null,
+        "why_dense_and_ce_should_differ": null
+      }
+    },
+    {
+      "case_id": "cross_002",
+      "question": "How does the retrieval layer fit into the overall EvalForge architecture, and how should retrieval quality be assessed?",
+      "category": "cross_document",
+      "difficulty": "hard",
+      "expected_documents": [
+        "architecture/system-architecture.md",
+        "engineering/retrieval-guidelines.md"
+      ],
+      "dense_documents": [
+        "architecture/system-architecture.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/retrieval-guidelines.md",
+        "evaluation/evaluation-strategy.md",
+        "engineering/embedding-guidelines.md"
+      ],
+      "crossencoder_documents": [
+        "architecture/system-architecture.md",
+        "engineering/retrieval-guidelines.md",
+        "evaluation/evaluation-strategy.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/embedding-guidelines.md"
+      ],
+      "dense_expected_ranks": [
+        1,
+        3
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        2
+      ],
+      "signals": [
+        "MULTI_DOCUMENT",
+        "EXPECTED_RANK_CHANGE"
+      ],
+      "score": 7,
+      "g3c_review_required": true,
+      "review_fields": {
+        "evidence_dependency": null,
+        "single_document_sufficient": null,
+        "distractor_is_plausible": null,
+        "answer_inferable_without_retrieval": null,
+        "critical_relationship": null,
+        "why_dense_and_ce_should_differ": null
+      }
+    },
+    {
+      "case_id": "deployment_004",
+      "question": "When can automated evaluation safely gate deployment, and what must a run retain for follow-up?",
+      "category": "cross_document",
+      "difficulty": "hard",
+      "expected_documents": [
+        "operations/deployment-policy.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "dense_documents": [
+        "operations/deployment-policy.md",
+        "operations/reliability-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "architecture/system-architecture.md",
+        "policies/structured-output-policy.md"
+      ],
+      "crossencoder_documents": [
+        "operations/deployment-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/reliability-policy.md",
+        "architecture/system-architecture.md",
+        "policies/structured-output-policy.md"
+      ],
+      "dense_expected_ranks": [
+        1,
+        3
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        2
+      ],
+      "signals": [
+        "MULTI_DOCUMENT",
+        "EXPECTED_RANK_CHANGE"
+      ],
+      "score": 7,
+      "g3c_review_required": true,
+      "review_fields": {
+        "evidence_dependency": null,
+        "single_document_sufficient": null,
+        "distractor_is_plausible": null,
+        "answer_inferable_without_retrieval": null,
+        "critical_relationship": null,
+        "why_dense_and_ce_should_differ": null
+      }
+    },
+    {
+      "case_id": "embedding_004",
+      "question": "How should an embedding-model change be evaluated so its effect is attributable?",
+      "category": "cross_document",
+      "difficulty": "hard",
+      "expected_documents": [
+        "engineering/embedding-guidelines.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "dense_documents": [
+        "engineering/embedding-guidelines.md",
+        "architecture/model-routing.md",
+        "engineering/context-management.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/reliability-policy.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/embedding-guidelines.md",
+        "architecture/model-routing.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/reliability-policy.md",
+        "engineering/context-management.md"
+      ],
+      "dense_expected_ranks": [
+        1,
+        4
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        3
+      ],
+      "signals": [
+        "MULTI_DOCUMENT",
+        "EXPECTED_RANK_CHANGE"
+      ],
+      "score": 7,
+      "g3c_review_required": true,
+      "review_fields": {
+        "evidence_dependency": null,
+        "single_document_sufficient": null,
+        "distractor_is_plausible": null,
+        "answer_inferable_without_retrieval": null,
+        "critical_relationship": null,
+        "why_dense_and_ce_should_differ": null
+      }
+    },
+    {
+      "case_id": "cost_001",
+      "question": "Which token measurements does EvalForge track for LLM requests?",
+      "category": "cost",
+      "difficulty": "easy",
+      "expected_documents": [
+        "operations/cost-policy.md"
+      ],
+      "dense_documents": [
+        "architecture/system-architecture.md",
+        "operations/cost-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "architecture/model-routing.md",
+        "operations/reliability-policy.md"
+      ],
+      "crossencoder_documents": [
+        "operations/cost-policy.md",
+        "architecture/model-routing.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "dense_expected_ranks": [
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "signals": [
+        "EXPECTED_RANK_CHANGE",
+        "FIRST_RELEVANT_RANK_CHANGE"
+      ],
+      "score": 6,
+      "g3c_review_required": true,
+      "review_fields": {
+        "evidence_dependency": null,
+        "single_document_sufficient": null,
+        "distractor_is_plausible": null,
+        "answer_inferable_without_retrieval": null,
+        "critical_relationship": null,
+        "why_dense_and_ce_should_differ": null
+      }
+    },
+    {
+      "case_id": "cost_002",
+      "question": "Why can't a cheaper model automatically be considered an improvement?",
+      "category": "cost",
+      "difficulty": "medium",
+      "expected_documents": [
+        "operations/cost-policy.md"
+      ],
+      "dense_documents": [
+        "architecture/model-routing.md",
+        "operations/cost-policy.md",
+        "operations/reliability-policy.md",
+        "engineering/context-management.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "crossencoder_documents": [
+        "operations/cost-policy.md",
+        "engineering/context-management.md",
+        "operations/reliability-policy.md",
+        "architecture/model-routing.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "dense_expected_ranks": [
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "signals": [
+        "EXPECTED_RANK_CHANGE",
+        "FIRST_RELEVANT_RANK_CHANGE"
+      ],
+      "score": 6,
+      "g3c_review_required": true,
+      "review_fields": {
+        "evidence_dependency": null,
+        "single_document_sufficient": null,
+        "distractor_is_plausible": null,
+        "answer_inferable_without_retrieval": null,
+        "critical_relationship": null,
+        "why_dense_and_ce_should_differ": null
+      }
+    },
+    {
+      "case_id": "latency_001",
+      "question": "What is the performance target for a normal EvalForge query?",
+      "category": "latency",
+      "difficulty": "easy",
+      "expected_documents": [
+        "operations/latency-policy.md"
+      ],
+      "dense_documents": [
+        "evaluation/evaluation-strategy.md",
+        "operations/latency-policy.md",
+        "architecture/system-architecture.md",
+        "evaluation/retrieval-metrics.md",
+        "architecture/model-routing.md"
+      ],
+      "crossencoder_documents": [
+        "operations/latency-policy.md",
+        "architecture/system-architecture.md",
+        "architecture/model-routing.md",
+        "evaluation/evaluation-strategy.md",
+        "evaluation/retrieval-metrics.md"
+      ],
+      "dense_expected_ranks": [
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "signals": [
+        "EXPECTED_RANK_CHANGE",
+        "FIRST_RELEVANT_RANK_CHANGE"
+      ],
+      "score": 6,
+      "g3c_review_required": true,
+      "review_fields": {
+        "evidence_dependency": null,
+        "single_document_sufficient": null,
+        "distractor_is_plausible": null,
+        "answer_inferable_without_retrieval": null,
+        "critical_relationship": null,
+        "why_dense_and_ce_should_differ": null
+      }
+    },
+    {
+      "case_id": "reliability_002",
+      "question": "What must a successful request not conceal?",
+      "category": "reliability",
+      "difficulty": "easy",
+      "expected_documents": [
+        "operations/reliability-policy.md"
+      ],
+      "dense_documents": [
+        "policies/structured-output-policy.md",
+        "operations/reliability-policy.md",
+        "policies/validation-policy.md",
+        "policies/retry-policy.md",
+        "architecture/model-routing.md"
+      ],
+      "crossencoder_documents": [
+        "operations/reliability-policy.md",
+        "policies/validation-policy.md",
+        "architecture/model-routing.md",
+        "policies/retry-policy.md",
+        "policies/structured-output-policy.md"
+      ],
+      "dense_expected_ranks": [
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "signals": [
+        "EXPECTED_RANK_CHANGE",
+        "FIRST_RELEVANT_RANK_CHANGE"
+      ],
+      "score": 6,
+      "g3c_review_required": true,
+      "review_fields": {
+        "evidence_dependency": null,
+        "single_document_sufficient": null,
+        "distractor_is_plausible": null,
+        "answer_inferable_without_retrieval": null,
+        "critical_relationship": null,
+        "why_dense_and_ce_should_differ": null
+      }
+    },
+    {
+      "case_id": "validation_001",
+      "question": "What happens when an LLM produces malformed structured output?",
+      "category": "validation",
+      "difficulty": "medium",
+      "expected_documents": [
+        "policies/validation-policy.md"
+      ],
+      "dense_documents": [
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "architecture/system-architecture.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/reliability-policy.md"
+      ],
+      "crossencoder_documents": [
+        "policies/validation-policy.md",
+        "policies/structured-output-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md"
+      ],
+      "dense_expected_ranks": [
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "signals": [
+        "EXPECTED_RANK_CHANGE",
+        "FIRST_RELEVANT_RANK_CHANGE"
+      ],
+      "score": 6,
+      "g3c_review_required": true,
+      "review_fields": {
+        "evidence_dependency": null,
+        "single_document_sufficient": null,
+        "distractor_is_plausible": null,
+        "answer_inferable_without_retrieval": null,
+        "critical_relationship": null,
+        "why_dense_and_ce_should_differ": null
+      }
+    },
+    {
+      "case_id": "validation_003",
+      "question": "Which fields are part of EvalForge's structured response schema?",
+      "category": "validation",
+      "difficulty": "medium",
+      "expected_documents": [
+        "policies/validation-policy.md"
+      ],
+      "dense_documents": [
+        "architecture/system-architecture.md",
+        "policies/structured-output-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "policies/validation-policy.md",
+        "architecture/model-routing.md"
+      ],
+      "crossencoder_documents": [
+        "architecture/system-architecture.md",
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "architecture/model-routing.md"
+      ],
+      "dense_expected_ranks": [
+        4
+      ],
+      "crossencoder_expected_ranks": [
+        3
+      ],
+      "signals": [
+        "EXPECTED_RANK_CHANGE",
+        "FIRST_RELEVANT_RANK_CHANGE"
+      ],
+      "score": 6,
+      "g3c_review_required": true,
+      "review_fields": {
+        "evidence_dependency": null,
+        "single_document_sufficient": null,
+        "distractor_is_plausible": null,
+        "answer_inferable_without_retrieval": null,
+        "critical_relationship": null,
+        "why_dense_and_ce_should_differ": null
+      }
+    },
+    {
+      "case_id": "validation_005",
+      "question": "Does a successful LLM call prove its output is valid?",
+      "category": "validation",
+      "difficulty": "medium",
+      "expected_documents": [
+        "policies/validation-policy.md"
+      ],
+      "dense_documents": [
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md"
+      ],
+      "crossencoder_documents": [
+        "policies/validation-policy.md",
+        "policies/structured-output-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/reliability-policy.md",
+        "architecture/system-architecture.md"
+      ],
+      "dense_expected_ranks": [
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "signals": [
+        "EXPECTED_RANK_CHANGE",
+        "FIRST_RELEVANT_RANK_CHANGE"
+      ],
+      "score": 6,
+      "g3c_review_required": true,
+      "review_fields": {
+        "evidence_dependency": null,
+        "single_document_sufficient": null,
+        "distractor_is_plausible": null,
+        "answer_inferable_without_retrieval": null,
+        "critical_relationship": null,
+        "why_dense_and_ce_should_differ": null
+      }
+    },
+    {
+      "case_id": "context_004",
+      "question": "When increasing top-k, what context trade-offs should be evaluated beyond evidence coverage?",
+      "category": "cross_document",
+      "difficulty": "hard",
+      "expected_documents": [
+        "engineering/context-management.md",
+        "engineering/retrieval-guidelines.md"
+      ],
+      "dense_documents": [
+        "engineering/context-management.md",
+        "engineering/retrieval-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "evaluation/evaluation-strategy.md",
+        "evaluation/golden-datasets.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/retrieval-guidelines.md",
+        "engineering/context-management.md",
+        "evaluation/retrieval-metrics.md",
+        "evaluation/evaluation-strategy.md",
+        "evaluation/golden-datasets.md"
+      ],
+      "dense_expected_ranks": [
+        1,
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        2
+      ],
+      "signals": [
+        "MULTI_DOCUMENT"
+      ],
+      "score": 5,
+      "g3c_review_required": true,
+      "review_fields": {
+        "evidence_dependency": null,
+        "single_document_sufficient": null,
+        "distractor_is_plausible": null,
+        "answer_inferable_without_retrieval": null,
+        "critical_relationship": null,
+        "why_dense_and_ce_should_differ": null
+      }
+    },
+    {
+      "case_id": "cost_005",
+      "question": "What must be measured before routing more work to a cheaper model?",
+      "category": "cross_document",
+      "difficulty": "hard",
+      "expected_documents": [
+        "operations/cost-policy.md",
+        "architecture/model-routing.md",
+        "operations/latency-policy.md"
+      ],
+      "dense_documents": [
+        "architecture/model-routing.md",
+        "operations/cost-policy.md",
+        "operations/deployment-policy.md",
+        "operations/reliability-policy.md",
+        "operations/latency-policy.md"
+      ],
+      "crossencoder_documents": [
+        "architecture/model-routing.md",
+        "operations/cost-policy.md",
+        "operations/reliability-policy.md",
+        "operations/deployment-policy.md",
+        "operations/latency-policy.md"
+      ],
+      "dense_expected_ranks": [
+        1,
+        2,
+        5
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        2,
+        5
+      ],
+      "signals": [
+        "MULTI_DOCUMENT"
+      ],
+      "score": 5,
+      "g3c_review_required": true,
+      "review_fields": {
+        "evidence_dependency": null,
+        "single_document_sufficient": null,
+        "distractor_is_plausible": null,
+        "answer_inferable_without_retrieval": null,
+        "critical_relationship": null,
+        "why_dense_and_ce_should_differ": null
+      }
+    },
+    {
+      "case_id": "reliability_004",
+      "question": "Why must a retry-based reliability improvement be evaluated with more than success rate?",
+      "category": "cross_document",
+      "difficulty": "hard",
+      "expected_documents": [
+        "operations/reliability-policy.md",
+        "policies/retry-policy.md"
+      ],
+      "dense_documents": [
+        "operations/reliability-policy.md",
+        "policies/retry-policy.md",
+        "operations/deployment-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "architecture/model-routing.md"
+      ],
+      "crossencoder_documents": [
+        "operations/reliability-policy.md",
+        "policies/retry-policy.md",
+        "operations/deployment-policy.md",
+        "architecture/model-routing.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "dense_expected_ranks": [
+        1,
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        2
+      ],
+      "signals": [
+        "MULTI_DOCUMENT"
+      ],
+      "score": 5,
+      "g3c_review_required": true,
+      "review_fields": {
+        "evidence_dependency": null,
+        "single_document_sufficient": null,
+        "distractor_is_plausible": null,
+        "answer_inferable_without_retrieval": null,
+        "critical_relationship": null,
+        "why_dense_and_ce_should_differ": null
+      }
+    },
+    {
+      "case_id": "retrieval_004",
+      "question": "Why are documents split before semantic retrieval, and what must each resulting unit retain?",
+      "category": "cross_document",
+      "difficulty": "hard",
+      "expected_documents": [
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md"
+      ],
+      "dense_documents": [
+        "engineering/chunking-guidelines.md",
+        "engineering/retrieval-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/embedding-guidelines.md",
+        "engineering/context-management.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md",
+        "engineering/embedding-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/context-management.md"
+      ],
+      "dense_expected_ranks": [
+        1,
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        2
+      ],
+      "signals": [
+        "MULTI_DOCUMENT"
+      ],
+      "score": 5,
+      "g3c_review_required": true,
+      "review_fields": {
+        "evidence_dependency": null,
+        "single_document_sufficient": null,
+        "distractor_is_plausible": null,
+        "answer_inferable_without_retrieval": null,
+        "critical_relationship": null,
+        "why_dense_and_ce_should_differ": null
+      }
+    },
+    {
+      "case_id": "structured_004",
+      "question": "How should an invalid structured response be handled without losing diagnostic evidence?",
+      "category": "cross_document",
+      "difficulty": "hard",
+      "expected_documents": [
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md"
+      ],
+      "dense_documents": [
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "operations/reliability-policy.md",
+        "architecture/system-architecture.md",
+        "architecture/system-architecture.md"
+      ],
+      "crossencoder_documents": [
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "operations/reliability-policy.md",
+        "architecture/system-architecture.md",
+        "architecture/system-architecture.md"
+      ],
+      "dense_expected_ranks": [
+        1,
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        2
+      ],
+      "signals": [
+        "MULTI_DOCUMENT"
+      ],
+      "score": 5,
+      "g3c_review_required": true,
+      "review_fields": {
+        "evidence_dependency": null,
+        "single_document_sufficient": null,
+        "distractor_is_plausible": null,
+        "answer_inferable_without_retrieval": null,
+        "critical_relationship": null,
+        "why_dense_and_ce_should_differ": null
+      }
+    },
+    {
+      "case_id": "architecture_001",
+      "question": "Which layer exposes EvalForge application endpoints?",
+      "category": "architecture",
+      "difficulty": "easy",
+      "expected_documents": [
+        "architecture/system-architecture.md"
+      ],
+      "dense_documents": [
+        "architecture/system-architecture.md",
+        "evaluation/evaluation-strategy.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md",
+        "architecture/model-routing.md"
+      ],
+      "crossencoder_documents": [
+        "architecture/system-architecture.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/reliability-policy.md",
+        "architecture/system-architecture.md",
+        "architecture/model-routing.md"
+      ],
+      "dense_expected_ranks": [
+        1,
+        3
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        4
+      ],
+      "signals": [
+        "EXPECTED_RANK_CHANGE"
+      ],
+      "score": 2,
+      "g3c_review_required": true,
+      "review_fields": {
+        "evidence_dependency": null,
+        "single_document_sufficient": null,
+        "distractor_is_plausible": null,
+        "answer_inferable_without_retrieval": null,
+        "critical_relationship": null,
+        "why_dense_and_ce_should_differ": null
+      }
+    },
+    {
+      "case_id": "architecture_002",
+      "question": "What component controls execution flow through retrieval, tools, generation, and validation?",
+      "category": "architecture",
+      "difficulty": "medium",
+      "expected_documents": [
+        "architecture/system-architecture.md"
+      ],
+      "dense_documents": [
+        "architecture/system-architecture.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "policies/structured-output-policy.md"
+      ],
+      "crossencoder_documents": [
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md",
+        "architecture/system-architecture.md",
+        "policies/structured-output-policy.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "dense_expected_ranks": [
+        1,
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        3
+      ],
+      "signals": [
+        "EXPECTED_RANK_CHANGE"
+      ],
+      "score": 2,
+      "g3c_review_required": true,
+      "review_fields": {
+        "evidence_dependency": null,
+        "single_document_sufficient": null,
+        "distractor_is_plausible": null,
+        "answer_inferable_without_retrieval": null,
+        "critical_relationship": null,
+        "why_dense_and_ce_should_differ": null
+      }
+    },
+    {
+      "case_id": "architecture_005",
+      "question": "Which layer detects regressions between application versions?",
+      "category": "architecture",
+      "difficulty": "easy",
+      "expected_documents": [
+        "architecture/system-architecture.md"
+      ],
+      "dense_documents": [
+        "architecture/system-architecture.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/deployment-policy.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md"
+      ],
+      "crossencoder_documents": [
+        "architecture/system-architecture.md",
+        "evaluation/evaluation-strategy.md",
+        "architecture/system-architecture.md",
+        "operations/deployment-policy.md",
+        "operations/reliability-policy.md"
+      ],
+      "dense_expected_ranks": [
+        1,
+        4
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        3
+      ],
+      "signals": [
+        "EXPECTED_RANK_CHANGE"
+      ],
+      "score": 2,
+      "g3c_review_required": true,
+      "review_fields": {
+        "evidence_dependency": null,
+        "single_document_sufficient": null,
+        "distractor_is_plausible": null,
+        "answer_inferable_without_retrieval": null,
+        "critical_relationship": null,
+        "why_dense_and_ce_should_differ": null
+      }
+    }
+  ]
+}

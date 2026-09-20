@@ -1,0 +1,59 @@
+{
+  "experiment": "g1_batch_smoke",
+  "batch_size": 5,
+  "case_ids": [
+    "routing_001",
+    "routing_002",
+    "routing_003",
+    "retrieval_001",
+    "retrieval_002"
+  ],
+  "dense": {
+    "answers": [
+      {
+        "case_id": "routing_001",
+        "answer": "EvalForge decides model selection by considering task complexity, latency, reliability, and cost."
+      },
+      {
+        "case_id": "routing_002",
+        "answer": "A simple request does not necessarily require the most capable model."
+      },
+      {
+        "case_id": "routing_003",
+        "answer": "Changing the model can affect answer quality, latency, token usage, and cost."
+      },
+      {
+        "case_id": "retrieval_001",
+        "answer": "The baseline retrieval implementation uses semantic similarity search."
+      },
+      {
+        "case_id": "retrieval_002",
+        "answer": "Increasing top-k can improve recall when relevant information is distributed across multiple chunks, but excessive context can introduce irrelevant information and increase generation cost."
+      }
+    ]
+  },
+  "dense_crossencoder": {
+    "answers": [
+      {
+        "case_id": "routing_001",
+        "answer": "EvalForge decides which language model should handle a request by considering task complexity, latency, reliability, and cost."
+      },
+      {
+        "case_id": "routing_002",
+        "answer": "A simple request does not necessarily require the most capable model."
+      },
+      {
+        "case_id": "routing_003",
+        "answer": "Changing the model can affect answer quality, latency, token usage, and cost."
+      },
+      {
+        "case_id": "retrieval_001",
+        "answer": "The baseline retrieval implementation uses semantic similarity search."
+      },
+      {
+        "case_id": "retrieval_002",
+        "answer": "Increasing top-k can improve recall when relevant information is distributed across multiple chunks, but excessive context can introduce irrelevant information and increase generation cost."
+      }
+    ]
+  }
+}

@@ -1,0 +1,5695 @@
+{
+  "experiment": "dense_vs_crossencoder_forensic",
+  "dataset_size": 75,
+  "candidate_k": 5,
+  "top_k": 5,
+  "same_candidate_pool": true,
+  "classification_counts": {
+    "NEUTRAL_REORDER": 52,
+    "RANKING_IMPROVEMENT": 9,
+    "UNCHANGED": 13,
+    "RANKING_REGRESSION": 1
+  },
+  "failure_transitions": {
+    "PASS -> PASS": 64,
+    "RANKING_FAILURE -> PASS": 6,
+    "MULTI_EVIDENCE_RANKING_FAILURE -> PASS": 1,
+    "PASS -> MULTI_EVIDENCE_RANKING_FAILURE": 1,
+    "PARTIAL_RECALL -> PARTIAL_RECALL": 1,
+    "RETRIEVAL_FAILURE -> RETRIEVAL_FAILURE": 1,
+    "RANKING_FAILURE -> RANKING_FAILURE": 1
+  },
+  "aggregate_metrics": {
+    "dense": {
+      "hit_at_1": 0.8666666666666667,
+      "hit_at_3": 0.9733333333333334,
+      "hit_at_5": 0.9866666666666667,
+      "recall_at_1": 0.788888888888889,
+      "recall_at_3": 0.9488888888888888,
+      "recall_at_5": 0.98,
+      "mrr": 0.918888888888889
+    },
+    "crossencoder": {
+      "hit_at_1": 0.9466666666666667,
+      "hit_at_3": 0.9866666666666667,
+      "hit_at_5": 0.9866666666666667,
+      "recall_at_1": 0.8688888888888889,
+      "recall_at_3": 0.9644444444444443,
+      "recall_at_5": 0.98,
+      "mrr": 0.9644444444444443
+    },
+    "delta": {
+      "hit_at_1": 0.07999999999999996,
+      "hit_at_3": 0.013333333333333308,
+      "hit_at_5": 0.0,
+      "recall_at_1": 0.07999999999999996,
+      "recall_at_3": 0.015555555555555545,
+      "recall_at_5": 0.0,
+      "mrr": 0.04555555555555535
+    }
+  },
+  "mean_dense_first_stage_latency_ms": 23.90163866664807,
+  "mean_crossencoder_latency_ms": 112.25936666663377,
+  "cases": [
+    {
+      "case_id": "routing_001",
+      "question": "How does EvalForge decide which language model should handle a request?",
+      "expected_documents": [
+        "architecture/model-routing.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "architecture/model-routing.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/cost-policy.md"
+      ],
+      "dense": {
+        "documents": [
+          "architecture/model-routing.md",
+          "architecture/system-architecture.md",
+          "operations/reliability-policy.md",
+          "evaluation/evaluation-strategy.md",
+          "operations/cost-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "architecture/model-routing.md",
+          "operations/cost-policy.md",
+          "operations/reliability-policy.md",
+          "architecture/system-architecture.md",
+          "evaluation/evaluation-strategy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "architecture/model-routing.md",
+            "score": 5.239502429962158
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": 0.14294487237930298
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": 1.940565586090088
+          },
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": -2.847510814666748
+          },
+          {
+            "document_id": "operations/cost-policy.md",
+            "score": 2.367936134338379
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "routing_002",
+      "question": "Why wouldn't every request be sent to the most capable model?",
+      "expected_documents": [
+        "architecture/model-routing.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "architecture/model-routing.md",
+        "operations/reliability-policy.md",
+        "architecture/system-architecture.md",
+        "policies/structured-output-policy.md",
+        "operations/cost-policy.md"
+      ],
+      "dense": {
+        "documents": [
+          "architecture/model-routing.md",
+          "operations/reliability-policy.md",
+          "architecture/system-architecture.md",
+          "policies/structured-output-policy.md",
+          "operations/cost-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "architecture/model-routing.md",
+          "operations/reliability-policy.md",
+          "operations/cost-policy.md",
+          "architecture/system-architecture.md",
+          "policies/structured-output-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "architecture/model-routing.md",
+            "score": 4.691490173339844
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -8.235130310058594
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": -11.156676292419434
+          },
+          {
+            "document_id": "policies/structured-output-policy.md",
+            "score": -11.37588882446289
+          },
+          {
+            "document_id": "operations/cost-policy.md",
+            "score": -9.269787788391113
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "routing_003",
+      "question": "What can change when the model used for a request is changed?",
+      "expected_documents": [
+        "architecture/model-routing.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "architecture/model-routing.md",
+        "operations/reliability-policy.md",
+        "operations/deployment-policy.md",
+        "policies/structured-output-policy.md",
+        "operations/cost-policy.md"
+      ],
+      "dense": {
+        "documents": [
+          "architecture/model-routing.md",
+          "operations/reliability-policy.md",
+          "operations/deployment-policy.md",
+          "policies/structured-output-policy.md",
+          "operations/cost-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "architecture/model-routing.md",
+          "operations/deployment-policy.md",
+          "operations/reliability-policy.md",
+          "operations/cost-policy.md",
+          "policies/structured-output-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "architecture/model-routing.md",
+            "score": 5.283230781555176
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -3.955082893371582
+          },
+          {
+            "document_id": "operations/deployment-policy.md",
+            "score": -2.0324010848999023
+          },
+          {
+            "document_id": "policies/structured-output-policy.md",
+            "score": -10.258440971374512
+          },
+          {
+            "document_id": "operations/cost-policy.md",
+            "score": -3.971801519393921
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "retrieval_001",
+      "question": "What retrieval approach does the baseline implementation use?",
+      "expected_documents": [
+        "engineering/retrieval-guidelines.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "engineering/retrieval-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "operations/latency-policy.md",
+        "engineering/chunking-guidelines.md",
+        "architecture/system-architecture.md"
+      ],
+      "dense": {
+        "documents": [
+          "engineering/retrieval-guidelines.md",
+          "evaluation/retrieval-metrics.md",
+          "operations/latency-policy.md",
+          "engineering/chunking-guidelines.md",
+          "architecture/system-architecture.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "engineering/retrieval-guidelines.md",
+          "operations/latency-policy.md",
+          "evaluation/retrieval-metrics.md",
+          "architecture/system-architecture.md",
+          "engineering/chunking-guidelines.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "engineering/retrieval-guidelines.md",
+            "score": 7.599943161010742
+          },
+          {
+            "document_id": "evaluation/retrieval-metrics.md",
+            "score": -3.833779811859131
+          },
+          {
+            "document_id": "operations/latency-policy.md",
+            "score": -3.193363666534424
+          },
+          {
+            "document_id": "engineering/chunking-guidelines.md",
+            "score": -6.425321578979492
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": -4.034735679626465
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "retrieval_002",
+      "question": "What trade-off comes from increasing top-k?",
+      "expected_documents": [
+        "engineering/retrieval-guidelines.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "engineering/retrieval-guidelines.md",
+        "operations/latency-policy.md",
+        "evaluation/retrieval-metrics.md",
+        "operations/cost-policy.md",
+        "engineering/chunking-guidelines.md"
+      ],
+      "dense": {
+        "documents": [
+          "engineering/retrieval-guidelines.md",
+          "operations/latency-policy.md",
+          "evaluation/retrieval-metrics.md",
+          "operations/cost-policy.md",
+          "engineering/chunking-guidelines.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "engineering/retrieval-guidelines.md",
+          "evaluation/retrieval-metrics.md",
+          "operations/latency-policy.md",
+          "engineering/chunking-guidelines.md",
+          "operations/cost-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "engineering/retrieval-guidelines.md",
+            "score": -1.809516191482544
+          },
+          {
+            "document_id": "operations/latency-policy.md",
+            "score": -11.413595199584961
+          },
+          {
+            "document_id": "evaluation/retrieval-metrics.md",
+            "score": -11.199897766113281
+          },
+          {
+            "document_id": "operations/cost-policy.md",
+            "score": -11.505963325500488
+          },
+          {
+            "document_id": "engineering/chunking-guidelines.md",
+            "score": -11.478304862976074
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "retrieval_003",
+      "question": "When should retrieval quality be measured separately from the final answer?",
+      "expected_documents": [
+        "engineering/retrieval-guidelines.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "engineering/retrieval-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "operations/latency-policy.md",
+        "engineering/chunking-guidelines.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "dense": {
+        "documents": [
+          "engineering/retrieval-guidelines.md",
+          "evaluation/retrieval-metrics.md",
+          "operations/latency-policy.md",
+          "engineering/chunking-guidelines.md",
+          "evaluation/evaluation-strategy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "engineering/retrieval-guidelines.md",
+          "evaluation/evaluation-strategy.md",
+          "operations/latency-policy.md",
+          "evaluation/retrieval-metrics.md",
+          "engineering/chunking-guidelines.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "engineering/retrieval-guidelines.md",
+            "score": 4.413168907165527
+          },
+          {
+            "document_id": "evaluation/retrieval-metrics.md",
+            "score": -1.963226318359375
+          },
+          {
+            "document_id": "operations/latency-policy.md",
+            "score": 2.375576972961426
+          },
+          {
+            "document_id": "engineering/chunking-guidelines.md",
+            "score": -6.671022891998291
+          },
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": 3.282630681991577
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "latency_001",
+      "question": "What is the performance target for a normal EvalForge query?",
+      "expected_documents": [
+        "operations/latency-policy.md"
+      ],
+      "classification": "RANKING_IMPROVEMENT",
+      "candidate_pool": [
+        "evaluation/evaluation-strategy.md",
+        "operations/latency-policy.md",
+        "architecture/system-architecture.md",
+        "evaluation/retrieval-metrics.md",
+        "architecture/model-routing.md"
+      ],
+      "dense": {
+        "documents": [
+          "evaluation/evaluation-strategy.md",
+          "operations/latency-policy.md",
+          "architecture/system-architecture.md",
+          "evaluation/retrieval-metrics.md",
+          "architecture/model-routing.md"
+        ],
+        "failure_type": "RANKING_FAILURE",
+        "metrics": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 0.5
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "operations/latency-policy.md",
+          "architecture/system-architecture.md",
+          "architecture/model-routing.md",
+          "evaluation/evaluation-strategy.md",
+          "evaluation/retrieval-metrics.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": -4.155994415283203
+          },
+          {
+            "document_id": "operations/latency-policy.md",
+            "score": 7.196542739868164
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": -2.87666392326355
+          },
+          {
+            "document_id": "evaluation/retrieval-metrics.md",
+            "score": -4.198434352874756
+          },
+          {
+            "document_id": "architecture/model-routing.md",
+            "score": -3.8795065879821777
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "latency_002",
+      "question": "When is latency considered a regression under the baseline policy?",
+      "expected_documents": [
+        "operations/latency-policy.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "operations/latency-policy.md",
+        "operations/deployment-policy.md",
+        "operations/reliability-policy.md",
+        "architecture/model-routing.md",
+        "operations/cost-policy.md"
+      ],
+      "dense": {
+        "documents": [
+          "operations/latency-policy.md",
+          "operations/deployment-policy.md",
+          "operations/reliability-policy.md",
+          "architecture/model-routing.md",
+          "operations/cost-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "operations/latency-policy.md",
+          "operations/deployment-policy.md",
+          "operations/cost-policy.md",
+          "operations/reliability-policy.md",
+          "architecture/model-routing.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "operations/latency-policy.md",
+            "score": 6.329023361206055
+          },
+          {
+            "document_id": "operations/deployment-policy.md",
+            "score": 1.4512124061584473
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -4.650686740875244
+          },
+          {
+            "document_id": "architecture/model-routing.md",
+            "score": -10.410680770874023
+          },
+          {
+            "document_id": "operations/cost-policy.md",
+            "score": -3.559818744659424
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "cost_001",
+      "question": "Which token measurements does EvalForge track for LLM requests?",
+      "expected_documents": [
+        "operations/cost-policy.md"
+      ],
+      "classification": "RANKING_IMPROVEMENT",
+      "candidate_pool": [
+        "architecture/system-architecture.md",
+        "operations/cost-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "architecture/model-routing.md",
+        "operations/reliability-policy.md"
+      ],
+      "dense": {
+        "documents": [
+          "architecture/system-architecture.md",
+          "operations/cost-policy.md",
+          "evaluation/evaluation-strategy.md",
+          "architecture/model-routing.md",
+          "operations/reliability-policy.md"
+        ],
+        "failure_type": "RANKING_FAILURE",
+        "metrics": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 0.5
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "operations/cost-policy.md",
+          "architecture/model-routing.md",
+          "architecture/system-architecture.md",
+          "operations/reliability-policy.md",
+          "evaluation/evaluation-strategy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": 2.369718313217163
+          },
+          {
+            "document_id": "operations/cost-policy.md",
+            "score": 5.638472557067871
+          },
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": -0.8515086770057678
+          },
+          {
+            "document_id": "architecture/model-routing.md",
+            "score": 2.699187994003296
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": 0.2702673375606537
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "cost_002",
+      "question": "Why can't a cheaper model automatically be considered an improvement?",
+      "expected_documents": [
+        "operations/cost-policy.md"
+      ],
+      "classification": "RANKING_IMPROVEMENT",
+      "candidate_pool": [
+        "architecture/model-routing.md",
+        "operations/cost-policy.md",
+        "operations/reliability-policy.md",
+        "engineering/context-management.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "dense": {
+        "documents": [
+          "architecture/model-routing.md",
+          "operations/cost-policy.md",
+          "operations/reliability-policy.md",
+          "engineering/context-management.md",
+          "evaluation/evaluation-strategy.md"
+        ],
+        "failure_type": "RANKING_FAILURE",
+        "metrics": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 0.5
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "operations/cost-policy.md",
+          "engineering/context-management.md",
+          "operations/reliability-policy.md",
+          "architecture/model-routing.md",
+          "evaluation/evaluation-strategy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "architecture/model-routing.md",
+            "score": -8.760926246643066
+          },
+          {
+            "document_id": "operations/cost-policy.md",
+            "score": 1.4219248294830322
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -7.9639105796813965
+          },
+          {
+            "document_id": "engineering/context-management.md",
+            "score": -6.394892692565918
+          },
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": -11.097555160522461
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "validation_001",
+      "question": "What happens when an LLM produces malformed structured output?",
+      "expected_documents": [
+        "policies/validation-policy.md"
+      ],
+      "classification": "RANKING_IMPROVEMENT",
+      "candidate_pool": [
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "architecture/system-architecture.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/reliability-policy.md"
+      ],
+      "dense": {
+        "documents": [
+          "policies/structured-output-policy.md",
+          "policies/validation-policy.md",
+          "architecture/system-architecture.md",
+          "evaluation/evaluation-strategy.md",
+          "operations/reliability-policy.md"
+        ],
+        "failure_type": "RANKING_FAILURE",
+        "metrics": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 0.5
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "policies/validation-policy.md",
+          "policies/structured-output-policy.md",
+          "evaluation/evaluation-strategy.md",
+          "architecture/system-architecture.md",
+          "operations/reliability-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "policies/structured-output-policy.md",
+            "score": 1.8519668579101562
+          },
+          {
+            "document_id": "policies/validation-policy.md",
+            "score": 4.442480564117432
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": -5.043917655944824
+          },
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": -3.5644664764404297
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -10.858869552612305
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "validation_002",
+      "question": "What range is allowed for confidence values in generated responses?",
+      "expected_documents": [
+        "policies/validation-policy.md"
+      ],
+      "classification": "UNCHANGED",
+      "candidate_pool": [
+        "policies/validation-policy.md",
+        "policies/structured-output-policy.md",
+        "operations/latency-policy.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md"
+      ],
+      "dense": {
+        "documents": [
+          "policies/validation-policy.md",
+          "policies/structured-output-policy.md",
+          "operations/latency-policy.md",
+          "architecture/system-architecture.md",
+          "operations/reliability-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "policies/validation-policy.md",
+          "policies/structured-output-policy.md",
+          "operations/latency-policy.md",
+          "architecture/system-architecture.md",
+          "operations/reliability-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "policies/validation-policy.md",
+            "score": 4.451952934265137
+          },
+          {
+            "document_id": "policies/structured-output-policy.md",
+            "score": -5.176091194152832
+          },
+          {
+            "document_id": "operations/latency-policy.md",
+            "score": -5.559515476226807
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": -6.01924467086792
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -11.055551528930664
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "cross_001",
+      "question": "If changing the model can affect latency and cost, what should be used to determine whether the change is actually better?",
+      "expected_documents": [
+        "architecture/model-routing.md",
+        "operations/cost-policy.md",
+        "operations/latency-policy.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "architecture/model-routing.md",
+        "operations/latency-policy.md",
+        "operations/cost-policy.md",
+        "operations/reliability-policy.md",
+        "operations/deployment-policy.md"
+      ],
+      "dense": {
+        "documents": [
+          "architecture/model-routing.md",
+          "operations/latency-policy.md",
+          "operations/cost-policy.md",
+          "operations/reliability-policy.md",
+          "operations/deployment-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.3333333333333333,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "architecture/model-routing.md",
+          "operations/deployment-policy.md",
+          "operations/cost-policy.md",
+          "operations/reliability-policy.md",
+          "operations/latency-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.3333333333333333,
+          "recall_at_3": 0.6666666666666666,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "architecture/model-routing.md",
+            "score": 4.625396728515625
+          },
+          {
+            "document_id": "operations/latency-policy.md",
+            "score": -5.299704551696777
+          },
+          {
+            "document_id": "operations/cost-policy.md",
+            "score": -0.16625338792800903
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -2.440016269683838
+          },
+          {
+            "document_id": "operations/deployment-policy.md",
+            "score": 0.6009312868118286
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "cross_002",
+      "question": "How does the retrieval layer fit into the overall EvalForge architecture, and how should retrieval quality be assessed?",
+      "expected_documents": [
+        "architecture/system-architecture.md",
+        "engineering/retrieval-guidelines.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "architecture/system-architecture.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/retrieval-guidelines.md",
+        "evaluation/evaluation-strategy.md",
+        "engineering/embedding-guidelines.md"
+      ],
+      "dense": {
+        "documents": [
+          "architecture/system-architecture.md",
+          "evaluation/retrieval-metrics.md",
+          "engineering/retrieval-guidelines.md",
+          "evaluation/evaluation-strategy.md",
+          "engineering/embedding-guidelines.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.5,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "architecture/system-architecture.md",
+          "engineering/retrieval-guidelines.md",
+          "evaluation/evaluation-strategy.md",
+          "evaluation/retrieval-metrics.md",
+          "engineering/embedding-guidelines.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.5,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": 3.405527114868164
+          },
+          {
+            "document_id": "evaluation/retrieval-metrics.md",
+            "score": 0.5571572184562683
+          },
+          {
+            "document_id": "engineering/retrieval-guidelines.md",
+            "score": 0.807010293006897
+          },
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": 0.7657703161239624
+          },
+          {
+            "document_id": "engineering/embedding-guidelines.md",
+            "score": -3.7453317642211914
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "cross_003",
+      "question": "What does a successful LLM call fail to guarantee, and what system components are responsible for checking the result?",
+      "expected_documents": [
+        "architecture/system-architecture.md",
+        "policies/validation-policy.md"
+      ],
+      "classification": "RANKING_IMPROVEMENT",
+      "candidate_pool": [
+        "policies/structured-output-policy.md",
+        "operations/reliability-policy.md",
+        "policies/validation-policy.md",
+        "policies/retry-policy.md",
+        "architecture/system-architecture.md"
+      ],
+      "dense": {
+        "documents": [
+          "policies/structured-output-policy.md",
+          "operations/reliability-policy.md",
+          "policies/validation-policy.md",
+          "policies/retry-policy.md",
+          "architecture/system-architecture.md"
+        ],
+        "failure_type": "MULTI_EVIDENCE_RANKING_FAILURE",
+        "metrics": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.0,
+          "recall_at_3": 0.5,
+          "recall_at_5": 1.0,
+          "mrr": 0.3333333333333333
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "policies/validation-policy.md",
+          "policies/structured-output-policy.md",
+          "operations/reliability-policy.md",
+          "architecture/system-architecture.md",
+          "policies/retry-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.5,
+          "recall_at_3": 0.5,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "policies/structured-output-policy.md",
+            "score": -0.41970136761665344
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -0.4673110246658325
+          },
+          {
+            "document_id": "policies/validation-policy.md",
+            "score": 0.7878937125205994
+          },
+          {
+            "document_id": "policies/retry-policy.md",
+            "score": -7.42507791519165
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": -5.855312824249268
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "routing_004",
+      "question": "Which factors belong in a model-routing decision?",
+      "expected_documents": [
+        "architecture/model-routing.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "architecture/model-routing.md",
+        "engineering/context-management.md",
+        "operations/reliability-policy.md",
+        "operations/deployment-policy.md",
+        "architecture/system-architecture.md"
+      ],
+      "dense": {
+        "documents": [
+          "architecture/model-routing.md",
+          "engineering/context-management.md",
+          "operations/reliability-policy.md",
+          "operations/deployment-policy.md",
+          "architecture/system-architecture.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "architecture/model-routing.md",
+          "operations/reliability-policy.md",
+          "operations/deployment-policy.md",
+          "engineering/context-management.md",
+          "architecture/system-architecture.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "architecture/model-routing.md",
+            "score": 0.5552511811256409
+          },
+          {
+            "document_id": "engineering/context-management.md",
+            "score": -10.754521369934082
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -10.16767692565918
+          },
+          {
+            "document_id": "operations/deployment-policy.md",
+            "score": -10.740747451782227
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": -11.353412628173828
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "routing_005",
+      "question": "What metadata should a model-routing experiment capture?",
+      "expected_documents": [
+        "architecture/model-routing.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "architecture/model-routing.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md",
+        "policies/structured-output-policy.md",
+        "architecture/system-architecture.md"
+      ],
+      "dense": {
+        "documents": [
+          "architecture/model-routing.md",
+          "architecture/system-architecture.md",
+          "operations/reliability-policy.md",
+          "policies/structured-output-policy.md",
+          "architecture/system-architecture.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "architecture/model-routing.md",
+          "operations/reliability-policy.md",
+          "architecture/system-architecture.md",
+          "architecture/system-architecture.md",
+          "policies/structured-output-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "architecture/model-routing.md",
+            "score": 3.8523266315460205
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": -10.54632568359375
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -7.722201347351074
+          },
+          {
+            "document_id": "policies/structured-output-policy.md",
+            "score": -10.831705093383789
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": -10.218496322631836
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "routing_006",
+      "question": "How should a proposed model change be evaluated and compared fairly?",
+      "expected_documents": [
+        "architecture/model-routing.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "classification": "RANKING_REGRESSION",
+      "candidate_pool": [
+        "architecture/model-routing.md",
+        "operations/deployment-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/cost-policy.md",
+        "operations/reliability-policy.md"
+      ],
+      "dense": {
+        "documents": [
+          "architecture/model-routing.md",
+          "operations/deployment-policy.md",
+          "evaluation/evaluation-strategy.md",
+          "operations/cost-policy.md",
+          "operations/reliability-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.5,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "operations/deployment-policy.md",
+          "architecture/model-routing.md",
+          "evaluation/evaluation-strategy.md",
+          "operations/cost-policy.md",
+          "operations/reliability-policy.md"
+        ],
+        "failure_type": "MULTI_EVIDENCE_RANKING_FAILURE",
+        "metrics": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 0.5
+        },
+        "scores": [
+          {
+            "document_id": "architecture/model-routing.md",
+            "score": 1.0346577167510986
+          },
+          {
+            "document_id": "operations/deployment-policy.md",
+            "score": 2.62176513671875
+          },
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": -1.7929679155349731
+          },
+          {
+            "document_id": "operations/cost-policy.md",
+            "score": -7.295291900634766
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -7.302249908447266
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "architecture_001",
+      "question": "Which layer exposes EvalForge application endpoints?",
+      "expected_documents": [
+        "architecture/system-architecture.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "architecture/system-architecture.md",
+        "evaluation/evaluation-strategy.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md",
+        "architecture/model-routing.md"
+      ],
+      "dense": {
+        "documents": [
+          "architecture/system-architecture.md",
+          "evaluation/evaluation-strategy.md",
+          "architecture/system-architecture.md",
+          "operations/reliability-policy.md",
+          "architecture/model-routing.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "architecture/system-architecture.md",
+          "evaluation/evaluation-strategy.md",
+          "operations/reliability-policy.md",
+          "architecture/system-architecture.md",
+          "architecture/model-routing.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": 8.199313163757324
+          },
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": -3.5139646530151367
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": -4.7003960609436035
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -3.6347103118896484
+          },
+          {
+            "document_id": "architecture/model-routing.md",
+            "score": -5.002856254577637
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "architecture_002",
+      "question": "What component controls execution flow through retrieval, tools, generation, and validation?",
+      "expected_documents": [
+        "architecture/system-architecture.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "architecture/system-architecture.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "policies/structured-output-policy.md"
+      ],
+      "dense": {
+        "documents": [
+          "architecture/system-architecture.md",
+          "architecture/system-architecture.md",
+          "operations/reliability-policy.md",
+          "evaluation/evaluation-strategy.md",
+          "policies/structured-output-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "architecture/system-architecture.md",
+          "operations/reliability-policy.md",
+          "architecture/system-architecture.md",
+          "policies/structured-output-policy.md",
+          "evaluation/evaluation-strategy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": 6.633122444152832
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": -3.7634963989257812
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -0.7572470903396606
+          },
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": -10.545724868774414
+          },
+          {
+            "document_id": "policies/structured-output-policy.md",
+            "score": -7.081564903259277
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "architecture_003",
+      "question": "After retrieval, how is evidence used by the generation layer and what risk must be managed?",
+      "expected_documents": [
+        "architecture/system-architecture.md",
+        "engineering/context-management.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "engineering/context-management.md",
+        "architecture/system-architecture.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md",
+        "evaluation/retrieval-metrics.md"
+      ],
+      "dense": {
+        "documents": [
+          "engineering/context-management.md",
+          "architecture/system-architecture.md",
+          "architecture/system-architecture.md",
+          "operations/reliability-policy.md",
+          "evaluation/retrieval-metrics.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.5,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "engineering/context-management.md",
+          "architecture/system-architecture.md",
+          "operations/reliability-policy.md",
+          "evaluation/retrieval-metrics.md",
+          "architecture/system-architecture.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.5,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "engineering/context-management.md",
+            "score": 3.0256385803222656
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": -1.4877043962478638
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": -7.1767683029174805
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -5.53490686416626
+          },
+          {
+            "document_id": "evaluation/retrieval-metrics.md",
+            "score": -6.384541988372803
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "architecture_004",
+      "question": "What information does the observability layer record?",
+      "expected_documents": [
+        "architecture/system-architecture.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "architecture/system-architecture.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md",
+        "policies/retry-policy.md",
+        "policies/validation-policy.md"
+      ],
+      "dense": {
+        "documents": [
+          "architecture/system-architecture.md",
+          "architecture/system-architecture.md",
+          "operations/reliability-policy.md",
+          "policies/retry-policy.md",
+          "policies/validation-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "architecture/system-architecture.md",
+          "architecture/system-architecture.md",
+          "policies/retry-policy.md",
+          "operations/reliability-policy.md",
+          "policies/validation-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": 7.646129608154297
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": 3.4685592651367188
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -9.759147644042969
+          },
+          {
+            "document_id": "policies/retry-policy.md",
+            "score": -2.019885778427124
+          },
+          {
+            "document_id": "policies/validation-policy.md",
+            "score": -10.823554039001465
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "architecture_005",
+      "question": "Which layer detects regressions between application versions?",
+      "expected_documents": [
+        "architecture/system-architecture.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "architecture/system-architecture.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/deployment-policy.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md"
+      ],
+      "dense": {
+        "documents": [
+          "architecture/system-architecture.md",
+          "evaluation/evaluation-strategy.md",
+          "operations/deployment-policy.md",
+          "architecture/system-architecture.md",
+          "operations/reliability-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "architecture/system-architecture.md",
+          "evaluation/evaluation-strategy.md",
+          "architecture/system-architecture.md",
+          "operations/deployment-policy.md",
+          "operations/reliability-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": 9.253789901733398
+          },
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": -2.363147020339966
+          },
+          {
+            "document_id": "operations/deployment-policy.md",
+            "score": -5.732765197753906
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": -3.8012328147888184
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -10.759967803955078
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "retrieval_004",
+      "question": "Why are documents split before semantic retrieval, and what must each resulting unit retain?",
+      "expected_documents": [
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "engineering/chunking-guidelines.md",
+        "engineering/retrieval-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/embedding-guidelines.md",
+        "engineering/context-management.md"
+      ],
+      "dense": {
+        "documents": [
+          "engineering/chunking-guidelines.md",
+          "engineering/retrieval-guidelines.md",
+          "evaluation/retrieval-metrics.md",
+          "engineering/embedding-guidelines.md",
+          "engineering/context-management.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.5,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "engineering/retrieval-guidelines.md",
+          "engineering/chunking-guidelines.md",
+          "engineering/embedding-guidelines.md",
+          "evaluation/retrieval-metrics.md",
+          "engineering/context-management.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.5,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "engineering/chunking-guidelines.md",
+            "score": -4.223419189453125
+          },
+          {
+            "document_id": "engineering/retrieval-guidelines.md",
+            "score": 2.695976495742798
+          },
+          {
+            "document_id": "evaluation/retrieval-metrics.md",
+            "score": -6.992177963256836
+          },
+          {
+            "document_id": "engineering/embedding-guidelines.md",
+            "score": -6.235789775848389
+          },
+          {
+            "document_id": "engineering/context-management.md",
+            "score": -10.568899154663086
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "retrieval_005",
+      "question": "What does a retrieval failure mean in the baseline system?",
+      "expected_documents": [
+        "engineering/retrieval-guidelines.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "engineering/retrieval-guidelines.md",
+        "operations/latency-policy.md",
+        "evaluation/retrieval-metrics.md",
+        "operations/reliability-policy.md",
+        "engineering/chunking-guidelines.md"
+      ],
+      "dense": {
+        "documents": [
+          "engineering/retrieval-guidelines.md",
+          "operations/latency-policy.md",
+          "evaluation/retrieval-metrics.md",
+          "operations/reliability-policy.md",
+          "engineering/chunking-guidelines.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "engineering/retrieval-guidelines.md",
+          "operations/reliability-policy.md",
+          "operations/latency-policy.md",
+          "evaluation/retrieval-metrics.md",
+          "engineering/chunking-guidelines.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "engineering/retrieval-guidelines.md",
+            "score": 7.254746437072754
+          },
+          {
+            "document_id": "operations/latency-policy.md",
+            "score": -2.398522138595581
+          },
+          {
+            "document_id": "evaluation/retrieval-metrics.md",
+            "score": -5.576505661010742
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -1.7364240884780884
+          },
+          {
+            "document_id": "engineering/chunking-guidelines.md",
+            "score": -9.13111400604248
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "retrieval_006",
+      "question": "What should be measured before adding hybrid search or reranking?",
+      "expected_documents": [
+        "engineering/retrieval-guidelines.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "engineering/retrieval-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/chunking-guidelines.md",
+        "engineering/embedding-guidelines.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "dense": {
+        "documents": [
+          "engineering/retrieval-guidelines.md",
+          "evaluation/retrieval-metrics.md",
+          "engineering/chunking-guidelines.md",
+          "engineering/embedding-guidelines.md",
+          "evaluation/evaluation-strategy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "engineering/retrieval-guidelines.md",
+          "evaluation/evaluation-strategy.md",
+          "evaluation/retrieval-metrics.md",
+          "engineering/chunking-guidelines.md",
+          "engineering/embedding-guidelines.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "engineering/retrieval-guidelines.md",
+            "score": 5.460424900054932
+          },
+          {
+            "document_id": "evaluation/retrieval-metrics.md",
+            "score": -10.323230743408203
+          },
+          {
+            "document_id": "engineering/chunking-guidelines.md",
+            "score": -10.428462982177734
+          },
+          {
+            "document_id": "engineering/embedding-guidelines.md",
+            "score": -10.78348159790039
+          },
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": -10.279552459716797
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "chunking_001",
+      "question": "Why must retrieved chunks retain surrounding context?",
+      "expected_documents": [
+        "engineering/chunking-guidelines.md"
+      ],
+      "classification": "UNCHANGED",
+      "candidate_pool": [
+        "engineering/chunking-guidelines.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/context-management.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/embedding-guidelines.md"
+      ],
+      "dense": {
+        "documents": [
+          "engineering/chunking-guidelines.md",
+          "engineering/retrieval-guidelines.md",
+          "engineering/context-management.md",
+          "evaluation/retrieval-metrics.md",
+          "engineering/embedding-guidelines.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "engineering/chunking-guidelines.md",
+          "engineering/retrieval-guidelines.md",
+          "engineering/context-management.md",
+          "evaluation/retrieval-metrics.md",
+          "engineering/embedding-guidelines.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "engineering/chunking-guidelines.md",
+            "score": 7.550449371337891
+          },
+          {
+            "document_id": "engineering/retrieval-guidelines.md",
+            "score": 5.496784210205078
+          },
+          {
+            "document_id": "engineering/context-management.md",
+            "score": 3.0783581733703613
+          },
+          {
+            "document_id": "evaluation/retrieval-metrics.md",
+            "score": -9.171874046325684
+          },
+          {
+            "document_id": "engineering/embedding-guidelines.md",
+            "score": -11.145537376403809
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "chunking_002",
+      "question": "How can oversized chunks hurt retrieval?",
+      "expected_documents": [
+        "engineering/chunking-guidelines.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "engineering/chunking-guidelines.md",
+        "engineering/retrieval-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/context-management.md",
+        "operations/reliability-policy.md"
+      ],
+      "dense": {
+        "documents": [
+          "engineering/chunking-guidelines.md",
+          "engineering/retrieval-guidelines.md",
+          "evaluation/retrieval-metrics.md",
+          "engineering/context-management.md",
+          "operations/reliability-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "engineering/chunking-guidelines.md",
+          "engineering/retrieval-guidelines.md",
+          "engineering/context-management.md",
+          "evaluation/retrieval-metrics.md",
+          "operations/reliability-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "engineering/chunking-guidelines.md",
+            "score": 2.4618372917175293
+          },
+          {
+            "document_id": "engineering/retrieval-guidelines.md",
+            "score": 0.23506450653076172
+          },
+          {
+            "document_id": "evaluation/retrieval-metrics.md",
+            "score": -10.893463134765625
+          },
+          {
+            "document_id": "engineering/context-management.md",
+            "score": -8.714990615844727
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -11.272822380065918
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "chunking_003",
+      "question": "What risk comes from chunks that are too small?",
+      "expected_documents": [
+        "engineering/chunking-guidelines.md"
+      ],
+      "classification": "UNCHANGED",
+      "candidate_pool": [
+        "engineering/chunking-guidelines.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/context-management.md",
+        "policies/retry-policy.md",
+        "operations/reliability-policy.md"
+      ],
+      "dense": {
+        "documents": [
+          "engineering/chunking-guidelines.md",
+          "engineering/retrieval-guidelines.md",
+          "engineering/context-management.md",
+          "policies/retry-policy.md",
+          "operations/reliability-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "engineering/chunking-guidelines.md",
+          "engineering/retrieval-guidelines.md",
+          "engineering/context-management.md",
+          "policies/retry-policy.md",
+          "operations/reliability-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "engineering/chunking-guidelines.md",
+            "score": -3.962860584259033
+          },
+          {
+            "document_id": "engineering/retrieval-guidelines.md",
+            "score": -8.212385177612305
+          },
+          {
+            "document_id": "engineering/context-management.md",
+            "score": -10.401945114135742
+          },
+          {
+            "document_id": "policies/retry-policy.md",
+            "score": -11.32719612121582
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -11.353679656982422
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "chunking_004",
+      "question": "How should chunk size and overlap be handled?",
+      "expected_documents": [
+        "engineering/chunking-guidelines.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "engineering/chunking-guidelines.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/context-management.md",
+        "policies/structured-output-policy.md",
+        "engineering/embedding-guidelines.md"
+      ],
+      "dense": {
+        "documents": [
+          "engineering/chunking-guidelines.md",
+          "engineering/retrieval-guidelines.md",
+          "engineering/context-management.md",
+          "policies/structured-output-policy.md",
+          "engineering/embedding-guidelines.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "engineering/chunking-guidelines.md",
+          "engineering/retrieval-guidelines.md",
+          "engineering/context-management.md",
+          "engineering/embedding-guidelines.md",
+          "policies/structured-output-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "engineering/chunking-guidelines.md",
+            "score": 5.82656192779541
+          },
+          {
+            "document_id": "engineering/retrieval-guidelines.md",
+            "score": -4.696533203125
+          },
+          {
+            "document_id": "engineering/context-management.md",
+            "score": -9.935237884521484
+          },
+          {
+            "document_id": "policies/structured-output-policy.md",
+            "score": -11.3821439743042
+          },
+          {
+            "document_id": "engineering/embedding-guidelines.md",
+            "score": -11.296730041503906
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "context_001",
+      "question": "Is more retrieved context always better?",
+      "expected_documents": [
+        "engineering/context-management.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "engineering/context-management.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md",
+        "engineering/embedding-guidelines.md",
+        "evaluation/retrieval-metrics.md"
+      ],
+      "dense": {
+        "documents": [
+          "engineering/context-management.md",
+          "engineering/retrieval-guidelines.md",
+          "engineering/chunking-guidelines.md",
+          "engineering/embedding-guidelines.md",
+          "evaluation/retrieval-metrics.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "engineering/context-management.md",
+          "engineering/retrieval-guidelines.md",
+          "engineering/chunking-guidelines.md",
+          "evaluation/retrieval-metrics.md",
+          "engineering/embedding-guidelines.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "engineering/context-management.md",
+            "score": 9.184858322143555
+          },
+          {
+            "document_id": "engineering/retrieval-guidelines.md",
+            "score": -0.5102799534797668
+          },
+          {
+            "document_id": "engineering/chunking-guidelines.md",
+            "score": -1.8149093389511108
+          },
+          {
+            "document_id": "engineering/embedding-guidelines.md",
+            "score": -9.959310531616211
+          },
+          {
+            "document_id": "evaluation/retrieval-metrics.md",
+            "score": -7.876214027404785
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "context_002",
+      "question": "When can additional context improve an answer?",
+      "expected_documents": [
+        "engineering/context-management.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "engineering/context-management.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/latency-policy.md"
+      ],
+      "dense": {
+        "documents": [
+          "engineering/context-management.md",
+          "engineering/retrieval-guidelines.md",
+          "engineering/chunking-guidelines.md",
+          "evaluation/evaluation-strategy.md",
+          "operations/latency-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "engineering/context-management.md",
+          "engineering/retrieval-guidelines.md",
+          "engineering/chunking-guidelines.md",
+          "operations/latency-policy.md",
+          "evaluation/evaluation-strategy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "engineering/context-management.md",
+            "score": 8.044234275817871
+          },
+          {
+            "document_id": "engineering/retrieval-guidelines.md",
+            "score": -2.0650253295898438
+          },
+          {
+            "document_id": "engineering/chunking-guidelines.md",
+            "score": -8.415045738220215
+          },
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": -11.100906372070312
+          },
+          {
+            "document_id": "operations/latency-policy.md",
+            "score": -10.05573844909668
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "context_003",
+      "question": "What are the costs of irrelevant retrieved context?",
+      "expected_documents": [
+        "engineering/context-management.md"
+      ],
+      "classification": "UNCHANGED",
+      "candidate_pool": [
+        "engineering/context-management.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "operations/cost-policy.md"
+      ],
+      "dense": {
+        "documents": [
+          "engineering/context-management.md",
+          "engineering/retrieval-guidelines.md",
+          "engineering/chunking-guidelines.md",
+          "evaluation/retrieval-metrics.md",
+          "operations/cost-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "engineering/context-management.md",
+          "engineering/retrieval-guidelines.md",
+          "engineering/chunking-guidelines.md",
+          "evaluation/retrieval-metrics.md",
+          "operations/cost-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "engineering/context-management.md",
+            "score": 4.63920259475708
+          },
+          {
+            "document_id": "engineering/retrieval-guidelines.md",
+            "score": 1.5409353971481323
+          },
+          {
+            "document_id": "engineering/chunking-guidelines.md",
+            "score": -5.20186710357666
+          },
+          {
+            "document_id": "evaluation/retrieval-metrics.md",
+            "score": -8.799968719482422
+          },
+          {
+            "document_id": "operations/cost-policy.md",
+            "score": -10.545482635498047
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "context_004",
+      "question": "When increasing top-k, what context trade-offs should be evaluated beyond evidence coverage?",
+      "expected_documents": [
+        "engineering/context-management.md",
+        "engineering/retrieval-guidelines.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "engineering/context-management.md",
+        "engineering/retrieval-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "evaluation/evaluation-strategy.md",
+        "evaluation/golden-datasets.md"
+      ],
+      "dense": {
+        "documents": [
+          "engineering/context-management.md",
+          "engineering/retrieval-guidelines.md",
+          "evaluation/retrieval-metrics.md",
+          "evaluation/evaluation-strategy.md",
+          "evaluation/golden-datasets.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.5,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "engineering/retrieval-guidelines.md",
+          "engineering/context-management.md",
+          "evaluation/retrieval-metrics.md",
+          "evaluation/evaluation-strategy.md",
+          "evaluation/golden-datasets.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.5,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "engineering/context-management.md",
+            "score": -0.09813391417264938
+          },
+          {
+            "document_id": "engineering/retrieval-guidelines.md",
+            "score": 1.452258586883545
+          },
+          {
+            "document_id": "evaluation/retrieval-metrics.md",
+            "score": -6.409557342529297
+          },
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": -8.48548698425293
+          },
+          {
+            "document_id": "evaluation/golden-datasets.md",
+            "score": -9.795148849487305
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "embedding_001",
+      "question": "How are semantic embeddings compared during retrieval?",
+      "expected_documents": [
+        "engineering/embedding-guidelines.md"
+      ],
+      "classification": "UNCHANGED",
+      "candidate_pool": [
+        "engineering/embedding-guidelines.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/context-management.md"
+      ],
+      "dense": {
+        "documents": [
+          "engineering/embedding-guidelines.md",
+          "engineering/retrieval-guidelines.md",
+          "engineering/chunking-guidelines.md",
+          "evaluation/retrieval-metrics.md",
+          "engineering/context-management.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "engineering/embedding-guidelines.md",
+          "engineering/retrieval-guidelines.md",
+          "engineering/chunking-guidelines.md",
+          "evaluation/retrieval-metrics.md",
+          "engineering/context-management.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "engineering/embedding-guidelines.md",
+            "score": 6.086850166320801
+          },
+          {
+            "document_id": "engineering/retrieval-guidelines.md",
+            "score": 0.755862832069397
+          },
+          {
+            "document_id": "engineering/chunking-guidelines.md",
+            "score": -2.8336849212646484
+          },
+          {
+            "document_id": "evaluation/retrieval-metrics.md",
+            "score": -7.959319114685059
+          },
+          {
+            "document_id": "engineering/context-management.md",
+            "score": -10.065662384033203
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "embedding_002",
+      "question": "What consistency is required when comparing document and query embeddings?",
+      "expected_documents": [
+        "engineering/embedding-guidelines.md"
+      ],
+      "classification": "UNCHANGED",
+      "candidate_pool": [
+        "engineering/embedding-guidelines.md",
+        "engineering/chunking-guidelines.md",
+        "engineering/retrieval-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/context-management.md"
+      ],
+      "dense": {
+        "documents": [
+          "engineering/embedding-guidelines.md",
+          "engineering/chunking-guidelines.md",
+          "engineering/retrieval-guidelines.md",
+          "evaluation/retrieval-metrics.md",
+          "engineering/context-management.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "engineering/embedding-guidelines.md",
+          "engineering/chunking-guidelines.md",
+          "engineering/retrieval-guidelines.md",
+          "evaluation/retrieval-metrics.md",
+          "engineering/context-management.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "engineering/embedding-guidelines.md",
+            "score": 5.6065497398376465
+          },
+          {
+            "document_id": "engineering/chunking-guidelines.md",
+            "score": -5.0272321701049805
+          },
+          {
+            "document_id": "engineering/retrieval-guidelines.md",
+            "score": -8.253962516784668
+          },
+          {
+            "document_id": "evaluation/retrieval-metrics.md",
+            "score": -9.223989486694336
+          },
+          {
+            "document_id": "engineering/context-management.md",
+            "score": -10.966257095336914
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "embedding_003",
+      "question": "What can change after swapping the embedding model?",
+      "expected_documents": [
+        "engineering/embedding-guidelines.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "engineering/embedding-guidelines.md",
+        "architecture/model-routing.md",
+        "engineering/chunking-guidelines.md",
+        "engineering/context-management.md",
+        "operations/deployment-policy.md"
+      ],
+      "dense": {
+        "documents": [
+          "engineering/embedding-guidelines.md",
+          "architecture/model-routing.md",
+          "engineering/chunking-guidelines.md",
+          "engineering/context-management.md",
+          "operations/deployment-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "engineering/embedding-guidelines.md",
+          "engineering/chunking-guidelines.md",
+          "architecture/model-routing.md",
+          "operations/deployment-policy.md",
+          "engineering/context-management.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "engineering/embedding-guidelines.md",
+            "score": 4.0668745040893555
+          },
+          {
+            "document_id": "architecture/model-routing.md",
+            "score": -8.343971252441406
+          },
+          {
+            "document_id": "engineering/chunking-guidelines.md",
+            "score": -0.5213625431060791
+          },
+          {
+            "document_id": "engineering/context-management.md",
+            "score": -10.789591789245605
+          },
+          {
+            "document_id": "operations/deployment-policy.md",
+            "score": -9.268047332763672
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "embedding_004",
+      "question": "How should an embedding-model change be evaluated so its effect is attributable?",
+      "expected_documents": [
+        "engineering/embedding-guidelines.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "engineering/embedding-guidelines.md",
+        "architecture/model-routing.md",
+        "engineering/context-management.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/reliability-policy.md"
+      ],
+      "dense": {
+        "documents": [
+          "engineering/embedding-guidelines.md",
+          "architecture/model-routing.md",
+          "engineering/context-management.md",
+          "evaluation/evaluation-strategy.md",
+          "operations/reliability-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.5,
+          "recall_at_3": 0.5,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "engineering/embedding-guidelines.md",
+          "architecture/model-routing.md",
+          "evaluation/evaluation-strategy.md",
+          "operations/reliability-policy.md",
+          "engineering/context-management.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.5,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "engineering/embedding-guidelines.md",
+            "score": 4.981733798980713
+          },
+          {
+            "document_id": "architecture/model-routing.md",
+            "score": -1.4266611337661743
+          },
+          {
+            "document_id": "engineering/context-management.md",
+            "score": -9.721729278564453
+          },
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": -3.7279484272003174
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -4.904413223266602
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "evaluation_strategy_001",
+      "question": "What dataset should EvalForge use to evaluate applications?",
+      "expected_documents": [
+        "evaluation/evaluation-strategy.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "evaluation/evaluation-strategy.md",
+        "architecture/system-architecture.md",
+        "architecture/model-routing.md",
+        "operations/reliability-policy.md",
+        "evaluation/retrieval-metrics.md"
+      ],
+      "dense": {
+        "documents": [
+          "evaluation/evaluation-strategy.md",
+          "architecture/system-architecture.md",
+          "architecture/model-routing.md",
+          "operations/reliability-policy.md",
+          "evaluation/retrieval-metrics.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "evaluation/evaluation-strategy.md",
+          "architecture/model-routing.md",
+          "architecture/system-architecture.md",
+          "evaluation/retrieval-metrics.md",
+          "operations/reliability-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": 9.142330169677734
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": 4.309126853942871
+          },
+          {
+            "document_id": "architecture/model-routing.md",
+            "score": 4.835585594177246
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": 1.7709910869598389
+          },
+          {
+            "document_id": "evaluation/retrieval-metrics.md",
+            "score": 3.489940643310547
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "evaluation_strategy_002",
+      "question": "Which quality dimensions should evaluation keep separate?",
+      "expected_documents": [
+        "evaluation/evaluation-strategy.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "evaluation/evaluation-strategy.md",
+        "architecture/system-architecture.md",
+        "operations/deployment-policy.md",
+        "architecture/model-routing.md",
+        "operations/cost-policy.md"
+      ],
+      "dense": {
+        "documents": [
+          "evaluation/evaluation-strategy.md",
+          "architecture/system-architecture.md",
+          "operations/deployment-policy.md",
+          "architecture/model-routing.md",
+          "operations/cost-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "evaluation/evaluation-strategy.md",
+          "operations/deployment-policy.md",
+          "operations/cost-policy.md",
+          "architecture/model-routing.md",
+          "architecture/system-architecture.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": 3.826718330383301
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": -9.911999702453613
+          },
+          {
+            "document_id": "operations/deployment-policy.md",
+            "score": -4.748449802398682
+          },
+          {
+            "document_id": "architecture/model-routing.md",
+            "score": -8.366844177246094
+          },
+          {
+            "document_id": "operations/cost-policy.md",
+            "score": -6.848953723907471
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "evaluation_strategy_003",
+      "question": "Why can a system with strong recall still require investigation before it is called better?",
+      "expected_documents": [
+        "evaluation/evaluation-strategy.md",
+        "evaluation/retrieval-metrics.md"
+      ],
+      "classification": "RANKING_IMPROVEMENT",
+      "candidate_pool": [
+        "policies/retry-policy.md",
+        "engineering/context-management.md",
+        "evaluation/retrieval-metrics.md",
+        "operations/reliability-policy.md",
+        "engineering/retrieval-guidelines.md"
+      ],
+      "dense": {
+        "documents": [
+          "policies/retry-policy.md",
+          "engineering/context-management.md",
+          "evaluation/retrieval-metrics.md",
+          "operations/reliability-policy.md",
+          "engineering/retrieval-guidelines.md"
+        ],
+        "failure_type": "PARTIAL_RECALL",
+        "metrics": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.0,
+          "recall_at_3": 0.5,
+          "recall_at_5": 0.5,
+          "mrr": 0.3333333333333333
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "engineering/retrieval-guidelines.md",
+          "evaluation/retrieval-metrics.md",
+          "policies/retry-policy.md",
+          "engineering/context-management.md",
+          "operations/reliability-policy.md"
+        ],
+        "failure_type": "PARTIAL_RECALL",
+        "metrics": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.0,
+          "recall_at_3": 0.5,
+          "recall_at_5": 0.5,
+          "mrr": 0.5
+        },
+        "scores": [
+          {
+            "document_id": "policies/retry-policy.md",
+            "score": -9.145031929016113
+          },
+          {
+            "document_id": "engineering/context-management.md",
+            "score": -10.180706024169922
+          },
+          {
+            "document_id": "evaluation/retrieval-metrics.md",
+            "score": -7.495062828063965
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -10.949577331542969
+          },
+          {
+            "document_id": "engineering/retrieval-guidelines.md",
+            "score": -6.598115921020508
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "evaluation_strategy_004",
+      "question": "Why preserve per-case evidence in an evaluation run?",
+      "expected_documents": [
+        "evaluation/evaluation-strategy.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "evaluation/evaluation-strategy.md",
+        "engineering/context-management.md",
+        "evaluation/retrieval-metrics.md",
+        "evaluation/golden-datasets.md",
+        "engineering/retrieval-guidelines.md"
+      ],
+      "dense": {
+        "documents": [
+          "evaluation/evaluation-strategy.md",
+          "engineering/context-management.md",
+          "evaluation/retrieval-metrics.md",
+          "evaluation/golden-datasets.md",
+          "engineering/retrieval-guidelines.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "evaluation/evaluation-strategy.md",
+          "engineering/context-management.md",
+          "engineering/retrieval-guidelines.md",
+          "evaluation/retrieval-metrics.md",
+          "evaluation/golden-datasets.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": 5.532547473907471
+          },
+          {
+            "document_id": "engineering/context-management.md",
+            "score": -8.848023414611816
+          },
+          {
+            "document_id": "evaluation/retrieval-metrics.md",
+            "score": -9.670665740966797
+          },
+          {
+            "document_id": "evaluation/golden-datasets.md",
+            "score": -9.682056427001953
+          },
+          {
+            "document_id": "engineering/retrieval-guidelines.md",
+            "score": -9.575000762939453
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "golden_001",
+      "question": "What belongs in a golden dataset case?",
+      "expected_documents": [
+        "evaluation/golden-datasets.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "evaluation/golden-datasets.md",
+        "evaluation/evaluation-strategy.md",
+        "engineering/embedding-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "architecture/system-architecture.md"
+      ],
+      "dense": {
+        "documents": [
+          "evaluation/golden-datasets.md",
+          "evaluation/evaluation-strategy.md",
+          "engineering/embedding-guidelines.md",
+          "evaluation/retrieval-metrics.md",
+          "architecture/system-architecture.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "evaluation/golden-datasets.md",
+          "evaluation/evaluation-strategy.md",
+          "evaluation/retrieval-metrics.md",
+          "engineering/embedding-guidelines.md",
+          "architecture/system-architecture.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "evaluation/golden-datasets.md",
+            "score": 4.643098831176758
+          },
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": -0.07724981755018234
+          },
+          {
+            "document_id": "engineering/embedding-guidelines.md",
+            "score": -4.852932929992676
+          },
+          {
+            "document_id": "evaluation/retrieval-metrics.md",
+            "score": -3.779325485229492
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": -11.294870376586914
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "golden_002",
+      "question": "What question styles should golden cases include?",
+      "expected_documents": [
+        "evaluation/golden-datasets.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "evaluation/golden-datasets.md",
+        "engineering/retrieval-guidelines.md",
+        "evaluation/evaluation-strategy.md",
+        "engineering/embedding-guidelines.md",
+        "engineering/chunking-guidelines.md"
+      ],
+      "dense": {
+        "documents": [
+          "evaluation/golden-datasets.md",
+          "engineering/retrieval-guidelines.md",
+          "evaluation/evaluation-strategy.md",
+          "engineering/embedding-guidelines.md",
+          "engineering/chunking-guidelines.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "evaluation/golden-datasets.md",
+          "evaluation/evaluation-strategy.md",
+          "engineering/embedding-guidelines.md",
+          "engineering/retrieval-guidelines.md",
+          "engineering/chunking-guidelines.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "evaluation/golden-datasets.md",
+            "score": 6.575915813446045
+          },
+          {
+            "document_id": "engineering/retrieval-guidelines.md",
+            "score": -11.231451034545898
+          },
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": -2.836975336074829
+          },
+          {
+            "document_id": "engineering/embedding-guidelines.md",
+            "score": -7.892515182495117
+          },
+          {
+            "document_id": "engineering/chunking-guidelines.md",
+            "score": -11.359416961669922
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "golden_003",
+      "question": "What do expected documents specify for a golden case?",
+      "expected_documents": [
+        "evaluation/golden-datasets.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "evaluation/golden-datasets.md",
+        "policies/validation-policy.md",
+        "policies/structured-output-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "evaluation/retrieval-metrics.md"
+      ],
+      "dense": {
+        "documents": [
+          "evaluation/golden-datasets.md",
+          "policies/validation-policy.md",
+          "policies/structured-output-policy.md",
+          "evaluation/evaluation-strategy.md",
+          "evaluation/retrieval-metrics.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "evaluation/golden-datasets.md",
+          "evaluation/retrieval-metrics.md",
+          "evaluation/evaluation-strategy.md",
+          "policies/validation-policy.md",
+          "policies/structured-output-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "evaluation/golden-datasets.md",
+            "score": 7.096479892730713
+          },
+          {
+            "document_id": "policies/validation-policy.md",
+            "score": -11.026542663574219
+          },
+          {
+            "document_id": "policies/structured-output-policy.md",
+            "score": -11.430746078491211
+          },
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": -4.8138427734375
+          },
+          {
+            "document_id": "evaluation/retrieval-metrics.md",
+            "score": -1.3887929916381836
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "golden_004",
+      "question": "How should dataset changes be handled relative to retrieval changes?",
+      "expected_documents": [
+        "evaluation/golden-datasets.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "engineering/embedding-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/retrieval-guidelines.md",
+        "evaluation/evaluation-strategy.md",
+        "engineering/chunking-guidelines.md"
+      ],
+      "dense": {
+        "documents": [
+          "engineering/embedding-guidelines.md",
+          "evaluation/retrieval-metrics.md",
+          "engineering/retrieval-guidelines.md",
+          "evaluation/evaluation-strategy.md",
+          "engineering/chunking-guidelines.md"
+        ],
+        "failure_type": "RETRIEVAL_FAILURE",
+        "metrics": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "recall_at_1": 0.0,
+          "recall_at_3": 0.0,
+          "recall_at_5": 0.0,
+          "mrr": 0.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "engineering/embedding-guidelines.md",
+          "evaluation/evaluation-strategy.md",
+          "engineering/chunking-guidelines.md",
+          "engineering/retrieval-guidelines.md",
+          "evaluation/retrieval-metrics.md"
+        ],
+        "failure_type": "RETRIEVAL_FAILURE",
+        "metrics": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "recall_at_1": 0.0,
+          "recall_at_3": 0.0,
+          "recall_at_5": 0.0,
+          "mrr": 0.0
+        },
+        "scores": [
+          {
+            "document_id": "engineering/embedding-guidelines.md",
+            "score": 0.5468271374702454
+          },
+          {
+            "document_id": "evaluation/retrieval-metrics.md",
+            "score": -2.8685131072998047
+          },
+          {
+            "document_id": "engineering/retrieval-guidelines.md",
+            "score": -2.7601168155670166
+          },
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": 0.21087299287319183
+          },
+          {
+            "document_id": "engineering/chunking-guidelines.md",
+            "score": -1.1613142490386963
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "metrics_001",
+      "question": "What does Hit@K measure?",
+      "expected_documents": [
+        "evaluation/retrieval-metrics.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "evaluation/retrieval-metrics.md",
+        "engineering/retrieval-guidelines.md",
+        "operations/latency-policy.md",
+        "policies/validation-policy.md",
+        "operations/cost-policy.md"
+      ],
+      "dense": {
+        "documents": [
+          "evaluation/retrieval-metrics.md",
+          "engineering/retrieval-guidelines.md",
+          "operations/latency-policy.md",
+          "policies/validation-policy.md",
+          "operations/cost-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "evaluation/retrieval-metrics.md",
+          "engineering/retrieval-guidelines.md",
+          "operations/latency-policy.md",
+          "operations/cost-policy.md",
+          "policies/validation-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "evaluation/retrieval-metrics.md",
+            "score": 7.172497272491455
+          },
+          {
+            "document_id": "engineering/retrieval-guidelines.md",
+            "score": -8.204883575439453
+          },
+          {
+            "document_id": "operations/latency-policy.md",
+            "score": -9.148446083068848
+          },
+          {
+            "document_id": "policies/validation-policy.md",
+            "score": -11.350293159484863
+          },
+          {
+            "document_id": "operations/cost-policy.md",
+            "score": -11.33034610748291
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "metrics_002",
+      "question": "What does Recall@K measure?",
+      "expected_documents": [
+        "evaluation/retrieval-metrics.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "evaluation/retrieval-metrics.md",
+        "engineering/retrieval-guidelines.md",
+        "operations/reliability-policy.md",
+        "policies/retry-policy.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "dense": {
+        "documents": [
+          "evaluation/retrieval-metrics.md",
+          "engineering/retrieval-guidelines.md",
+          "operations/reliability-policy.md",
+          "policies/retry-policy.md",
+          "evaluation/evaluation-strategy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "evaluation/retrieval-metrics.md",
+          "engineering/retrieval-guidelines.md",
+          "policies/retry-policy.md",
+          "operations/reliability-policy.md",
+          "evaluation/evaluation-strategy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "evaluation/retrieval-metrics.md",
+            "score": 7.622542381286621
+          },
+          {
+            "document_id": "engineering/retrieval-guidelines.md",
+            "score": -1.928741216659546
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -10.538219451904297
+          },
+          {
+            "document_id": "policies/retry-policy.md",
+            "score": -10.478033065795898
+          },
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": -11.428024291992188
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "metrics_003",
+      "question": "What does reciprocal rank reveal?",
+      "expected_documents": [
+        "evaluation/retrieval-metrics.md"
+      ],
+      "classification": "UNCHANGED",
+      "candidate_pool": [
+        "evaluation/retrieval-metrics.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md",
+        "engineering/embedding-guidelines.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "dense": {
+        "documents": [
+          "evaluation/retrieval-metrics.md",
+          "engineering/retrieval-guidelines.md",
+          "engineering/chunking-guidelines.md",
+          "engineering/embedding-guidelines.md",
+          "evaluation/evaluation-strategy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "evaluation/retrieval-metrics.md",
+          "engineering/retrieval-guidelines.md",
+          "engineering/chunking-guidelines.md",
+          "engineering/embedding-guidelines.md",
+          "evaluation/evaluation-strategy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "evaluation/retrieval-metrics.md",
+            "score": 3.7147717475891113
+          },
+          {
+            "document_id": "engineering/retrieval-guidelines.md",
+            "score": -10.956624031066895
+          },
+          {
+            "document_id": "engineering/chunking-guidelines.md",
+            "score": -10.968252182006836
+          },
+          {
+            "document_id": "engineering/embedding-guidelines.md",
+            "score": -11.089147567749023
+          },
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": -11.27369213104248
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "metrics_004",
+      "question": "Why should retrieval metrics be interpreted together?",
+      "expected_documents": [
+        "evaluation/retrieval-metrics.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "evaluation/retrieval-metrics.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md",
+        "engineering/embedding-guidelines.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "dense": {
+        "documents": [
+          "evaluation/retrieval-metrics.md",
+          "engineering/retrieval-guidelines.md",
+          "engineering/chunking-guidelines.md",
+          "engineering/embedding-guidelines.md",
+          "evaluation/evaluation-strategy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "evaluation/retrieval-metrics.md",
+          "evaluation/evaluation-strategy.md",
+          "engineering/retrieval-guidelines.md",
+          "engineering/chunking-guidelines.md",
+          "engineering/embedding-guidelines.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "evaluation/retrieval-metrics.md",
+            "score": 8.897229194641113
+          },
+          {
+            "document_id": "engineering/retrieval-guidelines.md",
+            "score": -0.6540833115577698
+          },
+          {
+            "document_id": "engineering/chunking-guidelines.md",
+            "score": -0.7914748191833496
+          },
+          {
+            "document_id": "engineering/embedding-guidelines.md",
+            "score": -5.229753494262695
+          },
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": 0.45688843727111816
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "cost_003",
+      "question": "How is request cost calculated?",
+      "expected_documents": [
+        "operations/cost-policy.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "operations/cost-policy.md",
+        "operations/latency-policy.md",
+        "architecture/model-routing.md",
+        "operations/reliability-policy.md",
+        "evaluation/retrieval-metrics.md"
+      ],
+      "dense": {
+        "documents": [
+          "operations/cost-policy.md",
+          "operations/latency-policy.md",
+          "architecture/model-routing.md",
+          "operations/reliability-policy.md",
+          "evaluation/retrieval-metrics.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "operations/cost-policy.md",
+          "architecture/model-routing.md",
+          "operations/latency-policy.md",
+          "operations/reliability-policy.md",
+          "evaluation/retrieval-metrics.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "operations/cost-policy.md",
+            "score": 5.843417644500732
+          },
+          {
+            "document_id": "operations/latency-policy.md",
+            "score": -6.600694179534912
+          },
+          {
+            "document_id": "architecture/model-routing.md",
+            "score": -4.940723419189453
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -7.259693145751953
+          },
+          {
+            "document_id": "evaluation/retrieval-metrics.md",
+            "score": -11.086111068725586
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "cost_004",
+      "question": "What cost metric should the baseline report?",
+      "expected_documents": [
+        "operations/cost-policy.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "operations/cost-policy.md",
+        "operations/latency-policy.md",
+        "engineering/retrieval-guidelines.md",
+        "operations/deployment-policy.md",
+        "evaluation/retrieval-metrics.md"
+      ],
+      "dense": {
+        "documents": [
+          "operations/cost-policy.md",
+          "operations/latency-policy.md",
+          "engineering/retrieval-guidelines.md",
+          "operations/deployment-policy.md",
+          "evaluation/retrieval-metrics.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "operations/cost-policy.md",
+          "engineering/retrieval-guidelines.md",
+          "operations/deployment-policy.md",
+          "operations/latency-policy.md",
+          "evaluation/retrieval-metrics.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "operations/cost-policy.md",
+            "score": 4.10653829574585
+          },
+          {
+            "document_id": "operations/latency-policy.md",
+            "score": -7.017629146575928
+          },
+          {
+            "document_id": "engineering/retrieval-guidelines.md",
+            "score": -5.9738874435424805
+          },
+          {
+            "document_id": "operations/deployment-policy.md",
+            "score": -6.811656951904297
+          },
+          {
+            "document_id": "evaluation/retrieval-metrics.md",
+            "score": -9.094173431396484
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "cost_005",
+      "question": "What must be measured before routing more work to a cheaper model?",
+      "expected_documents": [
+        "operations/cost-policy.md",
+        "architecture/model-routing.md",
+        "operations/latency-policy.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "architecture/model-routing.md",
+        "operations/cost-policy.md",
+        "operations/deployment-policy.md",
+        "operations/reliability-policy.md",
+        "operations/latency-policy.md"
+      ],
+      "dense": {
+        "documents": [
+          "architecture/model-routing.md",
+          "operations/cost-policy.md",
+          "operations/deployment-policy.md",
+          "operations/reliability-policy.md",
+          "operations/latency-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.3333333333333333,
+          "recall_at_3": 0.6666666666666666,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "architecture/model-routing.md",
+          "operations/cost-policy.md",
+          "operations/reliability-policy.md",
+          "operations/deployment-policy.md",
+          "operations/latency-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.3333333333333333,
+          "recall_at_3": 0.6666666666666666,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "architecture/model-routing.md",
+            "score": -2.180128574371338
+          },
+          {
+            "document_id": "operations/cost-policy.md",
+            "score": -7.538182258605957
+          },
+          {
+            "document_id": "operations/deployment-policy.md",
+            "score": -9.698272705078125
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -9.585405349731445
+          },
+          {
+            "document_id": "operations/latency-policy.md",
+            "score": -9.96065902709961
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "latency_003",
+      "question": "What interval does total latency cover?",
+      "expected_documents": [
+        "operations/latency-policy.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "operations/latency-policy.md",
+        "operations/reliability-policy.md",
+        "policies/retry-policy.md",
+        "operations/deployment-policy.md",
+        "architecture/system-architecture.md"
+      ],
+      "dense": {
+        "documents": [
+          "operations/latency-policy.md",
+          "operations/reliability-policy.md",
+          "policies/retry-policy.md",
+          "operations/deployment-policy.md",
+          "architecture/system-architecture.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "operations/latency-policy.md",
+          "operations/reliability-policy.md",
+          "policies/retry-policy.md",
+          "architecture/system-architecture.md",
+          "operations/deployment-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "operations/latency-policy.md",
+            "score": 1.6640454530715942
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -8.444223403930664
+          },
+          {
+            "document_id": "policies/retry-policy.md",
+            "score": -9.817359924316406
+          },
+          {
+            "document_id": "operations/deployment-policy.md",
+            "score": -10.79804801940918
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": -10.214300155639648
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "latency_004",
+      "question": "What latency detail is recorded when instrumentation exists?",
+      "expected_documents": [
+        "operations/latency-policy.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "operations/latency-policy.md",
+        "operations/reliability-policy.md",
+        "policies/retry-policy.md",
+        "architecture/system-architecture.md",
+        "policies/validation-policy.md"
+      ],
+      "dense": {
+        "documents": [
+          "operations/latency-policy.md",
+          "operations/reliability-policy.md",
+          "policies/retry-policy.md",
+          "architecture/system-architecture.md",
+          "policies/validation-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "operations/latency-policy.md",
+          "policies/retry-policy.md",
+          "architecture/system-architecture.md",
+          "operations/reliability-policy.md",
+          "policies/validation-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "operations/latency-policy.md",
+            "score": 4.005733013153076
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -8.006245613098145
+          },
+          {
+            "document_id": "policies/retry-policy.md",
+            "score": -6.088758945465088
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": -6.704963684082031
+          },
+          {
+            "document_id": "policies/validation-policy.md",
+            "score": -10.759228706359863
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "latency_005",
+      "question": "Why is a speedup not automatically an improvement?",
+      "expected_documents": [
+        "operations/latency-policy.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "operations/latency-policy.md",
+        "operations/reliability-policy.md",
+        "policies/retry-policy.md",
+        "operations/deployment-policy.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "dense": {
+        "documents": [
+          "operations/latency-policy.md",
+          "operations/reliability-policy.md",
+          "policies/retry-policy.md",
+          "operations/deployment-policy.md",
+          "evaluation/evaluation-strategy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "operations/latency-policy.md",
+          "operations/reliability-policy.md",
+          "operations/deployment-policy.md",
+          "policies/retry-policy.md",
+          "evaluation/evaluation-strategy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "operations/latency-policy.md",
+            "score": -3.596456289291382
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -8.829824447631836
+          },
+          {
+            "document_id": "policies/retry-policy.md",
+            "score": -10.299945831298828
+          },
+          {
+            "document_id": "operations/deployment-policy.md",
+            "score": -10.104710578918457
+          },
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": -10.994295120239258
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "deployment_001",
+      "question": "When should application changes be evaluated?",
+      "expected_documents": [
+        "operations/deployment-policy.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "operations/deployment-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/reliability-policy.md",
+        "architecture/model-routing.md",
+        "architecture/system-architecture.md"
+      ],
+      "dense": {
+        "documents": [
+          "operations/deployment-policy.md",
+          "evaluation/evaluation-strategy.md",
+          "operations/reliability-policy.md",
+          "architecture/model-routing.md",
+          "architecture/system-architecture.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "operations/deployment-policy.md",
+          "evaluation/evaluation-strategy.md",
+          "architecture/model-routing.md",
+          "operations/reliability-policy.md",
+          "architecture/system-architecture.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "operations/deployment-policy.md",
+            "score": 8.193660736083984
+          },
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": 5.5186991691589355
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -4.367783546447754
+          },
+          {
+            "document_id": "architecture/model-routing.md",
+            "score": 0.348317414522171
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": -4.912663459777832
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "deployment_002",
+      "question": "Which change types require comparison against a known baseline?",
+      "expected_documents": [
+        "operations/deployment-policy.md"
+      ],
+      "classification": "UNCHANGED",
+      "candidate_pool": [
+        "operations/deployment-policy.md",
+        "engineering/retrieval-guidelines.md",
+        "architecture/model-routing.md",
+        "operations/latency-policy.md",
+        "policies/structured-output-policy.md"
+      ],
+      "dense": {
+        "documents": [
+          "operations/deployment-policy.md",
+          "engineering/retrieval-guidelines.md",
+          "architecture/model-routing.md",
+          "operations/latency-policy.md",
+          "policies/structured-output-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "operations/deployment-policy.md",
+          "engineering/retrieval-guidelines.md",
+          "architecture/model-routing.md",
+          "operations/latency-policy.md",
+          "policies/structured-output-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "operations/deployment-policy.md",
+            "score": 5.6878132820129395
+          },
+          {
+            "document_id": "engineering/retrieval-guidelines.md",
+            "score": -9.0267915725708
+          },
+          {
+            "document_id": "architecture/model-routing.md",
+            "score": -9.391876220703125
+          },
+          {
+            "document_id": "operations/latency-policy.md",
+            "score": -9.422828674316406
+          },
+          {
+            "document_id": "policies/structured-output-policy.md",
+            "score": -11.425752639770508
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "deployment_003",
+      "question": "Does a successfully started application prove deployment safety?",
+      "expected_documents": [
+        "operations/deployment-policy.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "operations/deployment-policy.md",
+        "operations/reliability-policy.md",
+        "policies/structured-output-policy.md",
+        "policies/retry-policy.md",
+        "architecture/system-architecture.md"
+      ],
+      "dense": {
+        "documents": [
+          "operations/deployment-policy.md",
+          "operations/reliability-policy.md",
+          "policies/structured-output-policy.md",
+          "policies/retry-policy.md",
+          "architecture/system-architecture.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "operations/deployment-policy.md",
+          "operations/reliability-policy.md",
+          "policies/structured-output-policy.md",
+          "architecture/system-architecture.md",
+          "policies/retry-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "operations/deployment-policy.md",
+            "score": 5.563886642456055
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -9.86833381652832
+          },
+          {
+            "document_id": "policies/structured-output-policy.md",
+            "score": -10.8623628616333
+          },
+          {
+            "document_id": "policies/retry-policy.md",
+            "score": -11.2058744430542
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": -10.951896667480469
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "deployment_004",
+      "question": "When can automated evaluation safely gate deployment, and what must a run retain for follow-up?",
+      "expected_documents": [
+        "operations/deployment-policy.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "operations/deployment-policy.md",
+        "operations/reliability-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "architecture/system-architecture.md",
+        "policies/structured-output-policy.md"
+      ],
+      "dense": {
+        "documents": [
+          "operations/deployment-policy.md",
+          "operations/reliability-policy.md",
+          "evaluation/evaluation-strategy.md",
+          "architecture/system-architecture.md",
+          "policies/structured-output-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.5,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "operations/deployment-policy.md",
+          "evaluation/evaluation-strategy.md",
+          "operations/reliability-policy.md",
+          "architecture/system-architecture.md",
+          "policies/structured-output-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.5,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "operations/deployment-policy.md",
+            "score": 2.1672496795654297
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -10.781180381774902
+          },
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": -8.86600112915039
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": -11.114680290222168
+          },
+          {
+            "document_id": "policies/structured-output-policy.md",
+            "score": -11.159571647644043
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "reliability_001",
+      "question": "What components can have failures tracked by EvalForge?",
+      "expected_documents": [
+        "operations/reliability-policy.md"
+      ],
+      "classification": "UNCHANGED",
+      "candidate_pool": [
+        "operations/reliability-policy.md",
+        "architecture/system-architecture.md",
+        "evaluation/evaluation-strategy.md",
+        "policies/retry-policy.md",
+        "policies/structured-output-policy.md"
+      ],
+      "dense": {
+        "documents": [
+          "operations/reliability-policy.md",
+          "architecture/system-architecture.md",
+          "evaluation/evaluation-strategy.md",
+          "policies/retry-policy.md",
+          "policies/structured-output-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "operations/reliability-policy.md",
+          "architecture/system-architecture.md",
+          "evaluation/evaluation-strategy.md",
+          "policies/retry-policy.md",
+          "policies/structured-output-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": 6.629508972167969
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": -1.8778631687164307
+          },
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": -3.17177677154541
+          },
+          {
+            "document_id": "policies/retry-policy.md",
+            "score": -9.099014282226562
+          },
+          {
+            "document_id": "policies/structured-output-policy.md",
+            "score": -9.77039909362793
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "reliability_002",
+      "question": "What must a successful request not conceal?",
+      "expected_documents": [
+        "operations/reliability-policy.md"
+      ],
+      "classification": "RANKING_IMPROVEMENT",
+      "candidate_pool": [
+        "policies/structured-output-policy.md",
+        "operations/reliability-policy.md",
+        "policies/validation-policy.md",
+        "policies/retry-policy.md",
+        "architecture/model-routing.md"
+      ],
+      "dense": {
+        "documents": [
+          "policies/structured-output-policy.md",
+          "operations/reliability-policy.md",
+          "policies/validation-policy.md",
+          "policies/retry-policy.md",
+          "architecture/model-routing.md"
+        ],
+        "failure_type": "RANKING_FAILURE",
+        "metrics": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 0.5
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "operations/reliability-policy.md",
+          "policies/validation-policy.md",
+          "architecture/model-routing.md",
+          "policies/retry-policy.md",
+          "policies/structured-output-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "policies/structured-output-policy.md",
+            "score": -10.773234367370605
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": 5.633232116699219
+          },
+          {
+            "document_id": "policies/validation-policy.md",
+            "score": -6.643349647521973
+          },
+          {
+            "document_id": "policies/retry-policy.md",
+            "score": -9.918436050415039
+          },
+          {
+            "document_id": "architecture/model-routing.md",
+            "score": -9.320977210998535
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "reliability_003",
+      "question": "When may transient failures be retried?",
+      "expected_documents": [
+        "operations/reliability-policy.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "operations/reliability-policy.md",
+        "policies/retry-policy.md",
+        "policies/structured-output-policy.md",
+        "operations/deployment-policy.md",
+        "policies/validation-policy.md"
+      ],
+      "dense": {
+        "documents": [
+          "operations/reliability-policy.md",
+          "policies/retry-policy.md",
+          "policies/structured-output-policy.md",
+          "operations/deployment-policy.md",
+          "policies/validation-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "operations/reliability-policy.md",
+          "policies/retry-policy.md",
+          "policies/validation-policy.md",
+          "policies/structured-output-policy.md",
+          "operations/deployment-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": 8.50566577911377
+          },
+          {
+            "document_id": "policies/retry-policy.md",
+            "score": 2.1433897018432617
+          },
+          {
+            "document_id": "policies/structured-output-policy.md",
+            "score": -9.385841369628906
+          },
+          {
+            "document_id": "operations/deployment-policy.md",
+            "score": -11.241131782531738
+          },
+          {
+            "document_id": "policies/validation-policy.md",
+            "score": -9.131023406982422
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "reliability_004",
+      "question": "Why must a retry-based reliability improvement be evaluated with more than success rate?",
+      "expected_documents": [
+        "operations/reliability-policy.md",
+        "policies/retry-policy.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "operations/reliability-policy.md",
+        "policies/retry-policy.md",
+        "operations/deployment-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "architecture/model-routing.md"
+      ],
+      "dense": {
+        "documents": [
+          "operations/reliability-policy.md",
+          "policies/retry-policy.md",
+          "operations/deployment-policy.md",
+          "evaluation/evaluation-strategy.md",
+          "architecture/model-routing.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.5,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "operations/reliability-policy.md",
+          "policies/retry-policy.md",
+          "operations/deployment-policy.md",
+          "architecture/model-routing.md",
+          "evaluation/evaluation-strategy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.5,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": 3.7722110748291016
+          },
+          {
+            "document_id": "policies/retry-policy.md",
+            "score": 1.657113790512085
+          },
+          {
+            "document_id": "operations/deployment-policy.md",
+            "score": -4.904166221618652
+          },
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": -7.94509220123291
+          },
+          {
+            "document_id": "architecture/model-routing.md",
+            "score": -6.344590187072754
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "retry_001",
+      "question": "What kind of failures are retries intended to recover from?",
+      "expected_documents": [
+        "policies/retry-policy.md"
+      ],
+      "classification": "UNCHANGED",
+      "candidate_pool": [
+        "policies/retry-policy.md",
+        "operations/reliability-policy.md",
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "operations/deployment-policy.md"
+      ],
+      "dense": {
+        "documents": [
+          "policies/retry-policy.md",
+          "operations/reliability-policy.md",
+          "policies/structured-output-policy.md",
+          "policies/validation-policy.md",
+          "operations/deployment-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "policies/retry-policy.md",
+          "operations/reliability-policy.md",
+          "policies/structured-output-policy.md",
+          "policies/validation-policy.md",
+          "operations/deployment-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "policies/retry-policy.md",
+            "score": 8.16815185546875
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": 2.888120412826538
+          },
+          {
+            "document_id": "policies/structured-output-policy.md",
+            "score": -7.349932670593262
+          },
+          {
+            "document_id": "policies/validation-policy.md",
+            "score": -7.700182914733887
+          },
+          {
+            "document_id": "operations/deployment-policy.md",
+            "score": -11.27169418334961
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "retry_002",
+      "question": "How should the original failed execution be handled when retrying?",
+      "expected_documents": [
+        "policies/retry-policy.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "policies/retry-policy.md",
+        "operations/reliability-policy.md",
+        "policies/structured-output-policy.md",
+        "operations/deployment-policy.md",
+        "policies/validation-policy.md"
+      ],
+      "dense": {
+        "documents": [
+          "policies/retry-policy.md",
+          "operations/reliability-policy.md",
+          "policies/structured-output-policy.md",
+          "operations/deployment-policy.md",
+          "policies/validation-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "policies/retry-policy.md",
+          "operations/reliability-policy.md",
+          "policies/structured-output-policy.md",
+          "policies/validation-policy.md",
+          "operations/deployment-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "policies/retry-policy.md",
+            "score": 6.2848663330078125
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": 1.4577668905258179
+          },
+          {
+            "document_id": "policies/structured-output-policy.md",
+            "score": 0.530440092086792
+          },
+          {
+            "document_id": "operations/deployment-policy.md",
+            "score": -10.537801742553711
+          },
+          {
+            "document_id": "policies/validation-policy.md",
+            "score": -2.625192642211914
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "retry_003",
+      "question": "What must be recorded for each retry attempt?",
+      "expected_documents": [
+        "policies/retry-policy.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "policies/retry-policy.md",
+        "operations/reliability-policy.md",
+        "policies/validation-policy.md",
+        "policies/structured-output-policy.md",
+        "operations/deployment-policy.md"
+      ],
+      "dense": {
+        "documents": [
+          "policies/retry-policy.md",
+          "operations/reliability-policy.md",
+          "policies/validation-policy.md",
+          "policies/structured-output-policy.md",
+          "operations/deployment-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "policies/retry-policy.md",
+          "policies/validation-policy.md",
+          "operations/reliability-policy.md",
+          "policies/structured-output-policy.md",
+          "operations/deployment-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "policies/retry-policy.md",
+            "score": 7.703510284423828
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -2.882357597351074
+          },
+          {
+            "document_id": "policies/validation-policy.md",
+            "score": 1.1625481843948364
+          },
+          {
+            "document_id": "policies/structured-output-policy.md",
+            "score": -4.782217979431152
+          },
+          {
+            "document_id": "operations/deployment-policy.md",
+            "score": -11.234393119812012
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "retry_004",
+      "question": "Why must repeated retries be bounded?",
+      "expected_documents": [
+        "policies/retry-policy.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "policies/retry-policy.md",
+        "operations/reliability-policy.md",
+        "engineering/chunking-guidelines.md",
+        "policies/structured-output-policy.md",
+        "engineering/context-management.md"
+      ],
+      "dense": {
+        "documents": [
+          "policies/retry-policy.md",
+          "operations/reliability-policy.md",
+          "engineering/chunking-guidelines.md",
+          "policies/structured-output-policy.md",
+          "engineering/context-management.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "policies/retry-policy.md",
+          "operations/reliability-policy.md",
+          "policies/structured-output-policy.md",
+          "engineering/chunking-guidelines.md",
+          "engineering/context-management.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "policies/retry-policy.md",
+            "score": 7.013970375061035
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -1.6334248781204224
+          },
+          {
+            "document_id": "engineering/chunking-guidelines.md",
+            "score": -11.200321197509766
+          },
+          {
+            "document_id": "policies/structured-output-policy.md",
+            "score": -10.62540340423584
+          },
+          {
+            "document_id": "engineering/context-management.md",
+            "score": -11.276824951171875
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "structured_001",
+      "question": "What must structured LLM responses conform to?",
+      "expected_documents": [
+        "policies/structured-output-policy.md"
+      ],
+      "classification": "UNCHANGED",
+      "candidate_pool": [
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "architecture/system-architecture.md",
+        "architecture/model-routing.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "dense": {
+        "documents": [
+          "policies/structured-output-policy.md",
+          "policies/validation-policy.md",
+          "architecture/system-architecture.md",
+          "architecture/model-routing.md",
+          "evaluation/evaluation-strategy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "policies/structured-output-policy.md",
+          "policies/validation-policy.md",
+          "architecture/system-architecture.md",
+          "architecture/model-routing.md",
+          "evaluation/evaluation-strategy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "policies/structured-output-policy.md",
+            "score": 8.606644630432129
+          },
+          {
+            "document_id": "policies/validation-policy.md",
+            "score": 7.379852294921875
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": 0.7442386150360107
+          },
+          {
+            "document_id": "architecture/model-routing.md",
+            "score": -4.475935459136963
+          },
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": -4.923059463500977
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "structured_002",
+      "question": "When should schema validation occur for generated fields?",
+      "expected_documents": [
+        "policies/structured-output-policy.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "architecture/system-architecture.md",
+        "operations/deployment-policy.md",
+        "architecture/system-architecture.md"
+      ],
+      "dense": {
+        "documents": [
+          "policies/structured-output-policy.md",
+          "policies/validation-policy.md",
+          "architecture/system-architecture.md",
+          "operations/deployment-policy.md",
+          "architecture/system-architecture.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "policies/structured-output-policy.md",
+          "policies/validation-policy.md",
+          "architecture/system-architecture.md",
+          "architecture/system-architecture.md",
+          "operations/deployment-policy.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "policies/structured-output-policy.md",
+            "score": 8.030122756958008
+          },
+          {
+            "document_id": "policies/validation-policy.md",
+            "score": 2.1307621002197266
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": 0.37285369634628296
+          },
+          {
+            "document_id": "operations/deployment-policy.md",
+            "score": -7.286417007446289
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": -5.26872444152832
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "structured_003",
+      "question": "What must required structured-output fields satisfy?",
+      "expected_documents": [
+        "policies/structured-output-policy.md"
+      ],
+      "classification": "UNCHANGED",
+      "candidate_pool": [
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "architecture/system-architecture.md",
+        "architecture/system-architecture.md",
+        "engineering/chunking-guidelines.md"
+      ],
+      "dense": {
+        "documents": [
+          "policies/structured-output-policy.md",
+          "policies/validation-policy.md",
+          "architecture/system-architecture.md",
+          "architecture/system-architecture.md",
+          "engineering/chunking-guidelines.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "policies/structured-output-policy.md",
+          "policies/validation-policy.md",
+          "architecture/system-architecture.md",
+          "architecture/system-architecture.md",
+          "engineering/chunking-guidelines.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "policies/structured-output-policy.md",
+            "score": 7.150127410888672
+          },
+          {
+            "document_id": "policies/validation-policy.md",
+            "score": 0.7102285623550415
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": -9.650874137878418
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": -10.660347938537598
+          },
+          {
+            "document_id": "engineering/chunking-guidelines.md",
+            "score": -11.231218338012695
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "structured_004",
+      "question": "How should an invalid structured response be handled without losing diagnostic evidence?",
+      "expected_documents": [
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md"
+      ],
+      "classification": "UNCHANGED",
+      "candidate_pool": [
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "operations/reliability-policy.md",
+        "architecture/system-architecture.md",
+        "architecture/system-architecture.md"
+      ],
+      "dense": {
+        "documents": [
+          "policies/structured-output-policy.md",
+          "policies/validation-policy.md",
+          "operations/reliability-policy.md",
+          "architecture/system-architecture.md",
+          "architecture/system-architecture.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.5,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "policies/structured-output-policy.md",
+          "policies/validation-policy.md",
+          "operations/reliability-policy.md",
+          "architecture/system-architecture.md",
+          "architecture/system-architecture.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.5,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "policies/structured-output-policy.md",
+            "score": 2.362757682800293
+          },
+          {
+            "document_id": "policies/validation-policy.md",
+            "score": -1.214063048362732
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -8.217523574829102
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": -10.403514862060547
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": -11.035276412963867
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "validation_003",
+      "question": "Which fields are part of EvalForge's structured response schema?",
+      "expected_documents": [
+        "policies/validation-policy.md"
+      ],
+      "classification": "RANKING_IMPROVEMENT",
+      "candidate_pool": [
+        "architecture/system-architecture.md",
+        "policies/structured-output-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "policies/validation-policy.md",
+        "architecture/model-routing.md"
+      ],
+      "dense": {
+        "documents": [
+          "architecture/system-architecture.md",
+          "policies/structured-output-policy.md",
+          "evaluation/evaluation-strategy.md",
+          "policies/validation-policy.md",
+          "architecture/model-routing.md"
+        ],
+        "failure_type": "RANKING_FAILURE",
+        "metrics": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.0,
+          "recall_at_3": 0.0,
+          "recall_at_5": 1.0,
+          "mrr": 0.25
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "architecture/system-architecture.md",
+          "policies/structured-output-policy.md",
+          "policies/validation-policy.md",
+          "evaluation/evaluation-strategy.md",
+          "architecture/model-routing.md"
+        ],
+        "failure_type": "RANKING_FAILURE",
+        "metrics": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 0.3333333333333333
+        },
+        "scores": [
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": 1.4673397541046143
+          },
+          {
+            "document_id": "policies/structured-output-policy.md",
+            "score": 1.1473290920257568
+          },
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": -1.088111162185669
+          },
+          {
+            "document_id": "policies/validation-policy.md",
+            "score": 0.2313355803489685
+          },
+          {
+            "document_id": "architecture/model-routing.md",
+            "score": -3.4509291648864746
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "validation_004",
+      "question": "What should citations identify in a generated response?",
+      "expected_documents": [
+        "policies/validation-policy.md"
+      ],
+      "classification": "NEUTRAL_REORDER",
+      "candidate_pool": [
+        "policies/validation-policy.md",
+        "engineering/context-management.md",
+        "engineering/chunking-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/retrieval-guidelines.md"
+      ],
+      "dense": {
+        "documents": [
+          "policies/validation-policy.md",
+          "engineering/context-management.md",
+          "engineering/chunking-guidelines.md",
+          "evaluation/retrieval-metrics.md",
+          "engineering/retrieval-guidelines.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "policies/validation-policy.md",
+          "engineering/context-management.md",
+          "engineering/retrieval-guidelines.md",
+          "engineering/chunking-guidelines.md",
+          "evaluation/retrieval-metrics.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "policies/validation-policy.md",
+            "score": 6.610385417938232
+          },
+          {
+            "document_id": "engineering/context-management.md",
+            "score": -9.12773323059082
+          },
+          {
+            "document_id": "engineering/chunking-guidelines.md",
+            "score": -10.885885238647461
+          },
+          {
+            "document_id": "evaluation/retrieval-metrics.md",
+            "score": -10.941333770751953
+          },
+          {
+            "document_id": "engineering/retrieval-guidelines.md",
+            "score": -10.362386703491211
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "validation_005",
+      "question": "Does a successful LLM call prove its output is valid?",
+      "expected_documents": [
+        "policies/validation-policy.md"
+      ],
+      "classification": "RANKING_IMPROVEMENT",
+      "candidate_pool": [
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md"
+      ],
+      "dense": {
+        "documents": [
+          "policies/structured-output-policy.md",
+          "policies/validation-policy.md",
+          "evaluation/evaluation-strategy.md",
+          "architecture/system-architecture.md",
+          "operations/reliability-policy.md"
+        ],
+        "failure_type": "RANKING_FAILURE",
+        "metrics": {
+          "hit_at_1": 0.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 0.5
+        }
+      },
+      "crossencoder": {
+        "documents": [
+          "policies/validation-policy.md",
+          "policies/structured-output-policy.md",
+          "evaluation/evaluation-strategy.md",
+          "operations/reliability-policy.md",
+          "architecture/system-architecture.md"
+        ],
+        "failure_type": "PASS",
+        "metrics": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "scores": [
+          {
+            "document_id": "policies/structured-output-policy.md",
+            "score": 0.39700543880462646
+          },
+          {
+            "document_id": "policies/validation-policy.md",
+            "score": 7.353852272033691
+          },
+          {
+            "document_id": "evaluation/evaluation-strategy.md",
+            "score": -1.3050260543823242
+          },
+          {
+            "document_id": "architecture/system-architecture.md",
+            "score": -6.865710735321045
+          },
+          {
+            "document_id": "operations/reliability-policy.md",
+            "score": -5.194375991821289
+          }
+        ]
+      }
+    }
+  ]
+}

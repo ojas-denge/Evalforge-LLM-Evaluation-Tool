@@ -1,0 +1,3669 @@
+{
+  "experiment": "g1_answer_judging",
+  "source": "logs\\g1_batch_experiment.json",
+  "dataset_size": 75,
+  "batch_size": 5,
+  "judge_request_count": 30,
+  "batches": {
+    "0": {
+      "batch_index": 0,
+      "case_ids": [
+        "routing_001",
+        "routing_002",
+        "routing_003",
+        "retrieval_001",
+        "retrieval_002"
+      ],
+      "dense": [
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3124.1373000011663,
+          "judge_tokens": {
+            "input_tokens": 772,
+            "output_tokens": 109,
+            "total_tokens": 881
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [
+              "model routing",
+              "task complexity",
+              "latency",
+              "reliability",
+              "cost"
+            ],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly identifies all expected topics and is fully supported by the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3124.1373000011663,
+          "judge_tokens": {
+            "input_tokens": 772,
+            "output_tokens": 109,
+            "total_tokens": 881
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [
+              "model capability",
+              "task complexity"
+            ],
+            "topics_missing": [
+              "latency",
+              "cost"
+            ],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly addresses why a simple request doesn't need the most capable model, but misses mentioning latency and cost as broader considerations for model selection present in the source text."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3124.1373000011663,
+          "judge_tokens": {
+            "input_tokens": 772,
+            "output_tokens": 109,
+            "total_tokens": 881
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [
+              "model changes",
+              "answer quality",
+              "latency",
+              "token usage",
+              "cost"
+            ],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer covers all expected topics related to model changes and is completely grounded in the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3124.1373000011663,
+          "judge_tokens": {
+            "input_tokens": 772,
+            "output_tokens": 109,
+            "total_tokens": 881
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [
+              "semantic similarity",
+              "retrieval"
+            ],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately states that the baseline retrieval implementation uses semantic similarity search, perfectly matching the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3124.1373000011663,
+          "judge_tokens": {
+            "input_tokens": 772,
+            "output_tokens": 109,
+            "total_tokens": 881
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [
+              "top-k",
+              "recall",
+              "context",
+              "generation cost"
+            ],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly explains the trade-off of increasing top-k and is fully supported by the retrieved evidence."
+          }
+        }
+      ],
+      "dense_crossencoder": [
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3158.872500000143,
+          "judge_tokens": {
+            "input_tokens": 771,
+            "output_tokens": 112,
+            "total_tokens": 883
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [
+              "model routing",
+              "task complexity",
+              "latency",
+              "reliability",
+              "cost"
+            ],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer is completely correct, fully grounded in the retrieved evidence, and covers all expected topics."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3158.872500000143,
+          "judge_tokens": {
+            "input_tokens": 771,
+            "output_tokens": 112,
+            "total_tokens": 883
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [
+              "model capability",
+              "task complexity"
+            ],
+            "topics_missing": [
+              "latency",
+              "cost"
+            ],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly states why a simple request doesn't need the most capable model based on the evidence, but it omits mention of latency and cost which were expected topics for this question."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3158.872500000143,
+          "judge_tokens": {
+            "input_tokens": 771,
+            "output_tokens": 112,
+            "total_tokens": 883
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [
+              "model changes",
+              "answer quality",
+              "latency",
+              "token usage",
+              "cost"
+            ],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer matches the expected answer, is fully grounded in the retrieved evidence, and covers all expected topics."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3158.872500000143,
+          "judge_tokens": {
+            "input_tokens": 771,
+            "output_tokens": 112,
+            "total_tokens": 883
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [
+              "semantic similarity",
+              "retrieval"
+            ],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly identifies semantic similarity search as the baseline retrieval method and is fully supported by the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3158.872500000143,
+          "judge_tokens": {
+            "input_tokens": 771,
+            "output_tokens": 112,
+            "total_tokens": 883
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [
+              "top-k",
+              "recall",
+              "context",
+              "generation cost"
+            ],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately describes the trade-off of increasing top-k, matches the expected answer, and covers all expected topics based on the retrieved evidence."
+          }
+        }
+      ]
+    },
+    "1": {
+      "batch_index": 1,
+      "case_ids": [
+        "retrieval_003",
+        "latency_001",
+        "latency_002",
+        "cost_001",
+        "cost_002"
+      ],
+      "dense": [
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2998.300700000982,
+          "judge_tokens": {
+            "input_tokens": 770,
+            "output_tokens": 101,
+            "total_tokens": 871
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [
+              "retrieval quality",
+              "answer quality",
+              "retrieval evaluation"
+            ],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly addresses the question using the retrieved evidence, covering all expected topics and containing no unsupported claims."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2998.300700000982,
+          "judge_tokens": {
+            "input_tokens": 770,
+            "output_tokens": 101,
+            "total_tokens": 871
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [
+              "p95",
+              "latency",
+              "2500 milliseconds"
+            ],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately provides the latency performance target from the retrieved document."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2998.300700000982,
+          "judge_tokens": {
+            "input_tokens": 770,
+            "output_tokens": 101,
+            "total_tokens": 871
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [
+              "p95",
+              "performance regression",
+              "latency threshold"
+            ],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly identifies the latency threshold for a performance regression based on the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2998.300700000982,
+          "judge_tokens": {
+            "input_tokens": 770,
+            "output_tokens": 101,
+            "total_tokens": 871
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [
+              "input tokens",
+              "output tokens",
+              "token usage"
+            ],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly identifies that input and output tokens are tracked separately."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2998.300700000982,
+          "judge_tokens": {
+            "input_tokens": 770,
+            "output_tokens": 101,
+            "total_tokens": 871
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [
+              "cost",
+              "answer quality"
+            ],
+            "topics_missing": [
+              "latency",
+              "optimization"
+            ],
+            "unsupported_claims": [],
+            "reasoning": "The answer is correct and grounded, but omits mentioning latency and optimization, hence missing those expected topics."
+          }
+        }
+      ],
+      "dense_crossencoder": [
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3715.936299999157,
+          "judge_tokens": {
+            "input_tokens": 768,
+            "output_tokens": 112,
+            "total_tokens": 880
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [
+              "retrieval quality",
+              "answer quality",
+              "retrieval evaluation"
+            ],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly states that retrieval quality should be evaluated independently from final answer quality, matching both the expected answer and the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3715.936299999157,
+          "judge_tokens": {
+            "input_tokens": 768,
+            "output_tokens": 112,
+            "total_tokens": 880
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [
+              "p95",
+              "latency",
+              "2500 milliseconds"
+            ],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately provides the p95 latency threshold below 2500 milliseconds for a normal query, fully grounded in the retrieved text."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3715.936299999157,
+          "judge_tokens": {
+            "input_tokens": 768,
+            "output_tokens": 112,
+            "total_tokens": 880
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [
+              "p95",
+              "performance regression",
+              "latency threshold"
+            ],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer matches the expected answer regarding the p95 latency threshold above 2500 milliseconds constituting a performance regression, supported by the evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3715.936299999157,
+          "judge_tokens": {
+            "input_tokens": 768,
+            "output_tokens": 112,
+            "total_tokens": 880
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [
+              "input tokens",
+              "output tokens",
+              "token usage"
+            ],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly identifies that input and output tokens are tracked separately, directly supported by the cost policy document."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3715.936299999157,
+          "judge_tokens": {
+            "input_tokens": 768,
+            "output_tokens": 112,
+            "total_tokens": 880
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [
+              "cost",
+              "answer quality"
+            ],
+            "topics_missing": [
+              "latency",
+              "optimization"
+            ],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly notes that a lower cost is not automatically an improvement if answer quality decreases, but it omits the mention of latency and optimization which were part of the expected topics."
+          }
+        }
+      ]
+    },
+    "2": {
+      "batch_index": 2,
+      "case_ids": [
+        "validation_001",
+        "validation_002",
+        "cross_001",
+        "cross_002",
+        "cross_003"
+      ],
+      "dense": [
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3658.5100000011153,
+          "judge_tokens": {
+            "input_tokens": 771,
+            "output_tokens": 114,
+            "total_tokens": 885
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [
+              "structured output",
+              "validation",
+              "retry",
+              "repair"
+            ],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly and completely addresses the prompt, relying on the retrieved policy and validation documents without adding unsupported details."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3658.5100000011153,
+          "judge_tokens": {
+            "input_tokens": 771,
+            "output_tokens": 114,
+            "total_tokens": 885
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [
+              "confidence",
+              "validation",
+              "structured response"
+            ],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly identifies the allowed range for confidence values based on the validation policy evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3658.5100000011153,
+          "judge_tokens": {
+            "input_tokens": 771,
+            "output_tokens": 114,
+            "total_tokens": 885
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [
+              "model changes",
+              "evaluation dataset"
+            ],
+            "topics_missing": [
+              "answer quality",
+              "cost",
+              "latency"
+            ],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly points out that model changes must be evaluated against a fixed evaluation dataset, but it misses mentioning cost, latency, and answer quality as explicitly required by the expected topics."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3658.5100000011153,
+          "judge_tokens": {
+            "input_tokens": 771,
+            "output_tokens": 114,
+            "total_tokens": 885
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [
+              "retrieval layer",
+              "knowledge base",
+              "generation layer",
+              "retrieval evaluation"
+            ],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately describes the retrieval layer's role and how retrieval quality is assessed, fully aligned with the system architecture and retrieval metrics documents."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3658.5100000011153,
+          "judge_tokens": {
+            "input_tokens": 771,
+            "output_tokens": 114,
+            "total_tokens": 885
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [
+              "LLM call",
+              "output validation",
+              "validation layer",
+              "schemas",
+              "application constraints"
+            ],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer directly addresses both parts of the question, matching the expected answer and topics using the validation-policy and system-architecture evidence."
+          }
+        }
+      ],
+      "dense_crossencoder": [
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2925.7620999997016,
+          "judge_tokens": {
+            "input_tokens": 777,
+            "output_tokens": 115,
+            "total_tokens": 892
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [
+              "structured output",
+              "validation",
+              "retry",
+              "repair"
+            ],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately addresses the question, is completely grounded in the retrieved evidence, and covers all expected topics without introducing unsupported claims."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2925.7620999997016,
+          "judge_tokens": {
+            "input_tokens": 777,
+            "output_tokens": 115,
+            "total_tokens": 892
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [
+              "confidence",
+              "validation",
+              "structured response"
+            ],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly states the range for confidence values based on the validation policy and structured output documents."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2925.7620999997016,
+          "judge_tokens": {
+            "input_tokens": 777,
+            "output_tokens": 115,
+            "total_tokens": 892
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": false,
+            "answer_grounded": true,
+            "topics_covered": [
+              "model changes",
+              "evaluation dataset"
+            ],
+            "topics_missing": [
+              "answer quality",
+              "cost",
+              "latency"
+            ],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer mentions evaluation against a fixed dataset, but misses the aspects of cost, latency, and answer quality as specified in the expected topics and expected answer."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2925.7620999997016,
+          "judge_tokens": {
+            "input_tokens": 777,
+            "output_tokens": 115,
+            "total_tokens": 892
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [
+              "retrieval layer",
+              "knowledge base",
+              "generation layer",
+              "retrieval evaluation"
+            ],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer covers the retrieval layer's role, the knowledge base, the generation layer, and how retrieval quality should be assessed, all supported by the text."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2925.7620999997016,
+          "judge_tokens": {
+            "input_tokens": 777,
+            "output_tokens": 115,
+            "total_tokens": 892
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [
+              "LLM call",
+              "output validation",
+              "validation layer",
+              "schemas",
+              "application constraints"
+            ],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly identifies what a successful LLM call fails to guarantee and names the validation layer along with schemas and application constraints."
+          }
+        }
+      ]
+    },
+    "3": {
+      "batch_index": 3,
+      "case_ids": [
+        "routing_004",
+        "routing_005",
+        "routing_006",
+        "architecture_001",
+        "architecture_002"
+      ],
+      "dense": [
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3065.158400000655,
+          "judge_tokens": {
+            "input_tokens": 677,
+            "output_tokens": 84,
+            "total_tokens": 761
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly identifies task complexity, latency, reliability, and cost as factors for model selection, which is fully supported by the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3065.158400000655,
+          "judge_tokens": {
+            "input_tokens": 677,
+            "output_tokens": 84,
+            "total_tokens": 761
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately states that experiments should record which model handled each request, as backed by the evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3065.158400000655,
+          "judge_tokens": {
+            "input_tokens": 677,
+            "output_tokens": 84,
+            "total_tokens": 761
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer states that model changes must be evaluated against a fixed evaluation dataset instead of small manual examples, fully supported by the retrieved document."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3065.158400000655,
+          "judge_tokens": {
+            "input_tokens": 677,
+            "output_tokens": 84,
+            "total_tokens": 761
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly identifies the API layer as exposing endpoints through FastAPI based on the system architecture text."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3065.158400000655,
+          "judge_tokens": {
+            "input_tokens": 677,
+            "output_tokens": 84,
+            "total_tokens": 761
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately points to the orchestration layer as controlling execution flow through retrieval, tools, generation, and validation, matching the evidence."
+          }
+        }
+      ],
+      "dense_crossencoder": [
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2914.46200000064,
+          "judge_tokens": {
+            "input_tokens": 677,
+            "output_tokens": 85,
+            "total_tokens": 762
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly identifies task complexity, latency, reliability, and cost as the factors for model selection, which is fully supported by the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2914.46200000064,
+          "judge_tokens": {
+            "input_tokens": 677,
+            "output_tokens": 85,
+            "total_tokens": 762
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately states that model routing experiments should record which model handled each request, as found in the evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2914.46200000064,
+          "judge_tokens": {
+            "input_tokens": 677,
+            "output_tokens": 85,
+            "total_tokens": 762
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly captures that model changes must be evaluated against a fixed evaluation dataset rather than small manual examples, fully supported by the evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2914.46200000064,
+          "judge_tokens": {
+            "input_tokens": 677,
+            "output_tokens": 85,
+            "total_tokens": 762
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly indicates that the API layer exposes application endpoints through FastAPI, matching the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2914.46200000064,
+          "judge_tokens": {
+            "input_tokens": 677,
+            "output_tokens": 85,
+            "total_tokens": 762
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly specifies that the orchestration layer controls execution flow through retrieval, tools, generation, and validation, supported directly by the evidence."
+          }
+        }
+      ]
+    },
+    "4": {
+      "batch_index": 4,
+      "case_ids": [
+        "architecture_003",
+        "architecture_004",
+        "architecture_005",
+        "retrieval_004",
+        "retrieval_005"
+      ],
+      "dense": [
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3143.7213999997766,
+          "judge_tokens": {
+            "input_tokens": 750,
+            "output_tokens": 89,
+            "total_tokens": 839
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately describes how evidence is used by the generation layer and identifies the correct risk (irrelevant context increasing cost and making useful evidence harder to identify), fully supported by the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3143.7213999997766,
+          "judge_tokens": {
+            "input_tokens": 750,
+            "output_tokens": 89,
+            "total_tokens": 839
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly lists all elements recorded by the observability layer as stated in the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3143.7213999997766,
+          "judge_tokens": {
+            "input_tokens": 750,
+            "output_tokens": 89,
+            "total_tokens": 839
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately identifies that the evaluation layer measures system quality and detects regressions between application versions, directly grounded in the evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3143.7213999997766,
+          "judge_tokens": {
+            "input_tokens": 750,
+            "output_tokens": 89,
+            "total_tokens": 839
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly explains why documents are divided into chunks and notes that each chunk must retain enough context to remain meaningful when retrieved independently, fully matching the evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3143.7213999997766,
+          "judge_tokens": {
+            "input_tokens": 750,
+            "output_tokens": 89,
+            "total_tokens": 839
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly states that a retrieval failure occurs when required information is absent from the retrieved context despite existing in the knowledge base, directly supported by the text."
+          }
+        }
+      ],
+      "dense_crossencoder": [
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2887.03710000118,
+          "judge_tokens": {
+            "input_tokens": 752,
+            "output_tokens": 81,
+            "total_tokens": 833
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately reflects how evidence is used and the risks involved as supported by the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2887.03710000118,
+          "judge_tokens": {
+            "input_tokens": 752,
+            "output_tokens": 81,
+            "total_tokens": 833
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly lists all the items recorded by the observability layer based on the retrieved text."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2887.03710000118,
+          "judge_tokens": {
+            "input_tokens": 752,
+            "output_tokens": 81,
+            "total_tokens": 833
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly identifies the evaluation layer as responsible for measuring system quality and detecting regressions."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2887.03710000118,
+          "judge_tokens": {
+            "input_tokens": 752,
+            "output_tokens": 81,
+            "total_tokens": 833
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly explains why documents are split (to determine indexed/retrieved units via semantic similarity) and what each unit must retain (surrounding context to preserve meaning)."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2887.03710000118,
+          "judge_tokens": {
+            "input_tokens": 752,
+            "output_tokens": 81,
+            "total_tokens": 833
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately defines retrieval failure as matching the exact definition in the retrieved text."
+          }
+        }
+      ]
+    },
+    "5": {
+      "batch_index": 5,
+      "case_ids": [
+        "retrieval_006",
+        "chunking_001",
+        "chunking_002",
+        "chunking_003",
+        "chunking_004"
+      ],
+      "dense": [
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2772.0488000013574,
+          "judge_tokens": {
+            "input_tokens": 732,
+            "output_tokens": 83,
+            "total_tokens": 815
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly identifies that the baseline retrieval system should be measured first, which is directly supported by the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2772.0488000013574,
+          "judge_tokens": {
+            "input_tokens": 732,
+            "output_tokens": 83,
+            "total_tokens": 815
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly explains that chunks retain surrounding context to remain meaningful when retrieved independently, fully supported by the retrieved text."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2772.0488000013574,
+          "judge_tokens": {
+            "input_tokens": 732,
+            "output_tokens": 83,
+            "total_tokens": 815
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately states that oversized chunks contain unrelated information and reduce retrieval precision, matching the evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2772.0488000013574,
+          "judge_tokens": {
+            "input_tokens": 732,
+            "output_tokens": 83,
+            "total_tokens": 815
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly notes that very small chunks can remove important context and make evidence difficult to interpret, as supported by the evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2772.0488000013574,
+          "judge_tokens": {
+            "input_tokens": 732,
+            "output_tokens": 83,
+            "total_tokens": 815
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately states that chunk size and overlap should be treated as retrieval parameters evaluated experimentally, supported by the evidence."
+          }
+        }
+      ],
+      "dense_crossencoder": [
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3107.235600000422,
+          "judge_tokens": {
+            "input_tokens": 733,
+            "output_tokens": 73,
+            "total_tokens": 806
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately reflects the retrieved evidence and answers the question correctly."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3107.235600000422,
+          "judge_tokens": {
+            "input_tokens": 733,
+            "output_tokens": 73,
+            "total_tokens": 806
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately reflects the retrieved evidence and answers the question correctly."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3107.235600000422,
+          "judge_tokens": {
+            "input_tokens": 733,
+            "output_tokens": 73,
+            "total_tokens": 806
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately reflects the retrieved evidence and answers the question correctly."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3107.235600000422,
+          "judge_tokens": {
+            "input_tokens": 733,
+            "output_tokens": 73,
+            "total_tokens": 806
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately reflects the retrieved evidence and answers the question correctly."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3107.235600000422,
+          "judge_tokens": {
+            "input_tokens": 733,
+            "output_tokens": 73,
+            "total_tokens": 806
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately reflects the retrieved evidence and answers the question correctly."
+          }
+        }
+      ]
+    },
+    "6": {
+      "batch_index": 6,
+      "case_ids": [
+        "context_001",
+        "context_002",
+        "context_003",
+        "context_004",
+        "embedding_001"
+      ],
+      "dense": [
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2601.596000000427,
+          "judge_tokens": {
+            "input_tokens": 757,
+            "output_tokens": 80,
+            "total_tokens": 837
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly states that more retrieved context is not always better, which is fully supported by the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2601.596000000427,
+          "judge_tokens": {
+            "input_tokens": 757,
+            "output_tokens": 80,
+            "total_tokens": 837
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly identifies when additional context improves an answer, supported by chunk 0 of engineering/context-management.md."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2601.596000000427,
+          "judge_tokens": {
+            "input_tokens": 757,
+            "output_tokens": 80,
+            "total_tokens": 837
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately reflects the costs of irrelevant context mentioned in the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2601.596000000427,
+          "judge_tokens": {
+            "input_tokens": 757,
+            "output_tokens": 80,
+            "total_tokens": 837
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly identifies the trade-offs in context construction matching the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2601.596000000427,
+          "judge_tokens": {
+            "input_tokens": 757,
+            "output_tokens": 80,
+            "total_tokens": 837
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer directly addresses how semantic embeddings are compared using the text from engineering/embedding-guidelines.md."
+          }
+        }
+      ],
+      "dense_crossencoder": [
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3216.7203999997582,
+          "judge_tokens": {
+            "input_tokens": 768,
+            "output_tokens": 81,
+            "total_tokens": 849
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly states that more retrieved context is not always better and is fully grounded in the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3216.7203999997582,
+          "judge_tokens": {
+            "input_tokens": 768,
+            "output_tokens": 81,
+            "total_tokens": 849
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately identifies when additional context can improve an answer, matching the expected answer and supported by the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3216.7203999997582,
+          "judge_tokens": {
+            "input_tokens": 768,
+            "output_tokens": 81,
+            "total_tokens": 849
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer precisely outlines the costs of irrelevant retrieved context based directly on the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3216.7203999997582,
+          "judge_tokens": {
+            "input_tokens": 768,
+            "output_tokens": 81,
+            "total_tokens": 849
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly addresses the trade-offs when increasing top-k, fully supported by the provided text."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3216.7203999997582,
+          "judge_tokens": {
+            "input_tokens": 768,
+            "output_tokens": 81,
+            "total_tokens": 849
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately explains how semantic embeddings are compared using vectors and semantic similarity, directly matching the retrieved context."
+          }
+        }
+      ]
+    },
+    "7": {
+      "batch_index": 7,
+      "case_ids": [
+        "embedding_002",
+        "embedding_003",
+        "embedding_004",
+        "evaluation_strategy_001",
+        "evaluation_strategy_002"
+      ],
+      "dense": [
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2962.326500000927,
+          "judge_tokens": {
+            "input_tokens": 702,
+            "output_tokens": 80,
+            "total_tokens": 782
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer directly addresses the question and accurately reflects the provided text from the embedding guidelines."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2962.326500000927,
+          "judge_tokens": {
+            "input_tokens": 702,
+            "output_tokens": 80,
+            "total_tokens": 782
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly identifies that changing the embedding model can change similarity scores and retrieval rankings, matching the evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2962.326500000927,
+          "judge_tokens": {
+            "input_tokens": 702,
+            "output_tokens": 80,
+            "total_tokens": 782
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer captures that changes should be treated as experiments and evaluated using the same golden dataset, which is fully supported by the text."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2962.326500000927,
+          "judge_tokens": {
+            "input_tokens": 702,
+            "output_tokens": 80,
+            "total_tokens": 782
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly states that EvalForge uses a fixed golden dataset, directly supported by the evaluation strategy document."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2962.326500000927,
+          "judge_tokens": {
+            "input_tokens": 702,
+            "output_tokens": 80,
+            "total_tokens": 782
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately lists all dimensions specified in the evaluation strategy document."
+          }
+        }
+      ],
+      "dense_crossencoder": [
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2581.338899999537,
+          "judge_tokens": {
+            "input_tokens": 702,
+            "output_tokens": 78,
+            "total_tokens": 780
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately reflects the expected answer and is directly supported by the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2581.338899999537,
+          "judge_tokens": {
+            "input_tokens": 702,
+            "output_tokens": 78,
+            "total_tokens": 780
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly identifies what changes after swapping the embedding model, as stated in the evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2581.338899999537,
+          "judge_tokens": {
+            "input_tokens": 702,
+            "output_tokens": 78,
+            "total_tokens": 780
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer completely captures how embedding-model changes should be evaluated based on the evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2581.338899999537,
+          "judge_tokens": {
+            "input_tokens": 702,
+            "output_tokens": 78,
+            "total_tokens": 780
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly identifies the fixed golden dataset used by EvalForge, supported by the retrieval evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2581.338899999537,
+          "judge_tokens": {
+            "input_tokens": 702,
+            "output_tokens": 78,
+            "total_tokens": 780
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer lists all quality dimensions that evaluation should keep separate, exactly matching the retrieved evidence."
+          }
+        }
+      ]
+    },
+    "8": {
+      "batch_index": 8,
+      "case_ids": [
+        "evaluation_strategy_003",
+        "evaluation_strategy_004",
+        "golden_001",
+        "golden_002",
+        "golden_003"
+      ],
+      "dense": [
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2687.837400000717,
+          "judge_tokens": {
+            "input_tokens": 749,
+            "output_tokens": 81,
+            "total_tokens": 830
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately reflects the retrieved evidence that a system can retrieve all required evidence while still ranking important evidence poorly, requiring metrics to be interpreted together."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2687.837400000717,
+          "judge_tokens": {
+            "input_tokens": 749,
+            "output_tokens": 81,
+            "total_tokens": 830
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer directly uses the information from the retrieved evidence indicating that evaluation results preserve per-case evidence to investigate aggregate regressions."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2687.837400000717,
+          "judge_tokens": {
+            "input_tokens": 749,
+            "output_tokens": 81,
+            "total_tokens": 830
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly matches the retrieved evidence detailing what a golden dataset case contains."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2687.837400000717,
+          "judge_tokens": {
+            "input_tokens": 749,
+            "output_tokens": 81,
+            "total_tokens": 830
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately states the exact question styles listed in the retrieved evidence for golden cases."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2687.837400000717,
+          "judge_tokens": {
+            "input_tokens": 749,
+            "output_tokens": 81,
+            "total_tokens": 830
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer matches the retrieved text stating that expected documents define the evidence required to answer a case."
+          }
+        }
+      ],
+      "dense_crossencoder": [
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3306.437900002493,
+          "judge_tokens": {
+            "input_tokens": 748,
+            "output_tokens": 86,
+            "total_tokens": 834
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly explains that metrics must be interpreted together because a system can have high recall while ranking important evidence poorly, perfectly matching the expected answer and supported by the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3306.437900002493,
+          "judge_tokens": {
+            "input_tokens": 748,
+            "output_tokens": 86,
+            "total_tokens": 834
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly states that evaluation results should preserve per-case evidence so that aggregate regressions can be investigated, fully supported by the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3306.437900002493,
+          "judge_tokens": {
+            "input_tokens": 748,
+            "output_tokens": 86,
+            "total_tokens": 834
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly identifies what belongs in a golden dataset case, backed directly by the text in the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3306.437900002493,
+          "judge_tokens": {
+            "input_tokens": 748,
+            "output_tokens": 86,
+            "total_tokens": 834
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer lists the exact question styles required for golden cases as stated in the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3306.437900002493,
+          "judge_tokens": {
+            "input_tokens": 748,
+            "output_tokens": 86,
+            "total_tokens": 834
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately reflects that expected documents define the evidence required to answer a case, as explicitly stated in the retrieved evidence."
+          }
+        }
+      ]
+    },
+    "9": {
+      "batch_index": 9,
+      "case_ids": [
+        "golden_004",
+        "metrics_001",
+        "metrics_002",
+        "metrics_003",
+        "metrics_004"
+      ],
+      "dense": [
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2830.4836000024807,
+          "judge_tokens": {
+            "input_tokens": 772,
+            "output_tokens": 83,
+            "total_tokens": 855
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly addresses the question by stating that the same evaluation dataset should be used when comparing versions, which aligns with the expected answer and is fully supported by the evaluation strategy document."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2830.4836000024807,
+          "judge_tokens": {
+            "input_tokens": 772,
+            "output_tokens": 83,
+            "total_tokens": 855
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately defines Hit@K based on the retrieved evidence from evaluation/retrieval-metrics.md."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2830.4836000024807,
+          "judge_tokens": {
+            "input_tokens": 772,
+            "output_tokens": 83,
+            "total_tokens": 855
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly explains Recall@K using the exact wording and meaning from the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2830.4836000024807,
+          "judge_tokens": {
+            "input_tokens": 772,
+            "output_tokens": 83,
+            "total_tokens": 855
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly explains what reciprocal rank reveals, matching both the expected answer and the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2830.4836000024807,
+          "judge_tokens": {
+            "input_tokens": 772,
+            "output_tokens": 83,
+            "total_tokens": 855
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately explains why metrics should be interpreted together, directly quoting and utilizing the retrieved evidence."
+          }
+        }
+      ],
+      "dense_crossencoder": [
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2638.3270000005723,
+          "judge_tokens": {
+            "input_tokens": 772,
+            "output_tokens": 79,
+            "total_tokens": 851
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": false,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer explains that the same evaluation dataset should be used when comparing versions, but it does not address how dataset changes should be handled relative to retrieval changes as asked by the question."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2638.3270000005723,
+          "judge_tokens": {
+            "input_tokens": 772,
+            "output_tokens": 79,
+            "total_tokens": 851
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately defines Hit@K based on the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2638.3270000005723,
+          "judge_tokens": {
+            "input_tokens": 772,
+            "output_tokens": 79,
+            "total_tokens": 851
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly defines Recall@K based on the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2638.3270000005723,
+          "judge_tokens": {
+            "input_tokens": 772,
+            "output_tokens": 79,
+            "total_tokens": 851
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately states what reciprocal rank reveals according to the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2638.3270000005723,
+          "judge_tokens": {
+            "input_tokens": 772,
+            "output_tokens": 79,
+            "total_tokens": 851
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer fully and correctly explains why metrics should be interpreted together based on the retrieved evidence."
+          }
+        }
+      ]
+    },
+    "10": {
+      "batch_index": 10,
+      "case_ids": [
+        "cost_003",
+        "cost_004",
+        "cost_005",
+        "latency_003",
+        "latency_004"
+      ],
+      "dense": [
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3017.6599999977043,
+          "judge_tokens": {
+            "input_tokens": 693,
+            "output_tokens": 80,
+            "total_tokens": 773
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly states how request cost is calculated based on the retrieved evidence, without any unsupported claims."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3017.6599999977043,
+          "judge_tokens": {
+            "input_tokens": 693,
+            "output_tokens": 80,
+            "total_tokens": 773
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer matches the expected answer and is fully grounded in the retrieved evidence regarding cost metrics for the baseline."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3017.6599999977043,
+          "judge_tokens": {
+            "input_tokens": 693,
+            "output_tokens": 80,
+            "total_tokens": 773
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly reflects the model routing guidelines from the evidence stating that model changes must be evaluated against a fixed evaluation dataset."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3017.6599999977043,
+          "judge_tokens": {
+            "input_tokens": 693,
+            "output_tokens": 80,
+            "total_tokens": 773
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer precisely specifies the interval for total latency as described in the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3017.6599999977043,
+          "judge_tokens": {
+            "input_tokens": 693,
+            "output_tokens": 80,
+            "total_tokens": 773
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly addresses what latency detail is recorded when instrumentation is available, according to the evidence."
+          }
+        }
+      ],
+      "dense_crossencoder": [
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2629.5755000028294,
+          "judge_tokens": {
+            "input_tokens": 689,
+            "output_tokens": 80,
+            "total_tokens": 769
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly matches the expected answer and is directly supported by the retrieved evidence in cost-policy.md."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2629.5755000028294,
+          "judge_tokens": {
+            "input_tokens": 689,
+            "output_tokens": 80,
+            "total_tokens": 769
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately states that the baseline system should report average cost per request, matching the evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2629.5755000028294,
+          "judge_tokens": {
+            "input_tokens": 689,
+            "output_tokens": 80,
+            "total_tokens": 769
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly points out that model changes must be evaluated against a fixed evaluation dataset, as stated in the evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2629.5755000028294,
+          "judge_tokens": {
+            "input_tokens": 689,
+            "output_tokens": 80,
+            "total_tokens": 769
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly captures the interval for total latency from the beginning of request processing until the final response."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2629.5755000028294,
+          "judge_tokens": {
+            "input_tokens": 689,
+            "output_tokens": 80,
+            "total_tokens": 769
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly identifies component-level latency as the detail recorded when instrumentation is available."
+          }
+        }
+      ]
+    },
+    "11": {
+      "batch_index": 11,
+      "case_ids": [
+        "latency_005",
+        "deployment_001",
+        "deployment_002",
+        "deployment_003",
+        "deployment_004"
+      ],
+      "dense": [
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2673.317099997803,
+          "judge_tokens": {
+            "input_tokens": 686,
+            "output_tokens": 82,
+            "total_tokens": 768
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately reflects the retrieved evidence that reducing latency at the expense of retrieval quality or groundedness is not automatically an improvement."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2673.317099997803,
+          "judge_tokens": {
+            "input_tokens": 686,
+            "output_tokens": 82,
+            "total_tokens": 768
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly states that application changes should be evaluated before deployment, matching the retrieved policy."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2673.317099997803,
+          "judge_tokens": {
+            "input_tokens": 686,
+            "output_tokens": 82,
+            "total_tokens": 768
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly identifies retrieval, generation, model configuration, validation, and orchestration changes as those requiring comparison against a known baseline."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2673.317099997803,
+          "judge_tokens": {
+            "input_tokens": 686,
+            "output_tokens": 82,
+            "total_tokens": 768
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately captures that a deployment should not be considered safe solely because the application starts successfully."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2673.317099997803,
+          "judge_tokens": {
+            "input_tokens": 686,
+            "output_tokens": 82,
+            "total_tokens": 768
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly integrates both deployment policy details on automated evaluation thresholds and evaluation strategy details on preserving per-case evidence."
+          }
+        }
+      ],
+      "dense_crossencoder": [
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3015.2426999993622,
+          "judge_tokens": {
+            "input_tokens": 686,
+            "output_tokens": 79,
+            "total_tokens": 765
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately reflects the retrieved evidence regarding latency policy and is fully grounded in the text."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3015.2426999993622,
+          "judge_tokens": {
+            "input_tokens": 686,
+            "output_tokens": 79,
+            "total_tokens": 765
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly identifies that application changes should be evaluated before deployment based on the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3015.2426999993622,
+          "judge_tokens": {
+            "input_tokens": 686,
+            "output_tokens": 79,
+            "total_tokens": 765
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly lists all change types requiring baseline comparison as stated in the deployment policy."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3015.2426999993622,
+          "judge_tokens": {
+            "input_tokens": 686,
+            "output_tokens": 79,
+            "total_tokens": 765
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately states that deployment safety cannot be assumed solely from application start, directly matching the evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3015.2426999993622,
+          "judge_tokens": {
+            "input_tokens": 686,
+            "output_tokens": 79,
+            "total_tokens": 765
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly details when automated evaluation can gate deployment and what runs must retain, fully supported by the evidence."
+          }
+        }
+      ]
+    },
+    "12": {
+      "batch_index": 12,
+      "case_ids": [
+        "reliability_001",
+        "reliability_002",
+        "reliability_003",
+        "reliability_004",
+        "retry_001"
+      ],
+      "dense": [
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3067.7995000005467,
+          "judge_tokens": {
+            "input_tokens": 657,
+            "output_tokens": 85,
+            "total_tokens": 742
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly identifies retrieval, generation, validation, and external service calls as components with tracked failures, fully supported by the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3067.7995000005467,
+          "judge_tokens": {
+            "input_tokens": 657,
+            "output_tokens": 85,
+            "total_tokens": 742
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly states that successful requests should not hide component-level failures, matching the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3067.7995000005467,
+          "judge_tokens": {
+            "input_tokens": 657,
+            "output_tokens": 85,
+            "total_tokens": 742
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly notes that transient failures may be retried when explicitly configured, which is directly supported by the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3067.7995000005467,
+          "judge_tokens": {
+            "input_tokens": 657,
+            "output_tokens": 85,
+            "total_tokens": 742
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly explains that retries can increase latency and cost, and that reliability improvements must be evaluated alongside latency, cost, and answer quality, fully backed by evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3067.7995000005467,
+          "judge_tokens": {
+            "input_tokens": 657,
+            "output_tokens": 85,
+            "total_tokens": 742
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately identifies that retries are intended to recover from transient failures, supported by the evidence."
+          }
+        }
+      ],
+      "dense_crossencoder": [
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2681.015499998466,
+          "judge_tokens": {
+            "input_tokens": 656,
+            "output_tokens": 81,
+            "total_tokens": 737
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately reflects the components mentioned in the retrieved evidence regarding EvalForge failure tracking."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2681.015499998466,
+          "judge_tokens": {
+            "input_tokens": 656,
+            "output_tokens": 81,
+            "total_tokens": 737
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer matches the text in the retrieved evidence stating that a successful request should not hide component-level failures."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2681.015499998466,
+          "judge_tokens": {
+            "input_tokens": 656,
+            "output_tokens": 81,
+            "total_tokens": 737
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer directly uses the condition stated in the retrieved evidence for when transient failures may be retried."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2681.015499998466,
+          "judge_tokens": {
+            "input_tokens": 656,
+            "output_tokens": 81,
+            "total_tokens": 737
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer is fully grounded in the retrieved evidence, capturing that reliability improvements should be evaluated alongside latency, cost, and answer quality because of retries."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2681.015499998466,
+          "judge_tokens": {
+            "input_tokens": 656,
+            "output_tokens": 81,
+            "total_tokens": 737
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly identifies transient failures as stated in the retrieved retry policy document."
+          }
+        }
+      ]
+    },
+    "13": {
+      "batch_index": 13,
+      "case_ids": [
+        "retry_002",
+        "retry_003",
+        "retry_004",
+        "structured_001",
+        "structured_002"
+      ],
+      "dense": [
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2475.571700000728,
+          "judge_tokens": {
+            "input_tokens": 661,
+            "output_tokens": 86,
+            "total_tokens": 747
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly states that the original failed execution should not be silently replaced in observability data, which aligns with the expected answer and the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2475.571700000728,
+          "judge_tokens": {
+            "input_tokens": 661,
+            "output_tokens": 86,
+            "total_tokens": 747
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately specifies that each retry attempt should be recorded with its reason and outcome, supported directly by the evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2475.571700000728,
+          "judge_tokens": {
+            "input_tokens": 661,
+            "output_tokens": 86,
+            "total_tokens": 747
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly matches the expected response and is fully supported by the retrieved evidence indicating repeated retries should be bounded to prevent uncontrolled execution."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2475.571700000728,
+          "judge_tokens": {
+            "input_tokens": 661,
+            "output_tokens": 86,
+            "total_tokens": 747
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly states that structured LLM responses should conform to a defined application schema, directly matching the expected answer and evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2475.571700000728,
+          "judge_tokens": {
+            "input_tokens": 661,
+            "output_tokens": 86,
+            "total_tokens": 747
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately reflects that schema validation should occur before downstream components rely on generated fields, as verified by the evidence."
+          }
+        }
+      ],
+      "dense_crossencoder": [
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2700.5601999990176,
+          "judge_tokens": {
+            "input_tokens": 663,
+            "output_tokens": 83,
+            "total_tokens": 746
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly states that the original failed execution should remain in observability data, which is fully supported by the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2700.5601999990176,
+          "judge_tokens": {
+            "input_tokens": 663,
+            "output_tokens": 83,
+            "total_tokens": 746
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly identifies that each retry attempt must be recorded with its reason and outcome, supported by the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2700.5601999990176,
+          "judge_tokens": {
+            "input_tokens": 663,
+            "output_tokens": 83,
+            "total_tokens": 746
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly gives the reason that repeated retries must be bounded to prevent uncontrolled execution, matching the evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2700.5601999990176,
+          "judge_tokens": {
+            "input_tokens": 663,
+            "output_tokens": 83,
+            "total_tokens": 746
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly states that structured LLM responses should conform to a defined application schema, directly supported by the evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2700.5601999990176,
+          "judge_tokens": {
+            "input_tokens": 663,
+            "output_tokens": 83,
+            "total_tokens": 746
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately indicates that schema validation should occur before downstream components rely on generated fields, grounded in the retrieved text."
+          }
+        }
+      ]
+    },
+    "14": {
+      "batch_index": 14,
+      "case_ids": [
+        "structured_003",
+        "structured_004",
+        "validation_003",
+        "validation_004",
+        "validation_005"
+      ],
+      "dense": [
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3153.139599999122,
+          "judge_tokens": {
+            "input_tokens": 735,
+            "output_tokens": 82,
+            "total_tokens": 817
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately reflects the policy stating that required fields must be present and values must satisfy declared constraints, fully supported by the retrieved evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3153.139599999122,
+          "judge_tokens": {
+            "input_tokens": 735,
+            "output_tokens": 82,
+            "total_tokens": 817
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly points out that the original invalid response should remain observable, which is directly supported by the evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3153.139599999122,
+          "judge_tokens": {
+            "input_tokens": 735,
+            "output_tokens": 82,
+            "total_tokens": 817
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer lists the correct fields of EvalForge's response schema as stated in the evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3153.139599999122,
+          "judge_tokens": {
+            "input_tokens": 735,
+            "output_tokens": 82,
+            "total_tokens": 817
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer accurately states that citations should identify the source documents used to construct the answer, supported directly by the validation policy."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 3153.139599999122,
+          "judge_tokens": {
+            "input_tokens": 735,
+            "output_tokens": 82,
+            "total_tokens": 817
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly asserts that a successful LLM call does not imply validity, matching the evidence."
+          }
+        }
+      ],
+      "dense_crossencoder": [
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2564.699800001108,
+          "judge_tokens": {
+            "input_tokens": 738,
+            "output_tokens": 82,
+            "total_tokens": 820
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly states that required fields must be present and satisfy their declared constraints, directly supported by the structured output policy."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2564.699800001108,
+          "judge_tokens": {
+            "input_tokens": 738,
+            "output_tokens": 82,
+            "total_tokens": 820
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly points out that the original invalid response should remain observable during repair or retry operations, matching the policy evidence."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2564.699800001108,
+          "judge_tokens": {
+            "input_tokens": 738,
+            "output_tokens": 82,
+            "total_tokens": 820
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer lists all required response schema fields as stated in the output validation policy."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2564.699800001108,
+          "judge_tokens": {
+            "input_tokens": 738,
+            "output_tokens": 82,
+            "total_tokens": 820
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly specifies that citations should identify source documents used to construct the answer, supported by the validation policy."
+          }
+        },
+        {
+          "status": "valid",
+          "structured_output_valid": true,
+          "judge_model": "gemini-3.5-flash-lite",
+          "judge_provider": "openai-compatible",
+          "judge_latency_ms": 2564.699800001108,
+          "judge_tokens": {
+            "input_tokens": 738,
+            "output_tokens": 82,
+            "total_tokens": 820
+          },
+          "judge_cost_usd": 0.0,
+          "judge_failure": null,
+          "result": {
+            "answer_correct": true,
+            "answer_grounded": true,
+            "topics_covered": [],
+            "topics_missing": [],
+            "unsupported_claims": [],
+            "reasoning": "The generated answer correctly answers 'no' and cites the exact statement that a successful LLM call does not imply validity."
+          }
+        }
+      ]
+    }
+  }
+}

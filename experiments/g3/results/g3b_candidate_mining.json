@@ -1,0 +1,4600 @@
+{
+  "experiment": "g3b_candidate_mining",
+  "version": "0.1",
+  "dataset_size": 75,
+  "api_calls_used": 0,
+  "source_artifacts": {
+    "evaluation_cases": "data\\evaluation_cases.json",
+    "retrieval_forensic": "logs\\dense_vs_crossencoder_forensic.json",
+    "g1_judged": "logs\\g1_judged.json",
+    "g2_judged": "logs\\g2_judged.json"
+  },
+  "classification_counts": {
+    "RANKING_IMPROVEMENT": 9,
+    "RANKING_REGRESSION": 1,
+    "NEUTRAL_REORDER": 52,
+    "UNCHANGED": 13
+  },
+  "signal_counts": {
+    "MULTI_DOCUMENT_EXPECTATION": 13,
+    "CE_RANKING_IMPROVEMENT": 9,
+    "EXPECTED_RANK_CHANGED": 10,
+    "DENSE_MISSING_EXPECTED": 2,
+    "CE_MISSING_EXPECTED": 2,
+    "CE_RANKING_REGRESSION": 1,
+    "NEUTRAL_REORDER": 52
+  },
+  "bucket_counts": {
+    "retrieval_improvement": 9,
+    "retrieval_regression": 1,
+    "multi_evidence": 13,
+    "ordering_sensitive": 0,
+    "answer_changed": 0,
+    "ce_answer_regression": 0,
+    "dense_missing_expected": 2
+  },
+  "top_candidates": [
+    {
+      "case_id": "evaluation_strategy_003",
+      "question": "Why can a system with strong recall still require investigation before it is called better?",
+      "category": "cross_document",
+      "expected_documents": [
+        "evaluation/evaluation-strategy.md",
+        "evaluation/retrieval-metrics.md"
+      ],
+      "retrieval_classification": "RANKING_IMPROVEMENT",
+      "dense_documents": [
+        "policies/retry-policy.md",
+        "engineering/context-management.md",
+        "evaluation/retrieval-metrics.md",
+        "operations/reliability-policy.md",
+        "engineering/retrieval-guidelines.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/retrieval-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "policies/retry-policy.md",
+        "engineering/context-management.md",
+        "operations/reliability-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        3
+      ],
+      "crossencoder_expected_ranks": [
+        2
+      ],
+      "expected_rank_shift": 1,
+      "dense_missing_expected": [
+        "evaluation/evaluation-strategy.md"
+      ],
+      "crossencoder_missing_expected": [
+        "evaluation/evaluation-strategy.md"
+      ],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "MULTI_DOCUMENT_EXPECTATION",
+        "CE_RANKING_IMPROVEMENT",
+        "EXPECTED_RANK_CHANGED",
+        "DENSE_MISSING_EXPECTED",
+        "CE_MISSING_EXPECTED"
+      ],
+      "candidate_score": 24
+    },
+    {
+      "case_id": "cross_003",
+      "question": "What does a successful LLM call fail to guarantee, and what system components are responsible for checking the result?",
+      "category": "cross_document",
+      "expected_documents": [
+        "architecture/system-architecture.md",
+        "policies/validation-policy.md"
+      ],
+      "retrieval_classification": "RANKING_IMPROVEMENT",
+      "dense_documents": [
+        "policies/structured-output-policy.md",
+        "operations/reliability-policy.md",
+        "policies/validation-policy.md",
+        "policies/retry-policy.md",
+        "architecture/system-architecture.md"
+      ],
+      "crossencoder_documents": [
+        "policies/validation-policy.md",
+        "policies/structured-output-policy.md",
+        "operations/reliability-policy.md",
+        "architecture/system-architecture.md",
+        "policies/retry-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        3,
+        5
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        4
+      ],
+      "expected_rank_shift": 2,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "MULTI_DOCUMENT_EXPECTATION",
+        "CE_RANKING_IMPROVEMENT",
+        "EXPECTED_RANK_CHANGED"
+      ],
+      "candidate_score": 16
+    },
+    {
+      "case_id": "routing_006",
+      "question": "How should a proposed model change be evaluated and compared fairly?",
+      "category": "cross_document",
+      "expected_documents": [
+        "architecture/model-routing.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "retrieval_classification": "RANKING_REGRESSION",
+      "dense_documents": [
+        "architecture/model-routing.md",
+        "operations/deployment-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/cost-policy.md",
+        "operations/reliability-policy.md"
+      ],
+      "crossencoder_documents": [
+        "operations/deployment-policy.md",
+        "architecture/model-routing.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/cost-policy.md",
+        "operations/reliability-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1,
+        3
+      ],
+      "crossencoder_expected_ranks": [
+        2,
+        3
+      ],
+      "expected_rank_shift": -1,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "MULTI_DOCUMENT_EXPECTATION",
+        "CE_RANKING_REGRESSION",
+        "EXPECTED_RANK_CHANGED"
+      ],
+      "candidate_score": 14
+    },
+    {
+      "case_id": "golden_004",
+      "question": "How should dataset changes be handled relative to retrieval changes?",
+      "category": "golden_dataset",
+      "expected_documents": [
+        "evaluation/golden-datasets.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "engineering/embedding-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/retrieval-guidelines.md",
+        "evaluation/evaluation-strategy.md",
+        "engineering/chunking-guidelines.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/embedding-guidelines.md",
+        "evaluation/evaluation-strategy.md",
+        "engineering/chunking-guidelines.md",
+        "engineering/retrieval-guidelines.md",
+        "evaluation/retrieval-metrics.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [],
+      "crossencoder_expected_ranks": [],
+      "expected_rank_shift": null,
+      "dense_missing_expected": [
+        "evaluation/golden-datasets.md"
+      ],
+      "crossencoder_missing_expected": [
+        "evaluation/golden-datasets.md"
+      ],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER",
+        "DENSE_MISSING_EXPECTED",
+        "CE_MISSING_EXPECTED"
+      ],
+      "candidate_score": 12
+    },
+    {
+      "case_id": "cost_001",
+      "question": "Which token measurements does EvalForge track for LLM requests?",
+      "category": "cost",
+      "expected_documents": [
+        "operations/cost-policy.md"
+      ],
+      "retrieval_classification": "RANKING_IMPROVEMENT",
+      "dense_documents": [
+        "architecture/system-architecture.md",
+        "operations/cost-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "architecture/model-routing.md",
+        "operations/reliability-policy.md"
+      ],
+      "crossencoder_documents": [
+        "operations/cost-policy.md",
+        "architecture/model-routing.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 1,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "CE_RANKING_IMPROVEMENT",
+        "EXPECTED_RANK_CHANGED"
+      ],
+      "candidate_score": 10
+    },
+    {
+      "case_id": "cost_002",
+      "question": "Why can't a cheaper model automatically be considered an improvement?",
+      "category": "cost",
+      "expected_documents": [
+        "operations/cost-policy.md"
+      ],
+      "retrieval_classification": "RANKING_IMPROVEMENT",
+      "dense_documents": [
+        "architecture/model-routing.md",
+        "operations/cost-policy.md",
+        "operations/reliability-policy.md",
+        "engineering/context-management.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "crossencoder_documents": [
+        "operations/cost-policy.md",
+        "engineering/context-management.md",
+        "operations/reliability-policy.md",
+        "architecture/model-routing.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 1,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "CE_RANKING_IMPROVEMENT",
+        "EXPECTED_RANK_CHANGED"
+      ],
+      "candidate_score": 10
+    },
+    {
+      "case_id": "latency_001",
+      "question": "What is the performance target for a normal EvalForge query?",
+      "category": "latency",
+      "expected_documents": [
+        "operations/latency-policy.md"
+      ],
+      "retrieval_classification": "RANKING_IMPROVEMENT",
+      "dense_documents": [
+        "evaluation/evaluation-strategy.md",
+        "operations/latency-policy.md",
+        "architecture/system-architecture.md",
+        "evaluation/retrieval-metrics.md",
+        "architecture/model-routing.md"
+      ],
+      "crossencoder_documents": [
+        "operations/latency-policy.md",
+        "architecture/system-architecture.md",
+        "architecture/model-routing.md",
+        "evaluation/evaluation-strategy.md",
+        "evaluation/retrieval-metrics.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 1,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "CE_RANKING_IMPROVEMENT",
+        "EXPECTED_RANK_CHANGED"
+      ],
+      "candidate_score": 10
+    },
+    {
+      "case_id": "reliability_002",
+      "question": "What must a successful request not conceal?",
+      "category": "reliability",
+      "expected_documents": [
+        "operations/reliability-policy.md"
+      ],
+      "retrieval_classification": "RANKING_IMPROVEMENT",
+      "dense_documents": [
+        "policies/structured-output-policy.md",
+        "operations/reliability-policy.md",
+        "policies/validation-policy.md",
+        "policies/retry-policy.md",
+        "architecture/model-routing.md"
+      ],
+      "crossencoder_documents": [
+        "operations/reliability-policy.md",
+        "policies/validation-policy.md",
+        "architecture/model-routing.md",
+        "policies/retry-policy.md",
+        "policies/structured-output-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 1,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "CE_RANKING_IMPROVEMENT",
+        "EXPECTED_RANK_CHANGED"
+      ],
+      "candidate_score": 10
+    },
+    {
+      "case_id": "validation_001",
+      "question": "What happens when an LLM produces malformed structured output?",
+      "category": "validation",
+      "expected_documents": [
+        "policies/validation-policy.md"
+      ],
+      "retrieval_classification": "RANKING_IMPROVEMENT",
+      "dense_documents": [
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "architecture/system-architecture.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/reliability-policy.md"
+      ],
+      "crossencoder_documents": [
+        "policies/validation-policy.md",
+        "policies/structured-output-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 1,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "CE_RANKING_IMPROVEMENT",
+        "EXPECTED_RANK_CHANGED"
+      ],
+      "candidate_score": 10
+    },
+    {
+      "case_id": "validation_003",
+      "question": "Which fields are part of EvalForge's structured response schema?",
+      "category": "validation",
+      "expected_documents": [
+        "policies/validation-policy.md"
+      ],
+      "retrieval_classification": "RANKING_IMPROVEMENT",
+      "dense_documents": [
+        "architecture/system-architecture.md",
+        "policies/structured-output-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "policies/validation-policy.md",
+        "architecture/model-routing.md"
+      ],
+      "crossencoder_documents": [
+        "architecture/system-architecture.md",
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "architecture/model-routing.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        4
+      ],
+      "crossencoder_expected_ranks": [
+        3
+      ],
+      "expected_rank_shift": 1,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "CE_RANKING_IMPROVEMENT",
+        "EXPECTED_RANK_CHANGED"
+      ],
+      "candidate_score": 10
+    },
+    {
+      "case_id": "validation_005",
+      "question": "Does a successful LLM call prove its output is valid?",
+      "category": "validation",
+      "expected_documents": [
+        "policies/validation-policy.md"
+      ],
+      "retrieval_classification": "RANKING_IMPROVEMENT",
+      "dense_documents": [
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md"
+      ],
+      "crossencoder_documents": [
+        "policies/validation-policy.md",
+        "policies/structured-output-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/reliability-policy.md",
+        "architecture/system-architecture.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 1,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "CE_RANKING_IMPROVEMENT",
+        "EXPECTED_RANK_CHANGED"
+      ],
+      "candidate_score": 10
+    },
+    {
+      "case_id": "architecture_003",
+      "question": "After retrieval, how is evidence used by the generation layer and what risk must be managed?",
+      "category": "cross_document",
+      "expected_documents": [
+        "architecture/system-architecture.md",
+        "engineering/context-management.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "engineering/context-management.md",
+        "architecture/system-architecture.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md",
+        "evaluation/retrieval-metrics.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/context-management.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md",
+        "evaluation/retrieval-metrics.md",
+        "architecture/system-architecture.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1,
+        2,
+        3
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        2,
+        5
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "MULTI_DOCUMENT_EXPECTATION",
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 6
+    },
+    {
+      "case_id": "context_004",
+      "question": "When increasing top-k, what context trade-offs should be evaluated beyond evidence coverage?",
+      "category": "cross_document",
+      "expected_documents": [
+        "engineering/context-management.md",
+        "engineering/retrieval-guidelines.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "engineering/context-management.md",
+        "engineering/retrieval-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "evaluation/evaluation-strategy.md",
+        "evaluation/golden-datasets.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/retrieval-guidelines.md",
+        "engineering/context-management.md",
+        "evaluation/retrieval-metrics.md",
+        "evaluation/evaluation-strategy.md",
+        "evaluation/golden-datasets.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1,
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        2
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "MULTI_DOCUMENT_EXPECTATION",
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 6
+    },
+    {
+      "case_id": "cost_005",
+      "question": "What must be measured before routing more work to a cheaper model?",
+      "category": "cross_document",
+      "expected_documents": [
+        "operations/cost-policy.md",
+        "architecture/model-routing.md",
+        "operations/latency-policy.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "architecture/model-routing.md",
+        "operations/cost-policy.md",
+        "operations/deployment-policy.md",
+        "operations/reliability-policy.md",
+        "operations/latency-policy.md"
+      ],
+      "crossencoder_documents": [
+        "architecture/model-routing.md",
+        "operations/cost-policy.md",
+        "operations/reliability-policy.md",
+        "operations/deployment-policy.md",
+        "operations/latency-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1,
+        2,
+        5
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        2,
+        5
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "MULTI_DOCUMENT_EXPECTATION",
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 6
+    },
+    {
+      "case_id": "cross_001",
+      "question": "If changing the model can affect latency and cost, what should be used to determine whether the change is actually better?",
+      "category": "cross_document",
+      "expected_documents": [
+        "architecture/model-routing.md",
+        "operations/cost-policy.md",
+        "operations/latency-policy.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "architecture/model-routing.md",
+        "operations/latency-policy.md",
+        "operations/cost-policy.md",
+        "operations/reliability-policy.md",
+        "operations/deployment-policy.md"
+      ],
+      "crossencoder_documents": [
+        "architecture/model-routing.md",
+        "operations/deployment-policy.md",
+        "operations/cost-policy.md",
+        "operations/reliability-policy.md",
+        "operations/latency-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1,
+        2,
+        3
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        3,
+        5
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "MULTI_DOCUMENT_EXPECTATION",
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 6
+    },
+    {
+      "case_id": "cross_002",
+      "question": "How does the retrieval layer fit into the overall EvalForge architecture, and how should retrieval quality be assessed?",
+      "category": "cross_document",
+      "expected_documents": [
+        "architecture/system-architecture.md",
+        "engineering/retrieval-guidelines.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "architecture/system-architecture.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/retrieval-guidelines.md",
+        "evaluation/evaluation-strategy.md",
+        "engineering/embedding-guidelines.md"
+      ],
+      "crossencoder_documents": [
+        "architecture/system-architecture.md",
+        "engineering/retrieval-guidelines.md",
+        "evaluation/evaluation-strategy.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/embedding-guidelines.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1,
+        3
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        2
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "MULTI_DOCUMENT_EXPECTATION",
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 6
+    },
+    {
+      "case_id": "deployment_004",
+      "question": "When can automated evaluation safely gate deployment, and what must a run retain for follow-up?",
+      "category": "cross_document",
+      "expected_documents": [
+        "operations/deployment-policy.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "operations/deployment-policy.md",
+        "operations/reliability-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "architecture/system-architecture.md",
+        "policies/structured-output-policy.md"
+      ],
+      "crossencoder_documents": [
+        "operations/deployment-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/reliability-policy.md",
+        "architecture/system-architecture.md",
+        "policies/structured-output-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1,
+        3
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        2
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "MULTI_DOCUMENT_EXPECTATION",
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 6
+    },
+    {
+      "case_id": "embedding_004",
+      "question": "How should an embedding-model change be evaluated so its effect is attributable?",
+      "category": "cross_document",
+      "expected_documents": [
+        "engineering/embedding-guidelines.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "engineering/embedding-guidelines.md",
+        "architecture/model-routing.md",
+        "engineering/context-management.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/reliability-policy.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/embedding-guidelines.md",
+        "architecture/model-routing.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/reliability-policy.md",
+        "engineering/context-management.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1,
+        4
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        3
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "MULTI_DOCUMENT_EXPECTATION",
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 6
+    },
+    {
+      "case_id": "reliability_004",
+      "question": "Why must a retry-based reliability improvement be evaluated with more than success rate?",
+      "category": "cross_document",
+      "expected_documents": [
+        "operations/reliability-policy.md",
+        "policies/retry-policy.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "operations/reliability-policy.md",
+        "policies/retry-policy.md",
+        "operations/deployment-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "architecture/model-routing.md"
+      ],
+      "crossencoder_documents": [
+        "operations/reliability-policy.md",
+        "policies/retry-policy.md",
+        "operations/deployment-policy.md",
+        "architecture/model-routing.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1,
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        2
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "MULTI_DOCUMENT_EXPECTATION",
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 6
+    },
+    {
+      "case_id": "retrieval_004",
+      "question": "Why are documents split before semantic retrieval, and what must each resulting unit retain?",
+      "category": "cross_document",
+      "expected_documents": [
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "engineering/chunking-guidelines.md",
+        "engineering/retrieval-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/embedding-guidelines.md",
+        "engineering/context-management.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md",
+        "engineering/embedding-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/context-management.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1,
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        2
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "MULTI_DOCUMENT_EXPECTATION",
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 6
+    },
+    {
+      "case_id": "structured_004",
+      "question": "How should an invalid structured response be handled without losing diagnostic evidence?",
+      "category": "cross_document",
+      "expected_documents": [
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md"
+      ],
+      "retrieval_classification": "UNCHANGED",
+      "dense_documents": [
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "operations/reliability-policy.md",
+        "architecture/system-architecture.md",
+        "architecture/system-architecture.md"
+      ],
+      "crossencoder_documents": [
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "operations/reliability-policy.md",
+        "architecture/system-architecture.md",
+        "architecture/system-architecture.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1,
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        2
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "MULTI_DOCUMENT_EXPECTATION"
+      ],
+      "candidate_score": 4
+    },
+    {
+      "case_id": "architecture_001",
+      "question": "Which layer exposes EvalForge application endpoints?",
+      "category": "architecture",
+      "expected_documents": [
+        "architecture/system-architecture.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "architecture/system-architecture.md",
+        "evaluation/evaluation-strategy.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md",
+        "architecture/model-routing.md"
+      ],
+      "crossencoder_documents": [
+        "architecture/system-architecture.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/reliability-policy.md",
+        "architecture/system-architecture.md",
+        "architecture/model-routing.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1,
+        3
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        4
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "architecture_002",
+      "question": "What component controls execution flow through retrieval, tools, generation, and validation?",
+      "category": "architecture",
+      "expected_documents": [
+        "architecture/system-architecture.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "architecture/system-architecture.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "policies/structured-output-policy.md"
+      ],
+      "crossencoder_documents": [
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md",
+        "architecture/system-architecture.md",
+        "policies/structured-output-policy.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1,
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        3
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "architecture_004",
+      "question": "What information does the observability layer record?",
+      "category": "architecture",
+      "expected_documents": [
+        "architecture/system-architecture.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "architecture/system-architecture.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md",
+        "policies/retry-policy.md",
+        "policies/validation-policy.md"
+      ],
+      "crossencoder_documents": [
+        "architecture/system-architecture.md",
+        "architecture/system-architecture.md",
+        "policies/retry-policy.md",
+        "operations/reliability-policy.md",
+        "policies/validation-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1,
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        2
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "architecture_005",
+      "question": "Which layer detects regressions between application versions?",
+      "category": "architecture",
+      "expected_documents": [
+        "architecture/system-architecture.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "architecture/system-architecture.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/deployment-policy.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md"
+      ],
+      "crossencoder_documents": [
+        "architecture/system-architecture.md",
+        "evaluation/evaluation-strategy.md",
+        "architecture/system-architecture.md",
+        "operations/deployment-policy.md",
+        "operations/reliability-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1,
+        4
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        3
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "chunking_002",
+      "question": "How can oversized chunks hurt retrieval?",
+      "category": "chunking",
+      "expected_documents": [
+        "engineering/chunking-guidelines.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "engineering/chunking-guidelines.md",
+        "engineering/retrieval-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/context-management.md",
+        "operations/reliability-policy.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/chunking-guidelines.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/context-management.md",
+        "evaluation/retrieval-metrics.md",
+        "operations/reliability-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "chunking_004",
+      "question": "How should chunk size and overlap be handled?",
+      "category": "chunking",
+      "expected_documents": [
+        "engineering/chunking-guidelines.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "engineering/chunking-guidelines.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/context-management.md",
+        "policies/structured-output-policy.md",
+        "engineering/embedding-guidelines.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/chunking-guidelines.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/context-management.md",
+        "engineering/embedding-guidelines.md",
+        "policies/structured-output-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "context_001",
+      "question": "Is more retrieved context always better?",
+      "category": "context",
+      "expected_documents": [
+        "engineering/context-management.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "engineering/context-management.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md",
+        "engineering/embedding-guidelines.md",
+        "evaluation/retrieval-metrics.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/context-management.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/embedding-guidelines.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "context_002",
+      "question": "When can additional context improve an answer?",
+      "category": "context",
+      "expected_documents": [
+        "engineering/context-management.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "engineering/context-management.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/latency-policy.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/context-management.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md",
+        "operations/latency-policy.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "cost_003",
+      "question": "How is request cost calculated?",
+      "category": "cost",
+      "expected_documents": [
+        "operations/cost-policy.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "operations/cost-policy.md",
+        "operations/latency-policy.md",
+        "architecture/model-routing.md",
+        "operations/reliability-policy.md",
+        "evaluation/retrieval-metrics.md"
+      ],
+      "crossencoder_documents": [
+        "operations/cost-policy.md",
+        "architecture/model-routing.md",
+        "operations/latency-policy.md",
+        "operations/reliability-policy.md",
+        "evaluation/retrieval-metrics.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    }
+  ],
+  "all_candidates": [
+    {
+      "case_id": "evaluation_strategy_003",
+      "question": "Why can a system with strong recall still require investigation before it is called better?",
+      "category": "cross_document",
+      "expected_documents": [
+        "evaluation/evaluation-strategy.md",
+        "evaluation/retrieval-metrics.md"
+      ],
+      "retrieval_classification": "RANKING_IMPROVEMENT",
+      "dense_documents": [
+        "policies/retry-policy.md",
+        "engineering/context-management.md",
+        "evaluation/retrieval-metrics.md",
+        "operations/reliability-policy.md",
+        "engineering/retrieval-guidelines.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/retrieval-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "policies/retry-policy.md",
+        "engineering/context-management.md",
+        "operations/reliability-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        3
+      ],
+      "crossencoder_expected_ranks": [
+        2
+      ],
+      "expected_rank_shift": 1,
+      "dense_missing_expected": [
+        "evaluation/evaluation-strategy.md"
+      ],
+      "crossencoder_missing_expected": [
+        "evaluation/evaluation-strategy.md"
+      ],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "MULTI_DOCUMENT_EXPECTATION",
+        "CE_RANKING_IMPROVEMENT",
+        "EXPECTED_RANK_CHANGED",
+        "DENSE_MISSING_EXPECTED",
+        "CE_MISSING_EXPECTED"
+      ],
+      "candidate_score": 24
+    },
+    {
+      "case_id": "cross_003",
+      "question": "What does a successful LLM call fail to guarantee, and what system components are responsible for checking the result?",
+      "category": "cross_document",
+      "expected_documents": [
+        "architecture/system-architecture.md",
+        "policies/validation-policy.md"
+      ],
+      "retrieval_classification": "RANKING_IMPROVEMENT",
+      "dense_documents": [
+        "policies/structured-output-policy.md",
+        "operations/reliability-policy.md",
+        "policies/validation-policy.md",
+        "policies/retry-policy.md",
+        "architecture/system-architecture.md"
+      ],
+      "crossencoder_documents": [
+        "policies/validation-policy.md",
+        "policies/structured-output-policy.md",
+        "operations/reliability-policy.md",
+        "architecture/system-architecture.md",
+        "policies/retry-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        3,
+        5
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        4
+      ],
+      "expected_rank_shift": 2,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "MULTI_DOCUMENT_EXPECTATION",
+        "CE_RANKING_IMPROVEMENT",
+        "EXPECTED_RANK_CHANGED"
+      ],
+      "candidate_score": 16
+    },
+    {
+      "case_id": "routing_006",
+      "question": "How should a proposed model change be evaluated and compared fairly?",
+      "category": "cross_document",
+      "expected_documents": [
+        "architecture/model-routing.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "retrieval_classification": "RANKING_REGRESSION",
+      "dense_documents": [
+        "architecture/model-routing.md",
+        "operations/deployment-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/cost-policy.md",
+        "operations/reliability-policy.md"
+      ],
+      "crossencoder_documents": [
+        "operations/deployment-policy.md",
+        "architecture/model-routing.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/cost-policy.md",
+        "operations/reliability-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1,
+        3
+      ],
+      "crossencoder_expected_ranks": [
+        2,
+        3
+      ],
+      "expected_rank_shift": -1,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "MULTI_DOCUMENT_EXPECTATION",
+        "CE_RANKING_REGRESSION",
+        "EXPECTED_RANK_CHANGED"
+      ],
+      "candidate_score": 14
+    },
+    {
+      "case_id": "golden_004",
+      "question": "How should dataset changes be handled relative to retrieval changes?",
+      "category": "golden_dataset",
+      "expected_documents": [
+        "evaluation/golden-datasets.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "engineering/embedding-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/retrieval-guidelines.md",
+        "evaluation/evaluation-strategy.md",
+        "engineering/chunking-guidelines.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/embedding-guidelines.md",
+        "evaluation/evaluation-strategy.md",
+        "engineering/chunking-guidelines.md",
+        "engineering/retrieval-guidelines.md",
+        "evaluation/retrieval-metrics.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [],
+      "crossencoder_expected_ranks": [],
+      "expected_rank_shift": null,
+      "dense_missing_expected": [
+        "evaluation/golden-datasets.md"
+      ],
+      "crossencoder_missing_expected": [
+        "evaluation/golden-datasets.md"
+      ],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER",
+        "DENSE_MISSING_EXPECTED",
+        "CE_MISSING_EXPECTED"
+      ],
+      "candidate_score": 12
+    },
+    {
+      "case_id": "cost_001",
+      "question": "Which token measurements does EvalForge track for LLM requests?",
+      "category": "cost",
+      "expected_documents": [
+        "operations/cost-policy.md"
+      ],
+      "retrieval_classification": "RANKING_IMPROVEMENT",
+      "dense_documents": [
+        "architecture/system-architecture.md",
+        "operations/cost-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "architecture/model-routing.md",
+        "operations/reliability-policy.md"
+      ],
+      "crossencoder_documents": [
+        "operations/cost-policy.md",
+        "architecture/model-routing.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 1,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "CE_RANKING_IMPROVEMENT",
+        "EXPECTED_RANK_CHANGED"
+      ],
+      "candidate_score": 10
+    },
+    {
+      "case_id": "cost_002",
+      "question": "Why can't a cheaper model automatically be considered an improvement?",
+      "category": "cost",
+      "expected_documents": [
+        "operations/cost-policy.md"
+      ],
+      "retrieval_classification": "RANKING_IMPROVEMENT",
+      "dense_documents": [
+        "architecture/model-routing.md",
+        "operations/cost-policy.md",
+        "operations/reliability-policy.md",
+        "engineering/context-management.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "crossencoder_documents": [
+        "operations/cost-policy.md",
+        "engineering/context-management.md",
+        "operations/reliability-policy.md",
+        "architecture/model-routing.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 1,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "CE_RANKING_IMPROVEMENT",
+        "EXPECTED_RANK_CHANGED"
+      ],
+      "candidate_score": 10
+    },
+    {
+      "case_id": "latency_001",
+      "question": "What is the performance target for a normal EvalForge query?",
+      "category": "latency",
+      "expected_documents": [
+        "operations/latency-policy.md"
+      ],
+      "retrieval_classification": "RANKING_IMPROVEMENT",
+      "dense_documents": [
+        "evaluation/evaluation-strategy.md",
+        "operations/latency-policy.md",
+        "architecture/system-architecture.md",
+        "evaluation/retrieval-metrics.md",
+        "architecture/model-routing.md"
+      ],
+      "crossencoder_documents": [
+        "operations/latency-policy.md",
+        "architecture/system-architecture.md",
+        "architecture/model-routing.md",
+        "evaluation/evaluation-strategy.md",
+        "evaluation/retrieval-metrics.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 1,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "CE_RANKING_IMPROVEMENT",
+        "EXPECTED_RANK_CHANGED"
+      ],
+      "candidate_score": 10
+    },
+    {
+      "case_id": "reliability_002",
+      "question": "What must a successful request not conceal?",
+      "category": "reliability",
+      "expected_documents": [
+        "operations/reliability-policy.md"
+      ],
+      "retrieval_classification": "RANKING_IMPROVEMENT",
+      "dense_documents": [
+        "policies/structured-output-policy.md",
+        "operations/reliability-policy.md",
+        "policies/validation-policy.md",
+        "policies/retry-policy.md",
+        "architecture/model-routing.md"
+      ],
+      "crossencoder_documents": [
+        "operations/reliability-policy.md",
+        "policies/validation-policy.md",
+        "architecture/model-routing.md",
+        "policies/retry-policy.md",
+        "policies/structured-output-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 1,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "CE_RANKING_IMPROVEMENT",
+        "EXPECTED_RANK_CHANGED"
+      ],
+      "candidate_score": 10
+    },
+    {
+      "case_id": "validation_001",
+      "question": "What happens when an LLM produces malformed structured output?",
+      "category": "validation",
+      "expected_documents": [
+        "policies/validation-policy.md"
+      ],
+      "retrieval_classification": "RANKING_IMPROVEMENT",
+      "dense_documents": [
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "architecture/system-architecture.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/reliability-policy.md"
+      ],
+      "crossencoder_documents": [
+        "policies/validation-policy.md",
+        "policies/structured-output-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 1,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "CE_RANKING_IMPROVEMENT",
+        "EXPECTED_RANK_CHANGED"
+      ],
+      "candidate_score": 10
+    },
+    {
+      "case_id": "validation_003",
+      "question": "Which fields are part of EvalForge's structured response schema?",
+      "category": "validation",
+      "expected_documents": [
+        "policies/validation-policy.md"
+      ],
+      "retrieval_classification": "RANKING_IMPROVEMENT",
+      "dense_documents": [
+        "architecture/system-architecture.md",
+        "policies/structured-output-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "policies/validation-policy.md",
+        "architecture/model-routing.md"
+      ],
+      "crossencoder_documents": [
+        "architecture/system-architecture.md",
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "architecture/model-routing.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        4
+      ],
+      "crossencoder_expected_ranks": [
+        3
+      ],
+      "expected_rank_shift": 1,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "CE_RANKING_IMPROVEMENT",
+        "EXPECTED_RANK_CHANGED"
+      ],
+      "candidate_score": 10
+    },
+    {
+      "case_id": "validation_005",
+      "question": "Does a successful LLM call prove its output is valid?",
+      "category": "validation",
+      "expected_documents": [
+        "policies/validation-policy.md"
+      ],
+      "retrieval_classification": "RANKING_IMPROVEMENT",
+      "dense_documents": [
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md"
+      ],
+      "crossencoder_documents": [
+        "policies/validation-policy.md",
+        "policies/structured-output-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/reliability-policy.md",
+        "architecture/system-architecture.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 1,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "CE_RANKING_IMPROVEMENT",
+        "EXPECTED_RANK_CHANGED"
+      ],
+      "candidate_score": 10
+    },
+    {
+      "case_id": "architecture_003",
+      "question": "After retrieval, how is evidence used by the generation layer and what risk must be managed?",
+      "category": "cross_document",
+      "expected_documents": [
+        "architecture/system-architecture.md",
+        "engineering/context-management.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "engineering/context-management.md",
+        "architecture/system-architecture.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md",
+        "evaluation/retrieval-metrics.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/context-management.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md",
+        "evaluation/retrieval-metrics.md",
+        "architecture/system-architecture.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1,
+        2,
+        3
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        2,
+        5
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "MULTI_DOCUMENT_EXPECTATION",
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 6
+    },
+    {
+      "case_id": "context_004",
+      "question": "When increasing top-k, what context trade-offs should be evaluated beyond evidence coverage?",
+      "category": "cross_document",
+      "expected_documents": [
+        "engineering/context-management.md",
+        "engineering/retrieval-guidelines.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "engineering/context-management.md",
+        "engineering/retrieval-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "evaluation/evaluation-strategy.md",
+        "evaluation/golden-datasets.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/retrieval-guidelines.md",
+        "engineering/context-management.md",
+        "evaluation/retrieval-metrics.md",
+        "evaluation/evaluation-strategy.md",
+        "evaluation/golden-datasets.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1,
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        2
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "MULTI_DOCUMENT_EXPECTATION",
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 6
+    },
+    {
+      "case_id": "cost_005",
+      "question": "What must be measured before routing more work to a cheaper model?",
+      "category": "cross_document",
+      "expected_documents": [
+        "operations/cost-policy.md",
+        "architecture/model-routing.md",
+        "operations/latency-policy.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "architecture/model-routing.md",
+        "operations/cost-policy.md",
+        "operations/deployment-policy.md",
+        "operations/reliability-policy.md",
+        "operations/latency-policy.md"
+      ],
+      "crossencoder_documents": [
+        "architecture/model-routing.md",
+        "operations/cost-policy.md",
+        "operations/reliability-policy.md",
+        "operations/deployment-policy.md",
+        "operations/latency-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1,
+        2,
+        5
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        2,
+        5
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "MULTI_DOCUMENT_EXPECTATION",
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 6
+    },
+    {
+      "case_id": "cross_001",
+      "question": "If changing the model can affect latency and cost, what should be used to determine whether the change is actually better?",
+      "category": "cross_document",
+      "expected_documents": [
+        "architecture/model-routing.md",
+        "operations/cost-policy.md",
+        "operations/latency-policy.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "architecture/model-routing.md",
+        "operations/latency-policy.md",
+        "operations/cost-policy.md",
+        "operations/reliability-policy.md",
+        "operations/deployment-policy.md"
+      ],
+      "crossencoder_documents": [
+        "architecture/model-routing.md",
+        "operations/deployment-policy.md",
+        "operations/cost-policy.md",
+        "operations/reliability-policy.md",
+        "operations/latency-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1,
+        2,
+        3
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        3,
+        5
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "MULTI_DOCUMENT_EXPECTATION",
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 6
+    },
+    {
+      "case_id": "cross_002",
+      "question": "How does the retrieval layer fit into the overall EvalForge architecture, and how should retrieval quality be assessed?",
+      "category": "cross_document",
+      "expected_documents": [
+        "architecture/system-architecture.md",
+        "engineering/retrieval-guidelines.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "architecture/system-architecture.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/retrieval-guidelines.md",
+        "evaluation/evaluation-strategy.md",
+        "engineering/embedding-guidelines.md"
+      ],
+      "crossencoder_documents": [
+        "architecture/system-architecture.md",
+        "engineering/retrieval-guidelines.md",
+        "evaluation/evaluation-strategy.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/embedding-guidelines.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1,
+        3
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        2
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "MULTI_DOCUMENT_EXPECTATION",
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 6
+    },
+    {
+      "case_id": "deployment_004",
+      "question": "When can automated evaluation safely gate deployment, and what must a run retain for follow-up?",
+      "category": "cross_document",
+      "expected_documents": [
+        "operations/deployment-policy.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "operations/deployment-policy.md",
+        "operations/reliability-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "architecture/system-architecture.md",
+        "policies/structured-output-policy.md"
+      ],
+      "crossencoder_documents": [
+        "operations/deployment-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/reliability-policy.md",
+        "architecture/system-architecture.md",
+        "policies/structured-output-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1,
+        3
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        2
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "MULTI_DOCUMENT_EXPECTATION",
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 6
+    },
+    {
+      "case_id": "embedding_004",
+      "question": "How should an embedding-model change be evaluated so its effect is attributable?",
+      "category": "cross_document",
+      "expected_documents": [
+        "engineering/embedding-guidelines.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "engineering/embedding-guidelines.md",
+        "architecture/model-routing.md",
+        "engineering/context-management.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/reliability-policy.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/embedding-guidelines.md",
+        "architecture/model-routing.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/reliability-policy.md",
+        "engineering/context-management.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1,
+        4
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        3
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "MULTI_DOCUMENT_EXPECTATION",
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 6
+    },
+    {
+      "case_id": "reliability_004",
+      "question": "Why must a retry-based reliability improvement be evaluated with more than success rate?",
+      "category": "cross_document",
+      "expected_documents": [
+        "operations/reliability-policy.md",
+        "policies/retry-policy.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "operations/reliability-policy.md",
+        "policies/retry-policy.md",
+        "operations/deployment-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "architecture/model-routing.md"
+      ],
+      "crossencoder_documents": [
+        "operations/reliability-policy.md",
+        "policies/retry-policy.md",
+        "operations/deployment-policy.md",
+        "architecture/model-routing.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1,
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        2
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "MULTI_DOCUMENT_EXPECTATION",
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 6
+    },
+    {
+      "case_id": "retrieval_004",
+      "question": "Why are documents split before semantic retrieval, and what must each resulting unit retain?",
+      "category": "cross_document",
+      "expected_documents": [
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "engineering/chunking-guidelines.md",
+        "engineering/retrieval-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/embedding-guidelines.md",
+        "engineering/context-management.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md",
+        "engineering/embedding-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/context-management.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1,
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        2
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "MULTI_DOCUMENT_EXPECTATION",
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 6
+    },
+    {
+      "case_id": "structured_004",
+      "question": "How should an invalid structured response be handled without losing diagnostic evidence?",
+      "category": "cross_document",
+      "expected_documents": [
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md"
+      ],
+      "retrieval_classification": "UNCHANGED",
+      "dense_documents": [
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "operations/reliability-policy.md",
+        "architecture/system-architecture.md",
+        "architecture/system-architecture.md"
+      ],
+      "crossencoder_documents": [
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "operations/reliability-policy.md",
+        "architecture/system-architecture.md",
+        "architecture/system-architecture.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1,
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        2
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "MULTI_DOCUMENT_EXPECTATION"
+      ],
+      "candidate_score": 4
+    },
+    {
+      "case_id": "architecture_001",
+      "question": "Which layer exposes EvalForge application endpoints?",
+      "category": "architecture",
+      "expected_documents": [
+        "architecture/system-architecture.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "architecture/system-architecture.md",
+        "evaluation/evaluation-strategy.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md",
+        "architecture/model-routing.md"
+      ],
+      "crossencoder_documents": [
+        "architecture/system-architecture.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/reliability-policy.md",
+        "architecture/system-architecture.md",
+        "architecture/model-routing.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1,
+        3
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        4
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "architecture_002",
+      "question": "What component controls execution flow through retrieval, tools, generation, and validation?",
+      "category": "architecture",
+      "expected_documents": [
+        "architecture/system-architecture.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "architecture/system-architecture.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "policies/structured-output-policy.md"
+      ],
+      "crossencoder_documents": [
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md",
+        "architecture/system-architecture.md",
+        "policies/structured-output-policy.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1,
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        3
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "architecture_004",
+      "question": "What information does the observability layer record?",
+      "category": "architecture",
+      "expected_documents": [
+        "architecture/system-architecture.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "architecture/system-architecture.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md",
+        "policies/retry-policy.md",
+        "policies/validation-policy.md"
+      ],
+      "crossencoder_documents": [
+        "architecture/system-architecture.md",
+        "architecture/system-architecture.md",
+        "policies/retry-policy.md",
+        "operations/reliability-policy.md",
+        "policies/validation-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1,
+        2
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        2
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "architecture_005",
+      "question": "Which layer detects regressions between application versions?",
+      "category": "architecture",
+      "expected_documents": [
+        "architecture/system-architecture.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "architecture/system-architecture.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/deployment-policy.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md"
+      ],
+      "crossencoder_documents": [
+        "architecture/system-architecture.md",
+        "evaluation/evaluation-strategy.md",
+        "architecture/system-architecture.md",
+        "operations/deployment-policy.md",
+        "operations/reliability-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1,
+        4
+      ],
+      "crossencoder_expected_ranks": [
+        1,
+        3
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "chunking_002",
+      "question": "How can oversized chunks hurt retrieval?",
+      "category": "chunking",
+      "expected_documents": [
+        "engineering/chunking-guidelines.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "engineering/chunking-guidelines.md",
+        "engineering/retrieval-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/context-management.md",
+        "operations/reliability-policy.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/chunking-guidelines.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/context-management.md",
+        "evaluation/retrieval-metrics.md",
+        "operations/reliability-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "chunking_004",
+      "question": "How should chunk size and overlap be handled?",
+      "category": "chunking",
+      "expected_documents": [
+        "engineering/chunking-guidelines.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "engineering/chunking-guidelines.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/context-management.md",
+        "policies/structured-output-policy.md",
+        "engineering/embedding-guidelines.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/chunking-guidelines.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/context-management.md",
+        "engineering/embedding-guidelines.md",
+        "policies/structured-output-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "context_001",
+      "question": "Is more retrieved context always better?",
+      "category": "context",
+      "expected_documents": [
+        "engineering/context-management.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "engineering/context-management.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md",
+        "engineering/embedding-guidelines.md",
+        "evaluation/retrieval-metrics.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/context-management.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/embedding-guidelines.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "context_002",
+      "question": "When can additional context improve an answer?",
+      "category": "context",
+      "expected_documents": [
+        "engineering/context-management.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "engineering/context-management.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/latency-policy.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/context-management.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md",
+        "operations/latency-policy.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "cost_003",
+      "question": "How is request cost calculated?",
+      "category": "cost",
+      "expected_documents": [
+        "operations/cost-policy.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "operations/cost-policy.md",
+        "operations/latency-policy.md",
+        "architecture/model-routing.md",
+        "operations/reliability-policy.md",
+        "evaluation/retrieval-metrics.md"
+      ],
+      "crossencoder_documents": [
+        "operations/cost-policy.md",
+        "architecture/model-routing.md",
+        "operations/latency-policy.md",
+        "operations/reliability-policy.md",
+        "evaluation/retrieval-metrics.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "cost_004",
+      "question": "What cost metric should the baseline report?",
+      "category": "cost",
+      "expected_documents": [
+        "operations/cost-policy.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "operations/cost-policy.md",
+        "operations/latency-policy.md",
+        "engineering/retrieval-guidelines.md",
+        "operations/deployment-policy.md",
+        "evaluation/retrieval-metrics.md"
+      ],
+      "crossencoder_documents": [
+        "operations/cost-policy.md",
+        "engineering/retrieval-guidelines.md",
+        "operations/deployment-policy.md",
+        "operations/latency-policy.md",
+        "evaluation/retrieval-metrics.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "deployment_001",
+      "question": "When should application changes be evaluated?",
+      "category": "deployment",
+      "expected_documents": [
+        "operations/deployment-policy.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "operations/deployment-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/reliability-policy.md",
+        "architecture/model-routing.md",
+        "architecture/system-architecture.md"
+      ],
+      "crossencoder_documents": [
+        "operations/deployment-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "architecture/model-routing.md",
+        "operations/reliability-policy.md",
+        "architecture/system-architecture.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "deployment_003",
+      "question": "Does a successfully started application prove deployment safety?",
+      "category": "deployment",
+      "expected_documents": [
+        "operations/deployment-policy.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "operations/deployment-policy.md",
+        "operations/reliability-policy.md",
+        "policies/structured-output-policy.md",
+        "policies/retry-policy.md",
+        "architecture/system-architecture.md"
+      ],
+      "crossencoder_documents": [
+        "operations/deployment-policy.md",
+        "operations/reliability-policy.md",
+        "policies/structured-output-policy.md",
+        "architecture/system-architecture.md",
+        "policies/retry-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "embedding_003",
+      "question": "What can change after swapping the embedding model?",
+      "category": "embedding",
+      "expected_documents": [
+        "engineering/embedding-guidelines.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "engineering/embedding-guidelines.md",
+        "architecture/model-routing.md",
+        "engineering/chunking-guidelines.md",
+        "engineering/context-management.md",
+        "operations/deployment-policy.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/embedding-guidelines.md",
+        "engineering/chunking-guidelines.md",
+        "architecture/model-routing.md",
+        "operations/deployment-policy.md",
+        "engineering/context-management.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "evaluation_strategy_001",
+      "question": "What dataset should EvalForge use to evaluate applications?",
+      "category": "evaluation_strategy",
+      "expected_documents": [
+        "evaluation/evaluation-strategy.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "evaluation/evaluation-strategy.md",
+        "architecture/system-architecture.md",
+        "architecture/model-routing.md",
+        "operations/reliability-policy.md",
+        "evaluation/retrieval-metrics.md"
+      ],
+      "crossencoder_documents": [
+        "evaluation/evaluation-strategy.md",
+        "architecture/model-routing.md",
+        "architecture/system-architecture.md",
+        "evaluation/retrieval-metrics.md",
+        "operations/reliability-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "evaluation_strategy_002",
+      "question": "Which quality dimensions should evaluation keep separate?",
+      "category": "evaluation_strategy",
+      "expected_documents": [
+        "evaluation/evaluation-strategy.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "evaluation/evaluation-strategy.md",
+        "architecture/system-architecture.md",
+        "operations/deployment-policy.md",
+        "architecture/model-routing.md",
+        "operations/cost-policy.md"
+      ],
+      "crossencoder_documents": [
+        "evaluation/evaluation-strategy.md",
+        "operations/deployment-policy.md",
+        "operations/cost-policy.md",
+        "architecture/model-routing.md",
+        "architecture/system-architecture.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "evaluation_strategy_004",
+      "question": "Why preserve per-case evidence in an evaluation run?",
+      "category": "evaluation_strategy",
+      "expected_documents": [
+        "evaluation/evaluation-strategy.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "evaluation/evaluation-strategy.md",
+        "engineering/context-management.md",
+        "evaluation/retrieval-metrics.md",
+        "evaluation/golden-datasets.md",
+        "engineering/retrieval-guidelines.md"
+      ],
+      "crossencoder_documents": [
+        "evaluation/evaluation-strategy.md",
+        "engineering/context-management.md",
+        "engineering/retrieval-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "evaluation/golden-datasets.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "golden_001",
+      "question": "What belongs in a golden dataset case?",
+      "category": "golden_dataset",
+      "expected_documents": [
+        "evaluation/golden-datasets.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "evaluation/golden-datasets.md",
+        "evaluation/evaluation-strategy.md",
+        "engineering/embedding-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "architecture/system-architecture.md"
+      ],
+      "crossencoder_documents": [
+        "evaluation/golden-datasets.md",
+        "evaluation/evaluation-strategy.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/embedding-guidelines.md",
+        "architecture/system-architecture.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "golden_002",
+      "question": "What question styles should golden cases include?",
+      "category": "golden_dataset",
+      "expected_documents": [
+        "evaluation/golden-datasets.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "evaluation/golden-datasets.md",
+        "engineering/retrieval-guidelines.md",
+        "evaluation/evaluation-strategy.md",
+        "engineering/embedding-guidelines.md",
+        "engineering/chunking-guidelines.md"
+      ],
+      "crossencoder_documents": [
+        "evaluation/golden-datasets.md",
+        "evaluation/evaluation-strategy.md",
+        "engineering/embedding-guidelines.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "golden_003",
+      "question": "What do expected documents specify for a golden case?",
+      "category": "golden_dataset",
+      "expected_documents": [
+        "evaluation/golden-datasets.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "evaluation/golden-datasets.md",
+        "policies/validation-policy.md",
+        "policies/structured-output-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "evaluation/retrieval-metrics.md"
+      ],
+      "crossencoder_documents": [
+        "evaluation/golden-datasets.md",
+        "evaluation/retrieval-metrics.md",
+        "evaluation/evaluation-strategy.md",
+        "policies/validation-policy.md",
+        "policies/structured-output-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "latency_002",
+      "question": "When is latency considered a regression under the baseline policy?",
+      "category": "latency",
+      "expected_documents": [
+        "operations/latency-policy.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "operations/latency-policy.md",
+        "operations/deployment-policy.md",
+        "operations/reliability-policy.md",
+        "architecture/model-routing.md",
+        "operations/cost-policy.md"
+      ],
+      "crossencoder_documents": [
+        "operations/latency-policy.md",
+        "operations/deployment-policy.md",
+        "operations/cost-policy.md",
+        "operations/reliability-policy.md",
+        "architecture/model-routing.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "latency_003",
+      "question": "What interval does total latency cover?",
+      "category": "latency",
+      "expected_documents": [
+        "operations/latency-policy.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "operations/latency-policy.md",
+        "operations/reliability-policy.md",
+        "policies/retry-policy.md",
+        "operations/deployment-policy.md",
+        "architecture/system-architecture.md"
+      ],
+      "crossencoder_documents": [
+        "operations/latency-policy.md",
+        "operations/reliability-policy.md",
+        "policies/retry-policy.md",
+        "architecture/system-architecture.md",
+        "operations/deployment-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "latency_004",
+      "question": "What latency detail is recorded when instrumentation exists?",
+      "category": "latency",
+      "expected_documents": [
+        "operations/latency-policy.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "operations/latency-policy.md",
+        "operations/reliability-policy.md",
+        "policies/retry-policy.md",
+        "architecture/system-architecture.md",
+        "policies/validation-policy.md"
+      ],
+      "crossencoder_documents": [
+        "operations/latency-policy.md",
+        "policies/retry-policy.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md",
+        "policies/validation-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "latency_005",
+      "question": "Why is a speedup not automatically an improvement?",
+      "category": "latency",
+      "expected_documents": [
+        "operations/latency-policy.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "operations/latency-policy.md",
+        "operations/reliability-policy.md",
+        "policies/retry-policy.md",
+        "operations/deployment-policy.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "crossencoder_documents": [
+        "operations/latency-policy.md",
+        "operations/reliability-policy.md",
+        "operations/deployment-policy.md",
+        "policies/retry-policy.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "metrics_001",
+      "question": "What does Hit@K measure?",
+      "category": "metrics",
+      "expected_documents": [
+        "evaluation/retrieval-metrics.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "evaluation/retrieval-metrics.md",
+        "engineering/retrieval-guidelines.md",
+        "operations/latency-policy.md",
+        "policies/validation-policy.md",
+        "operations/cost-policy.md"
+      ],
+      "crossencoder_documents": [
+        "evaluation/retrieval-metrics.md",
+        "engineering/retrieval-guidelines.md",
+        "operations/latency-policy.md",
+        "operations/cost-policy.md",
+        "policies/validation-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "metrics_002",
+      "question": "What does Recall@K measure?",
+      "category": "metrics",
+      "expected_documents": [
+        "evaluation/retrieval-metrics.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "evaluation/retrieval-metrics.md",
+        "engineering/retrieval-guidelines.md",
+        "operations/reliability-policy.md",
+        "policies/retry-policy.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "crossencoder_documents": [
+        "evaluation/retrieval-metrics.md",
+        "engineering/retrieval-guidelines.md",
+        "policies/retry-policy.md",
+        "operations/reliability-policy.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "metrics_004",
+      "question": "Why should retrieval metrics be interpreted together?",
+      "category": "metrics",
+      "expected_documents": [
+        "evaluation/retrieval-metrics.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "evaluation/retrieval-metrics.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md",
+        "engineering/embedding-guidelines.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "crossencoder_documents": [
+        "evaluation/retrieval-metrics.md",
+        "evaluation/evaluation-strategy.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md",
+        "engineering/embedding-guidelines.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "reliability_003",
+      "question": "When may transient failures be retried?",
+      "category": "reliability",
+      "expected_documents": [
+        "operations/reliability-policy.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "operations/reliability-policy.md",
+        "policies/retry-policy.md",
+        "policies/structured-output-policy.md",
+        "operations/deployment-policy.md",
+        "policies/validation-policy.md"
+      ],
+      "crossencoder_documents": [
+        "operations/reliability-policy.md",
+        "policies/retry-policy.md",
+        "policies/validation-policy.md",
+        "policies/structured-output-policy.md",
+        "operations/deployment-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "retrieval_001",
+      "question": "What retrieval approach does the baseline implementation use?",
+      "category": "retrieval",
+      "expected_documents": [
+        "engineering/retrieval-guidelines.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "engineering/retrieval-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "operations/latency-policy.md",
+        "engineering/chunking-guidelines.md",
+        "architecture/system-architecture.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/retrieval-guidelines.md",
+        "operations/latency-policy.md",
+        "evaluation/retrieval-metrics.md",
+        "architecture/system-architecture.md",
+        "engineering/chunking-guidelines.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "retrieval_002",
+      "question": "What trade-off comes from increasing top-k?",
+      "category": "retrieval",
+      "expected_documents": [
+        "engineering/retrieval-guidelines.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "engineering/retrieval-guidelines.md",
+        "operations/latency-policy.md",
+        "evaluation/retrieval-metrics.md",
+        "operations/cost-policy.md",
+        "engineering/chunking-guidelines.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/retrieval-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "operations/latency-policy.md",
+        "engineering/chunking-guidelines.md",
+        "operations/cost-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "retrieval_003",
+      "question": "When should retrieval quality be measured separately from the final answer?",
+      "category": "retrieval",
+      "expected_documents": [
+        "engineering/retrieval-guidelines.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "engineering/retrieval-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "operations/latency-policy.md",
+        "engineering/chunking-guidelines.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/retrieval-guidelines.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/latency-policy.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/chunking-guidelines.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "retrieval_005",
+      "question": "What does a retrieval failure mean in the baseline system?",
+      "category": "retrieval",
+      "expected_documents": [
+        "engineering/retrieval-guidelines.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "engineering/retrieval-guidelines.md",
+        "operations/latency-policy.md",
+        "evaluation/retrieval-metrics.md",
+        "operations/reliability-policy.md",
+        "engineering/chunking-guidelines.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/retrieval-guidelines.md",
+        "operations/reliability-policy.md",
+        "operations/latency-policy.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/chunking-guidelines.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "retrieval_006",
+      "question": "What should be measured before adding hybrid search or reranking?",
+      "category": "retrieval",
+      "expected_documents": [
+        "engineering/retrieval-guidelines.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "engineering/retrieval-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/chunking-guidelines.md",
+        "engineering/embedding-guidelines.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/retrieval-guidelines.md",
+        "evaluation/evaluation-strategy.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/chunking-guidelines.md",
+        "engineering/embedding-guidelines.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "retry_002",
+      "question": "How should the original failed execution be handled when retrying?",
+      "category": "retry",
+      "expected_documents": [
+        "policies/retry-policy.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "policies/retry-policy.md",
+        "operations/reliability-policy.md",
+        "policies/structured-output-policy.md",
+        "operations/deployment-policy.md",
+        "policies/validation-policy.md"
+      ],
+      "crossencoder_documents": [
+        "policies/retry-policy.md",
+        "operations/reliability-policy.md",
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "operations/deployment-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "retry_003",
+      "question": "What must be recorded for each retry attempt?",
+      "category": "retry",
+      "expected_documents": [
+        "policies/retry-policy.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "policies/retry-policy.md",
+        "operations/reliability-policy.md",
+        "policies/validation-policy.md",
+        "policies/structured-output-policy.md",
+        "operations/deployment-policy.md"
+      ],
+      "crossencoder_documents": [
+        "policies/retry-policy.md",
+        "policies/validation-policy.md",
+        "operations/reliability-policy.md",
+        "policies/structured-output-policy.md",
+        "operations/deployment-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "retry_004",
+      "question": "Why must repeated retries be bounded?",
+      "category": "retry",
+      "expected_documents": [
+        "policies/retry-policy.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "policies/retry-policy.md",
+        "operations/reliability-policy.md",
+        "engineering/chunking-guidelines.md",
+        "policies/structured-output-policy.md",
+        "engineering/context-management.md"
+      ],
+      "crossencoder_documents": [
+        "policies/retry-policy.md",
+        "operations/reliability-policy.md",
+        "policies/structured-output-policy.md",
+        "engineering/chunking-guidelines.md",
+        "engineering/context-management.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "routing_001",
+      "question": "How does EvalForge decide which language model should handle a request?",
+      "category": "routing",
+      "expected_documents": [
+        "architecture/model-routing.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "architecture/model-routing.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md",
+        "evaluation/evaluation-strategy.md",
+        "operations/cost-policy.md"
+      ],
+      "crossencoder_documents": [
+        "architecture/model-routing.md",
+        "operations/cost-policy.md",
+        "operations/reliability-policy.md",
+        "architecture/system-architecture.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "routing_002",
+      "question": "Why wouldn't every request be sent to the most capable model?",
+      "category": "routing",
+      "expected_documents": [
+        "architecture/model-routing.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "architecture/model-routing.md",
+        "operations/reliability-policy.md",
+        "architecture/system-architecture.md",
+        "policies/structured-output-policy.md",
+        "operations/cost-policy.md"
+      ],
+      "crossencoder_documents": [
+        "architecture/model-routing.md",
+        "operations/reliability-policy.md",
+        "operations/cost-policy.md",
+        "architecture/system-architecture.md",
+        "policies/structured-output-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "routing_003",
+      "question": "What can change when the model used for a request is changed?",
+      "category": "routing",
+      "expected_documents": [
+        "architecture/model-routing.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "architecture/model-routing.md",
+        "operations/reliability-policy.md",
+        "operations/deployment-policy.md",
+        "policies/structured-output-policy.md",
+        "operations/cost-policy.md"
+      ],
+      "crossencoder_documents": [
+        "architecture/model-routing.md",
+        "operations/deployment-policy.md",
+        "operations/reliability-policy.md",
+        "operations/cost-policy.md",
+        "policies/structured-output-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "routing_004",
+      "question": "Which factors belong in a model-routing decision?",
+      "category": "routing",
+      "expected_documents": [
+        "architecture/model-routing.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "architecture/model-routing.md",
+        "engineering/context-management.md",
+        "operations/reliability-policy.md",
+        "operations/deployment-policy.md",
+        "architecture/system-architecture.md"
+      ],
+      "crossencoder_documents": [
+        "architecture/model-routing.md",
+        "operations/reliability-policy.md",
+        "operations/deployment-policy.md",
+        "engineering/context-management.md",
+        "architecture/system-architecture.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "routing_005",
+      "question": "What metadata should a model-routing experiment capture?",
+      "category": "routing",
+      "expected_documents": [
+        "architecture/model-routing.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "architecture/model-routing.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md",
+        "policies/structured-output-policy.md",
+        "architecture/system-architecture.md"
+      ],
+      "crossencoder_documents": [
+        "architecture/model-routing.md",
+        "operations/reliability-policy.md",
+        "architecture/system-architecture.md",
+        "architecture/system-architecture.md",
+        "policies/structured-output-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "structured_002",
+      "question": "When should schema validation occur for generated fields?",
+      "category": "structured_output",
+      "expected_documents": [
+        "policies/structured-output-policy.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "architecture/system-architecture.md",
+        "operations/deployment-policy.md",
+        "architecture/system-architecture.md"
+      ],
+      "crossencoder_documents": [
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "architecture/system-architecture.md",
+        "architecture/system-architecture.md",
+        "operations/deployment-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "validation_004",
+      "question": "What should citations identify in a generated response?",
+      "category": "validation",
+      "expected_documents": [
+        "policies/validation-policy.md"
+      ],
+      "retrieval_classification": "NEUTRAL_REORDER",
+      "dense_documents": [
+        "policies/validation-policy.md",
+        "engineering/context-management.md",
+        "engineering/chunking-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/retrieval-guidelines.md"
+      ],
+      "crossencoder_documents": [
+        "policies/validation-policy.md",
+        "engineering/context-management.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md",
+        "evaluation/retrieval-metrics.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [
+        "NEUTRAL_REORDER"
+      ],
+      "candidate_score": 2
+    },
+    {
+      "case_id": "chunking_001",
+      "question": "Why must retrieved chunks retain surrounding context?",
+      "category": "chunking",
+      "expected_documents": [
+        "engineering/chunking-guidelines.md"
+      ],
+      "retrieval_classification": "UNCHANGED",
+      "dense_documents": [
+        "engineering/chunking-guidelines.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/context-management.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/embedding-guidelines.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/chunking-guidelines.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/context-management.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/embedding-guidelines.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [],
+      "candidate_score": 0
+    },
+    {
+      "case_id": "chunking_003",
+      "question": "What risk comes from chunks that are too small?",
+      "category": "chunking",
+      "expected_documents": [
+        "engineering/chunking-guidelines.md"
+      ],
+      "retrieval_classification": "UNCHANGED",
+      "dense_documents": [
+        "engineering/chunking-guidelines.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/context-management.md",
+        "policies/retry-policy.md",
+        "operations/reliability-policy.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/chunking-guidelines.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/context-management.md",
+        "policies/retry-policy.md",
+        "operations/reliability-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [],
+      "candidate_score": 0
+    },
+    {
+      "case_id": "context_003",
+      "question": "What are the costs of irrelevant retrieved context?",
+      "category": "context",
+      "expected_documents": [
+        "engineering/context-management.md"
+      ],
+      "retrieval_classification": "UNCHANGED",
+      "dense_documents": [
+        "engineering/context-management.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "operations/cost-policy.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/context-management.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "operations/cost-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [],
+      "candidate_score": 0
+    },
+    {
+      "case_id": "deployment_002",
+      "question": "Which change types require comparison against a known baseline?",
+      "category": "deployment",
+      "expected_documents": [
+        "operations/deployment-policy.md"
+      ],
+      "retrieval_classification": "UNCHANGED",
+      "dense_documents": [
+        "operations/deployment-policy.md",
+        "engineering/retrieval-guidelines.md",
+        "architecture/model-routing.md",
+        "operations/latency-policy.md",
+        "policies/structured-output-policy.md"
+      ],
+      "crossencoder_documents": [
+        "operations/deployment-policy.md",
+        "engineering/retrieval-guidelines.md",
+        "architecture/model-routing.md",
+        "operations/latency-policy.md",
+        "policies/structured-output-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [],
+      "candidate_score": 0
+    },
+    {
+      "case_id": "embedding_001",
+      "question": "How are semantic embeddings compared during retrieval?",
+      "category": "embedding",
+      "expected_documents": [
+        "engineering/embedding-guidelines.md"
+      ],
+      "retrieval_classification": "UNCHANGED",
+      "dense_documents": [
+        "engineering/embedding-guidelines.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/context-management.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/embedding-guidelines.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/context-management.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [],
+      "candidate_score": 0
+    },
+    {
+      "case_id": "embedding_002",
+      "question": "What consistency is required when comparing document and query embeddings?",
+      "category": "embedding",
+      "expected_documents": [
+        "engineering/embedding-guidelines.md"
+      ],
+      "retrieval_classification": "UNCHANGED",
+      "dense_documents": [
+        "engineering/embedding-guidelines.md",
+        "engineering/chunking-guidelines.md",
+        "engineering/retrieval-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/context-management.md"
+      ],
+      "crossencoder_documents": [
+        "engineering/embedding-guidelines.md",
+        "engineering/chunking-guidelines.md",
+        "engineering/retrieval-guidelines.md",
+        "evaluation/retrieval-metrics.md",
+        "engineering/context-management.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [],
+      "candidate_score": 0
+    },
+    {
+      "case_id": "metrics_003",
+      "question": "What does reciprocal rank reveal?",
+      "category": "metrics",
+      "expected_documents": [
+        "evaluation/retrieval-metrics.md"
+      ],
+      "retrieval_classification": "UNCHANGED",
+      "dense_documents": [
+        "evaluation/retrieval-metrics.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md",
+        "engineering/embedding-guidelines.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "crossencoder_documents": [
+        "evaluation/retrieval-metrics.md",
+        "engineering/retrieval-guidelines.md",
+        "engineering/chunking-guidelines.md",
+        "engineering/embedding-guidelines.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [],
+      "candidate_score": 0
+    },
+    {
+      "case_id": "reliability_001",
+      "question": "What components can have failures tracked by EvalForge?",
+      "category": "reliability",
+      "expected_documents": [
+        "operations/reliability-policy.md"
+      ],
+      "retrieval_classification": "UNCHANGED",
+      "dense_documents": [
+        "operations/reliability-policy.md",
+        "architecture/system-architecture.md",
+        "evaluation/evaluation-strategy.md",
+        "policies/retry-policy.md",
+        "policies/structured-output-policy.md"
+      ],
+      "crossencoder_documents": [
+        "operations/reliability-policy.md",
+        "architecture/system-architecture.md",
+        "evaluation/evaluation-strategy.md",
+        "policies/retry-policy.md",
+        "policies/structured-output-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [],
+      "candidate_score": 0
+    },
+    {
+      "case_id": "retry_001",
+      "question": "What kind of failures are retries intended to recover from?",
+      "category": "retry",
+      "expected_documents": [
+        "policies/retry-policy.md"
+      ],
+      "retrieval_classification": "UNCHANGED",
+      "dense_documents": [
+        "policies/retry-policy.md",
+        "operations/reliability-policy.md",
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "operations/deployment-policy.md"
+      ],
+      "crossencoder_documents": [
+        "policies/retry-policy.md",
+        "operations/reliability-policy.md",
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "operations/deployment-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [],
+      "candidate_score": 0
+    },
+    {
+      "case_id": "structured_001",
+      "question": "What must structured LLM responses conform to?",
+      "category": "structured_output",
+      "expected_documents": [
+        "policies/structured-output-policy.md"
+      ],
+      "retrieval_classification": "UNCHANGED",
+      "dense_documents": [
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "architecture/system-architecture.md",
+        "architecture/model-routing.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "crossencoder_documents": [
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "architecture/system-architecture.md",
+        "architecture/model-routing.md",
+        "evaluation/evaluation-strategy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [],
+      "candidate_score": 0
+    },
+    {
+      "case_id": "structured_003",
+      "question": "What must required structured-output fields satisfy?",
+      "category": "structured_output",
+      "expected_documents": [
+        "policies/structured-output-policy.md"
+      ],
+      "retrieval_classification": "UNCHANGED",
+      "dense_documents": [
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "architecture/system-architecture.md",
+        "architecture/system-architecture.md",
+        "engineering/chunking-guidelines.md"
+      ],
+      "crossencoder_documents": [
+        "policies/structured-output-policy.md",
+        "policies/validation-policy.md",
+        "architecture/system-architecture.md",
+        "architecture/system-architecture.md",
+        "engineering/chunking-guidelines.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [],
+      "candidate_score": 0
+    },
+    {
+      "case_id": "validation_002",
+      "question": "What range is allowed for confidence values in generated responses?",
+      "category": "validation",
+      "expected_documents": [
+        "policies/validation-policy.md"
+      ],
+      "retrieval_classification": "UNCHANGED",
+      "dense_documents": [
+        "policies/validation-policy.md",
+        "policies/structured-output-policy.md",
+        "operations/latency-policy.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md"
+      ],
+      "crossencoder_documents": [
+        "policies/validation-policy.md",
+        "policies/structured-output-policy.md",
+        "operations/latency-policy.md",
+        "architecture/system-architecture.md",
+        "operations/reliability-policy.md"
+      ],
+      "ce_added_documents": [],
+      "ce_removed_documents": [],
+      "dense_expected_ranks": [
+        1
+      ],
+      "crossencoder_expected_ranks": [
+        1
+      ],
+      "expected_rank_shift": 0,
+      "dense_missing_expected": [],
+      "crossencoder_missing_expected": [],
+      "g1_dense_correct": null,
+      "g1_crossencoder_correct": null,
+      "g2_expected_first_correct": null,
+      "g2_oracle_correct": null,
+      "signals": [],
+      "candidate_score": 0
+    }
+  ],
+  "method": {
+    "purpose": "Mine naturally difficult cases from the existing 75-case benchmark before constructing synthetic cases.",
+    "no_llm_calls": true,
+    "no_production_changes": true,
+    "ranking_score_is_selection_heuristic": true,
+    "candidate_score_is_not_a_quality_metric": true
+  },
+  "next_step": "Inspect top candidates and select a defensible G3B subset. Only after selection should retrieval-only screening be run."
+}
