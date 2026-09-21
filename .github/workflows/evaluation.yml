@@ -56,11 +56,11 @@ jobs:
       - name: Initialize database
         run: python -c "from app.db.session import init_db; init_db()"
 
-      - name: Run tests
-        run: pytest -q
-
       - name: Ingest evaluation corpus
         run: python scripts/ingest.py
-
+      
+      - name: Run tests
+        run: pytest -q
+      
       - name: Run retrieval evaluation
         run: python scripts/run_ci_evaluation.py
